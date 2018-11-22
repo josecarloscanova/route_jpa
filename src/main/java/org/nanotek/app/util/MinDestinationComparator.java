@@ -26,6 +26,6 @@ public class MinDestinationComparator implements Comparator <Destination>{
 	}
 
 	private String lexical(Route route) {
-		return route.getFrom().getStationLabel() + route.getDestination().getStationLabel();
+		return route.getFrom().getStationLabel().concat(route.getDestination().getStationLabel());
 	}
 }
