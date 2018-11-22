@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+
+    <logger name="org.nanotek" level="debug"
+            additivity="false">
+    </logger>
+
+    <logger name="org.springframework" level="error"
+            additivity="false">
+    </logger>
+
+    <logger name="org.hibernate" level="debug"
+            additivity="false">
+    </logger>
+    
+   <logger name="org.junit" level="error"
+            additivity="false">
+    </logger>
+
+
+<!--     <root level="error">
+        <appender-ref ref="STDOUT" />
+    </root>
+ -->
+</configuration>
