@@ -18,9 +18,6 @@ public class MinDestinationComparator implements Comparator <Destination>{
 		}else if (arg0.getDistance() < arg1.getDistance()) { 
 			result = -1;
 		}else if(arg0.getDistance() == arg1.getDistance()) {
-			result = 0;
-		}
-		if (result == 0) { 
 			String lex0 = lexical (arg0.getRoute()) ; 
 			String lex1 = lexical (arg1.getRoute());
 			result = lex0.compareTo(lex1);
