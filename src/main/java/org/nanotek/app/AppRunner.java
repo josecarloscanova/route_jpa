@@ -25,7 +25,7 @@ public class AppRunner {
 	@PostConstruct
 	public void run() throws Exception {
 		populateDataBase();
-		findRoute(new Route(new Station ("A") , new Station("C")));
+		findRoute(new Route(new Station ("A") , new Station("E")));
 		findRoute(new Route(new Station ("D") , new Station("C")));
 		findMinRoute("A");
 		findMinRoute("B");
@@ -56,7 +56,6 @@ public class AppRunner {
 			else { 
 				Destination destination = routes.stream().findFirst().get();
 				printDestination (destination);
-				return;
 			}
 		}else { 
 			System.out.println("No direct route from " + route.getFrom() + " to " + route.getDestination());
@@ -69,7 +68,7 @@ public class AppRunner {
 
 	private void populateDataBase() {
 		String input = "AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7";
-		String[] inputValues = input.split("\\, ");
+		String[] inputValues = input.split("\\,\\s");
 		Stream.of(inputValues).forEach(x -> addStations(x));
 	}
 
