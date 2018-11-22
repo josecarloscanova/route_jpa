@@ -1,5 +1,6 @@
 package org.nanotek.app;
 
+import org.nanotek.app.util.MinDestinationComparator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -20,6 +21,11 @@ public class App {
 	@Bean
 	public AppRunner appRunner() { 
 		return new AppRunner() ;
+	}
+	
+	@Bean
+	public MinDestinationComparator minDestinationComparator() { 
+		return new MinDestinationComparator();
 	}
 	
 }

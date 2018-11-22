@@ -4,8 +4,7 @@ server:
 
 logging: 
   level: 
-    org.hibernate.SQL: debug
-    org.nanotek: debug
+    org.hibernate.SQL: error
     
 spring: 
   jpa:
