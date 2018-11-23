@@ -14,7 +14,7 @@ public class RouteLexicalComparator implements Comparator<Route>{
 	}
 	
 	private String lexicalRoute(Route route) {
-		return route.getFrom().getStationLabel().concat(route.getDestination().getStationLabel());
+		return route.getFrom().getStationLabel().concat(route.getTo().getStationLabel());
 	}
 
 }

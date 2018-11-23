@@ -1,6 +1,7 @@
 package org.nanotek.app;
 
 import org.nanotek.app.util.DestinationComparator;
+import org.nanotek.app.util.RouteLexicalComparator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -26,6 +27,11 @@ public class App {
 	@Bean
 	public DestinationComparator destinationComparator() { 
 		return new DestinationComparator();
+	}
+	
+	@Bean
+	public RouteLexicalComparator routeComparator() { 
+		return new RouteLexicalComparator();
 	}
 	
 }

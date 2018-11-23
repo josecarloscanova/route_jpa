@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Station {
+public class Station implements Comparable<Station>{
 
 	@Id
 	private String stationLabel;
@@ -69,7 +69,10 @@ public class Station {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public int compareTo(Station o) {
+		return this.stationLabel.compareTo(o.getStationLabel());
+	}
 	
 }

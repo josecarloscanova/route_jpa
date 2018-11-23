@@ -15,7 +15,7 @@ public class Route implements Serializable {
 	private Station from; 
 	
 	@OneToOne
-	private Station destination;
+	private Station to;
 
 	public Route() { 
 	}
@@ -23,7 +23,7 @@ public class Route implements Serializable {
 	public Route(Station from, Station destination) {
 		super();
 		this.from = from;
-		this.destination = destination;
+		this.to = destination;
 	}
 
 	public Station getFrom() {
@@ -34,17 +34,17 @@ public class Route implements Serializable {
 		this.from = from;
 	}
 
-	public Station getDestination() {
-		return destination;
+	public Station getTo() {
+		return to;
 	}
 
-	public void setDestination(Station destination) {
-		this.destination = destination;
+	public void setTo(Station destination) {
+		this.to = destination;
 	} 
 	
 	@Override
 	public String toString() {
-		return "Route [from=" + from + ", destination=" + destination + "]";
+		return "Route [from=" + from + ", destination=" + to + "]";
 	}
 	
 }

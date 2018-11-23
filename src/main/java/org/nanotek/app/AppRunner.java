@@ -1,5 +1,9 @@
 package org.nanotek.app;
 
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -13,6 +17,8 @@ import org.nanotek.model.jpa.Route;
 import org.nanotek.model.jpa.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.common.collect.Table;
+
 public class AppRunner {
 
 	@Autowired
@@ -20,6 +26,8 @@ public class AppRunner {
 	
 	@Autowired 
 	private DestinationComparator destinationComparator;
+	
+	private Table<Station, Station, Integer> pathTable;
 	
 	@PostConstruct
 	public void run() throws Exception {
@@ -31,14 +39,26 @@ public class AppRunner {
 		findMinRoute("C");
 		findMinRoute("D");
 		findMinRoute("E");
+		pathTable = appService.generatePathTable();
+		printTable();
 	}
 
-	private void findMinRoute(String id) {
+	private void printTable() {
+		pathTable.rowKeySet().stream().forEach(station -> printColumn(station , pathTable.row(station)));
+	}
+
+	private void printColumn(Station station, Map<Station, Integer> column) {
+		column.entrySet().stream().forEach(entry -> System.out.println("PATH TABLE " + station.toString() + " " + entry.getKey() + "  " + entry.getValue()));
+	}
+
+
+	private Destination findMinRoute(String id) {
 		Optional<Station> optStation = appService.findStation(id);
+		Optional<Destination> minDistance = findMinimalDistance(optStation.get());
 		if(optStation.isPresent()) { 
-			Optional<Destination> minDistance = findMinimalDistance(optStation.get());
 			printDestination(minDistance.get());
 		}
+		return minDistance.get();
 	}
 
 
@@ -57,12 +77,12 @@ public class AppRunner {
 				printDestination (destination);
 			}
 		}else { 
-			System.out.println("No direct destination from " + route.getFrom() + " to " + route.getDestination());
+			System.out.println("No direct destination from " + route.getFrom() + " to " + route.getTo());
 		}
 	}
 
 	private void printDestination(Destination destination) {
-		System.out.println("Destination from " + destination.getRoute().getFrom() + " to " + destination.getRoute().getDestination() + " with distance:" + destination.getDistance());
+		System.out.println("Destination from " + destination.getRoute().getFrom() + " to " + destination.getRoute().getTo() + " with distance:" + destination.getDistance());
 	}
 
 	private void populateDataBase() {

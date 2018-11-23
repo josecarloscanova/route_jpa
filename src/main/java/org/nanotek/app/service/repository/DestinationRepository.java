@@ -16,6 +16,6 @@ public interface DestinationRepository extends CrudRepository<Destination, Route
 
 	Set<Destination> findByRoute(Route route);
 	
-	@Query("from Destination d where d.route.from  = :origin or d.route.destination = :target")
-	Set<Destination> findByOriginTarget(@Param("origin") Station origin , @Param ("target") Station target);
+	@Query("from Destination d where d.route.from  = :origin or d.route.to = :to")
+	Set<Destination> findByOriginTarget(@Param("origin") Station origin , @Param ("to") Station target);
 }
