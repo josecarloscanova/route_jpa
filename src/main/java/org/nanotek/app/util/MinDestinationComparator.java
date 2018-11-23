@@ -3,10 +3,9 @@ package org.nanotek.app.util;
 import java.util.Comparator;
 
 import org.nanotek.model.jpa.Destination;
-import org.nanotek.model.jpa.Route;
 
 /** 
- * @author Usuario
+ * @author Jose Canova.
  */
 public class MinDestinationComparator implements Comparator <Destination>{
 
@@ -18,14 +17,8 @@ public class MinDestinationComparator implements Comparator <Destination>{
 		}else if (arg0.getDistance() < arg1.getDistance()) { 
 			result = -1;
 		}else if(arg0.getDistance() == arg1.getDistance()) {
-			String lex0 = lexicalRoute (arg0.getRoute()) ; 
-			String lex1 = lexicalRoute (arg1.getRoute());
-			result = lex0.compareTo(lex1);
+			result = new RouteLexicalComparator().compare(arg0.getRoute(), arg1.getRoute());
 		}
 		return result;
-	}
-
-	private String lexicalRoute(Route route) {
-		return route.getFrom().getStationLabel().concat(route.getDestination().getStationLabel());
 	}
 }
