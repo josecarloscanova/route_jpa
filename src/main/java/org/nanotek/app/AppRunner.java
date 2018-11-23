@@ -17,10 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AppRunner {
 
 	@Autowired
-	AppService appService;
+	private AppService appService;
 	
 	@Autowired 
-	DestinationComparator destinationComparator;
+	private DestinationComparator destinationComparator;
 	
 	@PostConstruct
 	public void run() throws Exception {
