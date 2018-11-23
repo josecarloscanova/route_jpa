@@ -44,5 +44,32 @@ public class Station {
 	public String toString() {
 		return "Station [stationLabel=" + stationLabel +"]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((stationLabel == null) ? 0 : stationLabel.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Station other = (Station) obj;
+		if (stationLabel == null) {
+			if (other.stationLabel != null)
+				return false;
+		} else if (!stationLabel.equals(other.stationLabel))
+			return false;
+		return true;
+	}
+	
+	
 	
 }
