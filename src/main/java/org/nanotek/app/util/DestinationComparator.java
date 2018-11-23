@@ -7,7 +7,7 @@ import org.nanotek.model.jpa.Destination;
 /** 
  * @author Jose Canova.
  */
-public class MinDestinationComparator implements Comparator <Destination>{
+public class DestinationComparator implements Comparator <Destination>{
 
 	@Override
 	public int compare(Destination arg0, Destination arg1) {

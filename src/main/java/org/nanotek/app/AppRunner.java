@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 
 import org.nanotek.app.service.AppService;
-import org.nanotek.app.util.MinDestinationComparator;
+import org.nanotek.app.util.DestinationComparator;
 import org.nanotek.model.jpa.Destination;
 import org.nanotek.model.jpa.Route;
 import org.nanotek.model.jpa.Station;
@@ -20,7 +20,7 @@ public class AppRunner {
 	AppService appService;
 	
 	@Autowired 
-	MinDestinationComparator minDestinationComparator;
+	DestinationComparator destinationComparator;
 	
 	@PostConstruct
 	public void run() throws Exception {
@@ -44,7 +44,7 @@ public class AppRunner {
 
 
 	private Optional<Destination> findMinimalDistance(Station station) {
-		return station.getDestinations().stream().min(minDestinationComparator);
+		return station.getDestinations().stream().min(destinationComparator);
 	}
 
 	private void findRoute(Route route) {
