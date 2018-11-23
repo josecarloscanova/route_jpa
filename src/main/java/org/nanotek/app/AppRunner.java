@@ -27,8 +27,10 @@ public class AppRunner {
 	@Autowired 
 	private DestinationComparator destinationComparator;
 	
-	private Table<Station, Station, Integer> pathTable;
-	
+	private Table<Station, Station, Integer> routeTable;
+
+	private Table<Station, Station, Integer> distanceTable;
+
 	@PostConstruct
 	public void run() throws Exception {
 		populateDataBase();
@@ -39,12 +41,17 @@ public class AppRunner {
 		findMinRoute("C");
 		findMinRoute("D");
 		findMinRoute("E");
-		pathTable = appService.generatePathTable();
-		printTable();
+		routeTable = appService.generatePathTable();
+		distanceTable = appService.generateDistanceTable();
+		printRouteTable();
+		generateShortesDistanceResults();
 	}
 
-	private void printTable() {
-		pathTable.rowKeySet().stream().forEach(station -> printColumn(station , pathTable.row(station)));
+	private void generateShortesDistanceResults() {
+	}
+
+	private void printRouteTable() {
+		routeTable.rowKeySet().stream().forEach(station -> printColumn(station , routeTable.row(station)));
 	}
 
 	private void printColumn(Station station, Map<Station, Integer> column) {

@@ -57,6 +57,32 @@ public class AppService {
 		return destinationRepository.findByOriginTarget(origin, target);
 	}
 
+	public Integer findDistance(Station from, Station to) {
+		Optional<Destination> optDest= destinationRepository.findById(new Route(from,to));
+		return optDest.isPresent()?optDest.get().getDistance():Integer.MAX_VALUE;
+	}
+
+	public Set<Station> getStations() {
+		Set<Station> stations = new TreeSet<>();
+		stationRepository.findAll().forEach(x -> stations.add(x));
+		return stations;
+	}
+
+	public Table<Station, Station, Integer> generateDistanceTable() {
+		Table<Station , Station , Integer>  theTable = TreeBasedTable.create();
+		Set<Station> stations = new TreeSet <>();
+		stationRepository.findAll().forEach(x -> stations.add(x));
+		stations.forEach(station -> generateTable(station , stations , theTable));
+		return theTable;
+	}
+
+	private void generateTable(Station station, Set<Station> stations, Table<Station, Station, Integer> theTable) {
+		for(Station to : stations) { 
+			int val = to.equals(station) ? 0 : Integer.MAX_VALUE;
+			theTable.put(station, to, val);
+		}
+	}
+	
 	public Table<Station , Station , Integer> generatePathTable() {
 		Table<Station , Station , Integer>  theTable = TreeBasedTable.create();
 		stationRepository.findAll().forEach(x -> createDestinationColumns(x,theTable));
@@ -70,17 +96,6 @@ public class AppService {
 
 	private void putOnTable(Destination destination, Table<Station, Station, Integer> theTable) {
 		theTable.put(destination.getRoute().getFrom(), destination.getRoute().getTo(), destination.getDistance());
-	}
-
-	public Integer findDistance(Station from, Station to) {
-		Optional<Destination> optDest= destinationRepository.findById(new Route(from,to));
-		return optDest.isPresent()?optDest.get().getDistance():Integer.MAX_VALUE;
-	}
-
-	public Set<Station> getStations() {
-		Set<Station> stations = new TreeSet<>();
-		stationRepository.findAll().forEach(x -> stations.add(x));
-		return stations;
 	}
 	
 }
