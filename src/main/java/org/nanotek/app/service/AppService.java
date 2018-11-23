@@ -16,10 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class AppService {
 
 	@Autowired
-	StationRepository stationRepository;
+	private StationRepository stationRepository;
 	
 	@Autowired
-	DestinationRepository destinationRepository;
+	private DestinationRepository destinationRepository;
 	
 	@Transactional
 	public Station addNewStation(Station station) { 

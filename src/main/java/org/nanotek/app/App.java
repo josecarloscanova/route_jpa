@@ -24,7 +24,7 @@ public class App {
 	}
 	
 	@Bean
-	public DestinationComparator minDestinationComparator() { 
+	public DestinationComparator destinationComparator() { 
 		return new DestinationComparator();
 	}
 	
