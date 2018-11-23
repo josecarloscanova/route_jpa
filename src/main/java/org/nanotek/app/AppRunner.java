@@ -13,7 +13,6 @@ import org.nanotek.model.jpa.Route;
 import org.nanotek.model.jpa.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 
-//@Component
 public class AppRunner {
 
 	@Autowired
@@ -48,22 +47,22 @@ public class AppRunner {
 	}
 
 	private void findRoute(Route route) {
-		Set<Destination> routes = appService.findRoutes(route);
-		if(!routes.isEmpty()) { //just on possible solution otherwise the model is screwed.
-			if (routes.size() > 1) { 
+		Set<Destination> destinations = appService.findRoutes(route);
+		if(!destinations.isEmpty()) { //just on possible solution otherwise the model is screwed.
+			if (destinations.size() > 1) { 
 				throw new RuntimeException("Not a valid solution");
 			}
 			else { 
-				Destination destination = routes.stream().findFirst().get();
+				Destination destination = destinations.stream().findFirst().get();
 				printDestination (destination);
 			}
 		}else { 
-			System.out.println("No direct route from " + route.getFrom() + " to " + route.getDestination());
+			System.out.println("No direct destination from " + route.getFrom() + " to " + route.getDestination());
 		}
 	}
 
 	private void printDestination(Destination destination) {
-		System.out.println("Route from " + destination.getRoute().getFrom() + " to " + destination.getRoute().getDestination() + " with distance:" + destination.getDistance());
+		System.out.println("Destination from " + destination.getRoute().getFrom() + " to " + destination.getRoute().getDestination() + " with distance:" + destination.getDistance());
 	}
 
 	private void populateDataBase() {
