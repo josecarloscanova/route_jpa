@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.collect.Table;
+import com.google.common.collect.TreeBasedTable;
+
 @Service
 public class AppService {
 
@@ -54,4 +57,11 @@ public class AppService {
 		return destinationRepository.findByOriginTarget(origin, target);
 	}
 
+	public Table<Station , Station , Integer> generatePathTable(Station from , Station to) {
+		
+		Table <Station , Station , Integer> pathTables = TreeBasedTable.create();
+		
+		return null;
+	}
+	
 }
