@@ -16,34 +16,33 @@ import com.google.common.graph.MutableValueGraph;
 public class GraphPathService {
 
 	private Table<Station,Station,Integer> pathTable;
-
+	
 	private Table<Station,Station,Integer> distanceTable;
-
+	
 	public void calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
 		pathTable = generatePathTable();
 		distanceTable = generateDistanceTable(routes);
 		Set<Station> stations = routes.nodes();
 		stations.stream().forEach(station -> createDestinationColumns(station , pathTable , routes));
 		populateDistanceTable(pathTable, distanceTable);
-
+		
 		Set<Station> stationRows = distanceTable.rowKeySet();
 
 		for(Station k : stationRows) { 
 			for (Station i : stationRows) { 
 				for(Station j : stationRows) { 
-					if(distanceTable.get(i, k) < Integer.MAX_VALUE || distanceTable.get(k, j) < Integer.MAX_VALUE) { 
-						continue;
-					}
-					if(distanceTable.get(i, j) > distanceTable.get(i, k) + distanceTable.get(k, j)) { 
-						distanceTable.put(i,j , distanceTable.get(i, k) + distanceTable.get(k, j));						
+					if(distanceTable.get(i, k) < Integer.MAX_VALUE && distanceTable.get(k, j) < Integer.MAX_VALUE) { 
+						if(distanceTable.get(i, j) > distanceTable.get(i, k) + distanceTable.get(k, j)) { 
+							distanceTable.put(i,j , distanceTable.get(i, k) + distanceTable.get(k, j));						
+						}
 					}
 				}
 			}
 		}
-
+		
 		printTable(distanceTable);
 	}
-
+	
 	private void printTable(Table<Station, Station, Integer> routeTable) {
 		Set<Station> stationRows = routeTable.rowKeySet(); 
 		for(Station i : stationRows) { 
@@ -53,7 +52,7 @@ public class GraphPathService {
 			}
 		}
 	}
-
+	
 	private void populateDistanceTable(Table<Station, Station, Integer> pathTable,
 			Table<Station, Station, Integer> distanceTable) {
 		Set<Station> rows = pathTable.rowKeySet();
@@ -66,7 +65,7 @@ public class GraphPathService {
 		} 
 
 	}
-
+	
 	public Table<Station , Station , Integer> generatePathTable() {
 		Table<Station , Station , Integer>  theTable = TreeBasedTable.create();
 		return theTable;
@@ -112,5 +111,5 @@ public class GraphPathService {
 	public void setDistanceTable(Table<Station, Station, Integer> distanceTable) {
 		this.distanceTable = distanceTable;
 	}
-
+	
 }
