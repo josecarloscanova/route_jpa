@@ -33,19 +33,19 @@ public class AppRunner {
 	
 	private Table<Station, Station, Integer> routeTable;
 
-	private Table<Station, Station, Integer> distanceTable;
+	private Table<Station, Station, Integer> pathTable;
 
 	@PostConstruct
 	public void run() throws Exception {
 		populateDataBase();
 		shortestPathService.calculateShortesPath();
-		Table<Station,Station,Integer> routeTable = shortestPathService.getRouteTable();
-		System.out.println("FROM A TO C " + routeTable.get(new Station ("A") , new Station("C")));
+		pathTable = shortestPathService.getRouteTable();
+		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));
 //		
-		Integer ab = routeTable.get(new Station ("A") , new Station("B"));
+		Integer ab = pathTable.get(new Station ("A") , new Station("B"));
 		System.out.println("FROM A TO B " + ab);
 //		
-		Integer bc = routeTable.get(new Station ("B") , new Station("C"));
+		Integer bc = pathTable.get(new Station ("B") , new Station("C"));
 		System.out.println("FROM B TO C " + bc);
 //		
 		Integer val1 = ab + bc;
