@@ -2,17 +2,10 @@ package org.nanotek.model.jpa;
 
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-@Entity
 public class Station implements Comparable<Station>{
 
-	@Id
 	private String stationLabel;
 	
-	@OneToMany
 	private Set<Destination> destinations;
 
 	public Station() {
