@@ -75,11 +75,11 @@ public class GraphPathService {
 		Table<Station , Station , Integer>  theTable = TreeBasedTable.create();
 		Set<Station> stations = new TreeSet <>();
 		routes.nodes().forEach(station -> stations.add(station));
-		stations.forEach(station -> generateTable(station , stations , theTable));
+		stations.forEach(station -> generateValues(station , stations , theTable));
 		return theTable;
 	}
 
-	private void generateTable(Station station, Set<Station> stations, Table<Station, Station, Integer> theTable) {
+	private void generateValues(Station station, Set<Station> stations, Table<Station, Station, Integer> theTable) {
 		for(Station to : stations) { 
 			int val = to.equals(station) ? 0 : Integer.MAX_VALUE;
 			theTable.put(station, to, val);
