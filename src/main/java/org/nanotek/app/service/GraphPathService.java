@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.nanotek.model.jpa.Station;
+import org.nanotek.model.Station;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Table;
@@ -19,7 +19,7 @@ public class GraphPathService {
 	
 	private Table<Station,Station,Integer> distanceTable;
 	
-	public void calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
+	public Table<Station,Station,Integer>  calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
 		pathTable = generatePathTable();
 		distanceTable = generateDistanceTable(routes);
 		Set<Station> stations = routes.nodes();
@@ -40,17 +40,7 @@ public class GraphPathService {
 			}
 		}
 		
-		printTable(distanceTable);
-	}
-	
-	private void printTable(Table<Station, Station, Integer> routeTable) {
-		Set<Station> stationRows = routeTable.rowKeySet(); 
-		for(Station i : stationRows) { 
-			for(Station j : stationRows) { 
-				Integer ij = routeTable.get(i, j);
-				System.out.println("Distance Calculated " + i + " " + j + " " + ij);
-			}
-		}
+		return distanceTable;
 	}
 	
 	private void populateDistanceTable(Table<Station, Station, Integer> pathTable,

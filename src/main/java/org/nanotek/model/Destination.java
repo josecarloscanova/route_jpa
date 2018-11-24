@@ -1,4 +1,4 @@
-package org.nanotek.model.jpa;
+package org.nanotek.model;
 
 public class Destination {
 

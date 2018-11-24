@@ -1,11 +1,12 @@
 package org.nanotek.app;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
 import org.nanotek.app.service.GraphPathService;
-import org.nanotek.model.jpa.Station;
+import org.nanotek.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Table;
@@ -52,4 +53,15 @@ public class AppRunner {
 		routes.addNode(node2);
 		routes.putEdgeValue(node1, node2, val);
 	}
+	
+	private void printTable(Table<Station, Station, Integer> routeTable) {
+		Set<Station> stationRows = routeTable.rowKeySet(); 
+		for(Station i : stationRows) { 
+			for(Station j : stationRows) { 
+				Integer ij = routeTable.get(i, j);
+				System.out.println("Distance Calculated " + i + " " + j + " " + ij);
+			}
+		}
+	}
+
 }
