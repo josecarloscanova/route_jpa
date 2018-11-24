@@ -17,11 +17,15 @@ public class ShortestPathService {
 
 	@Autowired
 	private AppService appService;
+	
+	private Table<Station,Station,Integer> pathTable;
+	
+	private Table<Station,Station,Integer> routeTable;
 
 	public void calculateShortesPath(){ 
 		
-		Table<Station,Station,Integer> pathTable = appService.generatePathTable();
-		Table<Station,Station,Integer> routeTable = appService.generateDistanceTable();
+		pathTable = appService.generatePathTable();
+		routeTable = appService.generateDistanceTable();
 
 		populateRouteTable(pathTable , routeTable);
 
@@ -66,5 +70,15 @@ public class ShortestPathService {
 		} 
 
 	}
+	
+	public Table<Station, Station, Integer> getPathTable() {
+		return pathTable;
+	}
+
+
+	public Table<Station, Station, Integer> getRouteTable() {
+		return routeTable;
+	}
+
 
 }

@@ -38,18 +38,19 @@ public class AppRunner {
 	@PostConstruct
 	public void run() throws Exception {
 		populateDataBase();
-//		findRoute(new Route(new Station ("A") , new Station("E")));
-//		findRoute(new Route(new Station ("D") , new Station("C")));
-//		findMinRoute("A");
-//		findMinRoute("B");
-//		findMinRoute("C");
-//		findMinRoute("D");
-//		findMinRoute("E");
-//		routeTable = appService.generatePathTable();
-//		distanceTable = appService.generateDistanceTable();
-//		printRouteTable();
-//		generateShortesDistanceResults();
 		shortestPathService.calculateShortesPath();
+		Table<Station,Station,Integer> routeTable = shortestPathService.getRouteTable();
+		System.out.println("FROM A TO C " + routeTable.get(new Station ("A") , new Station("C")));
+//		
+		Integer ab = routeTable.get(new Station ("A") , new Station("B"));
+		System.out.println("FROM A TO B " + ab);
+//		
+		Integer bc = routeTable.get(new Station ("B") , new Station("C"));
+		System.out.println("FROM B TO C " + bc);
+//		
+		Integer val1 = ab + bc;
+		System.out.println("FROM ab + bc " + val1);
+		
 	}
 
 	private void generateShortesDistanceResults() {
