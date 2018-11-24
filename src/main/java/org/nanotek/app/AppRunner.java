@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 
 import org.nanotek.app.service.AppService;
+import org.nanotek.app.service.ShortestPathService;
 import org.nanotek.app.util.DestinationComparator;
 import org.nanotek.model.jpa.Destination;
 import org.nanotek.model.jpa.Route;
@@ -24,6 +25,9 @@ public class AppRunner {
 	@Autowired
 	private AppService appService;
 	
+	@Autowired
+	private ShortestPathService shortestPathService;
+	
 	@Autowired 
 	private DestinationComparator destinationComparator;
 	
@@ -34,17 +38,18 @@ public class AppRunner {
 	@PostConstruct
 	public void run() throws Exception {
 		populateDataBase();
-		findRoute(new Route(new Station ("A") , new Station("E")));
-		findRoute(new Route(new Station ("D") , new Station("C")));
-		findMinRoute("A");
-		findMinRoute("B");
-		findMinRoute("C");
-		findMinRoute("D");
-		findMinRoute("E");
-		routeTable = appService.generatePathTable();
-		distanceTable = appService.generateDistanceTable();
-		printRouteTable();
-		generateShortesDistanceResults();
+//		findRoute(new Route(new Station ("A") , new Station("E")));
+//		findRoute(new Route(new Station ("D") , new Station("C")));
+//		findMinRoute("A");
+//		findMinRoute("B");
+//		findMinRoute("C");
+//		findMinRoute("D");
+//		findMinRoute("E");
+//		routeTable = appService.generatePathTable();
+//		distanceTable = appService.generateDistanceTable();
+//		printRouteTable();
+//		generateShortesDistanceResults();
+		shortestPathService.calculateShortesPath();
 	}
 
 	private void generateShortesDistanceResults() {
