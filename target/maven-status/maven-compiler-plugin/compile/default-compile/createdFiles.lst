@@ -1,8 +1,0 @@
-org\nanotek\app\service\repository\StationRepository.class
-org\nanotek\model\jpa\Destination.class
-org\nanotek\app\service\repository\DestinationRepository.class
-org\nanotek\app\AppRunner.class
-org\nanotek\app\App.class
-org\nanotek\app\service\AppService.class
-org\nanotek\model\jpa\Station.class
-org\nanotek\model\jpa\Route.class
