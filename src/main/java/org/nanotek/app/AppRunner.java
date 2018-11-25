@@ -5,14 +5,16 @@ import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
-import org.nanotek.app.service.CloseWalk;
 import org.nanotek.app.service.GraphPathServiceDestination;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Table;
+import com.google.common.graph.ElementOrder;
+import com.google.common.graph.MutableNetwork;
 import com.google.common.graph.MutableValueGraph;
+import com.google.common.graph.NetworkBuilder;
 import com.google.common.graph.ValueGraphBuilder;
 
 public class AppRunner {
@@ -24,7 +26,6 @@ public class AppRunner {
 
 	@PostConstruct
 	public void run() throws Exception {
-		populateGraph();
 		MutableValueGraph<Station, Integer> routes = populateGraph();
 		graphPathService.calculateShortesPath(routes);
 		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
@@ -40,12 +41,9 @@ public class AppRunner {
 		System.out.println("FROM ab + bc " + val1);
 		
 		printTable(pathTable);
-		
-		CloseWalk closeWalk = new CloseWalk(pathTable  , routes);
-		Set<Path> closeWalks = closeWalk.computeCloseWalk(new Station("C"));
-		closeWalks.forEach(x -> System.out.println(x));
 	}
 
+	
 	private 	MutableValueGraph<Station, Integer> populateGraph() {
 		String input = "AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7";
 		String[] inputValues = input.split("\\,\\s");
@@ -53,6 +51,7 @@ public class AppRunner {
 		Stream.of(inputValues).forEach(nodesValue -> addStationGraph(nodesValue , routes));
 		return routes; 
 	}
+
 
 	private void addStationGraph(String nodesValueStr , MutableValueGraph<Station, Integer> routes) {
 		String[] stream =  nodesValueStr.split("");

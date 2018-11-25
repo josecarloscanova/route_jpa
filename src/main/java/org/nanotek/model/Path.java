@@ -36,4 +36,11 @@ public class Path {
 		return "Path [destinations=" + destinations + " Distance " + getDistance() + "]";
 	}
 	
+	public Destination getDestination() { 
+		Destination dest = null; 
+		if(destinations.size() > 0) { 
+			dest  = new Destination(destinations.get(0).getFrom() , destinations.get(destinations.size() -1).getTo() , getDistance());
+		}
+		return Optional.ofNullable(dest).orElse(new Destination());
+	}
 }

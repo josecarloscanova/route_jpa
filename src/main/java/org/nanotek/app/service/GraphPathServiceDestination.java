@@ -1,5 +1,6 @@
 package org.nanotek.app.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,8 +19,6 @@ import com.google.common.graph.MutableValueGraph;
 @Service
 public class GraphPathServiceDestination {
 
-	private Table<Station,Station,Integer> pathTable;
-	
 	private Table<Station,Station,Path> pathDistanceTable;
 	
 	public Table<Station,Station,Path>  calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
@@ -43,18 +42,6 @@ public class GraphPathServiceDestination {
 						}else { 
 							throw new RuntimeException("Another problem");
 						}
-						if (pathik.getDestinations().size() > 0 && pathkj.getDestinations().size() > 0) { 
-							Destination destinationik = pathik.getDestinations().get(pathik.getDestinations().size()-1);
-							Destination destinationikkj = pathkj.getDestinations().get(pathkj.getDestinations().size()-1);
-							if(destinationik.getTo().equals(destinationikkj.getFrom()))
-							{ 
-								Path extraPath = new Path(); 
-								extraPath.getDestinations().addAll(pathik.getDestinations());
-								extraPath.getDestinations().addAll(pathkj.getDestinations());
-								print(extraPath);
-							}
-
-						}
 					}
 				}
 			}
@@ -62,17 +49,10 @@ public class GraphPathServiceDestination {
 		return pathDistanceTable;
 	}
 	
-	private void print(Path path) {
-		System.out.println("A NEW PATH DISTANCE " + path);
-	}
-
 	//Project the graph into a table of paths.
 	private void initializeTables(MutableValueGraph<Station, Integer> routes) {
-		pathTable = generatePathTable();
 		pathDistanceTable = generatePathDistanceTable(routes);
-		Set<Station> stations = routes.nodes();
-		stations.stream().forEach(station -> createDestinationColumns(station ,  routes));
-		populatePathDistanceTable();		
+		populatePathDistanceTable(routes);		
 	}
 
 
@@ -83,14 +63,13 @@ public class GraphPathServiceDestination {
 		path.getDestinations().addAll(destinations);
 	}
 
-	private void populatePathDistanceTable() {
-		Set<Station> rows = pathTable.rowKeySet();
+	private void populatePathDistanceTable(MutableValueGraph<Station, Integer> routes) {
+		Set<Station> rows = routes.nodes();
 		for (Station row : rows) { 
-			Map<Station , Integer> distanceMap = pathTable.row(row);
-			Set<Station> columnSet = distanceMap.keySet();
+			Set<Station> columnSet  = routes.successors(row);
 			for (Station column : columnSet) { 
 				Path path = pathDistanceTable.get(row, column) !=null ? pathDistanceTable.get(row, column) : new Path();
-				Destination destination = new Destination(row,column,distanceMap.get(column)); 
+				Destination destination = new Destination(row,column,routes.edgeValue(row,column).get()); 
 				path.getDestinations().clear();
 				path.addDestination(destination);
 				pathDistanceTable.put(row, column, path);
@@ -122,22 +101,9 @@ public class GraphPathServiceDestination {
 		return theTable;
 	}
 
-	private void createDestinationColumns(Station station, MutableValueGraph<Station,Integer> routes) {
-		Set<Station> destinations = routes.successors(station);
-		destinations.stream().forEach(destination -> moveToTable(station , destination , routes.edgeValue(station, destination) , pathTable));
-	}
-
 	private void moveToTable(Station station, Station destination, Optional<Integer> edgeValue,
 			Table<Station, Station, Integer> theTable) {
 		theTable.put(station, destination, edgeValue.get());
-	}
-
-	public Table<Station, Station, Integer> getPathTable() {
-		return pathTable;
-	}
-
-	public void setPathTable(Table<Station, Station, Integer> pathTable) {
-		this.pathTable = pathTable;
 	}
 
 	public Table<Station, Station, Path> getDistanceTable() {
