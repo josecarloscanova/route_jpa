@@ -10,6 +10,13 @@ public class Destination {
 
 	public Destination() {}
 	
+	public Destination(Station from, Station to, Integer distance) {
+		super();
+		this.from = from;
+		this.to = to;
+		this.distance = distance;
+	}
+
 	public Integer getDistance() {
 		return distance;
 	}
@@ -21,6 +28,22 @@ public class Destination {
 	@Override
 	public String toString() {
 		return "Destination [from=" + from + ", to=" + to + ", distance=" + distance + "]";
+	}
+
+	public Station getFrom() {
+		return from;
+	}
+
+	public void setFrom(Station from) {
+		this.from = from;
+	}
+
+	public Station getTo() {
+		return to;
+	}
+
+	public void setTo(Station to) {
+		this.to = to;
 	}
 
 }

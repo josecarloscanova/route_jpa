@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 
 import org.nanotek.app.service.GraphPathService;
+import org.nanotek.app.service.GraphPathServiceDestination;
+import org.nanotek.model.Path;
 import org.nanotek.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,24 +18,26 @@ import com.google.common.graph.ValueGraphBuilder;
 public class AppRunner {
 
 	@Autowired
-	GraphPathService graphPathService;
+	GraphPathServiceDestination graphPathService;
 
 	@PostConstruct
 	public void run() throws Exception {
 		populateGraph();
 		MutableValueGraph<Station, Integer> routes = populateGraph();
 		graphPathService.calculateShortesPath(routes);
-		Table<Station, Station,Integer> pathTable = graphPathService.getDistanceTable();
+		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
 		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));
 //		
-		Integer ab = pathTable.get(new Station ("A") , new Station("B"));
-		System.out.println("FROM A TO B " + ab);
+		Path ab = pathTable.get(new Station ("A") , new Station("B"));
+		System.out.println("FROM A TO B " + ab.getDistance());
 //		
-		Integer bc = pathTable.get(new Station ("B") , new Station("C"));
-		System.out.println("FROM B TO C " + bc);
+		Path bc = pathTable.get(new Station ("B") , new Station("C"));
+		System.out.println("FROM B TO C " + bc.getDistance());
 //		
-		Integer val1 = ab + bc;
+		Integer val1 = ab.getDistance() + bc.getDistance();
 		System.out.println("FROM ab + bc " + val1);
+		
+		printTable(pathTable);
 	}
 
 	private 	MutableValueGraph<Station, Integer> populateGraph() {
@@ -54,12 +58,12 @@ public class AppRunner {
 		routes.putEdgeValue(node1, node2, val);
 	}
 	
-	private void printTable(Table<Station, Station, Integer> routeTable) {
+	private void printTable(Table<Station, Station, Path> routeTable) {
 		Set<Station> stationRows = routeTable.rowKeySet(); 
 		for(Station i : stationRows) { 
 			for(Station j : stationRows) { 
-				Integer ij = routeTable.get(i, j);
-				System.out.println("Distance Calculated " + i + " " + j + " " + ij);
+				Path ij = routeTable.get(i, j);
+				System.out.println("Path Computed " + i + " " + j + " " + ij);
 			}
 		}
 	}
