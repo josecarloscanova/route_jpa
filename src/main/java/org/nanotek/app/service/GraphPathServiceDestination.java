@@ -23,12 +23,7 @@ public class GraphPathServiceDestination {
 	private Table<Station,Station,Path> pathDistanceTable;
 	
 	public Table<Station,Station,Path>  calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
-		pathTable = generatePathTable();
-		pathDistanceTable = generatePathDistanceTable(routes);
-		Set<Station> stations = routes.nodes();
-		stations.stream().forEach(station -> createDestinationColumns(station ,  routes));
-		populatePathDistanceTable();
-		
+		initializeTables(routes);
 		Set<Station> stationRows = pathDistanceTable.rowKeySet();
 
 		for(Station k : stationRows) { 
@@ -51,6 +46,16 @@ public class GraphPathServiceDestination {
 		return pathDistanceTable;
 	}
 	
+	//Project the graph into a table of paths.
+	private void initializeTables(MutableValueGraph<Station, Integer> routes) {
+		pathTable = generatePathTable();
+		pathDistanceTable = generatePathDistanceTable(routes);
+		Set<Station> stations = routes.nodes();
+		stations.stream().forEach(station -> createDestinationColumns(station ,  routes));
+		populatePathDistanceTable();		
+	}
+
+
 	private void addDistancesToPath(Path path, List<Destination> destinations) {
 		if(path.getDistance() >= Integer.MAX_VALUE) { 
 			path.getDestinations().clear();
@@ -59,7 +64,6 @@ public class GraphPathServiceDestination {
 	}
 
 	private void populatePathDistanceTable() {
-		
 		Set<Station> rows = pathTable.rowKeySet();
 		for (Station row : rows) { 
 			Map<Station , Integer> distanceMap = pathTable.row(row);
