@@ -20,17 +20,13 @@ public class GraphPathServiceDestination {
 
 	private Table<Station,Station,Integer> pathTable;
 	
-//	private Table<Station,Station,Integer> distanceTable;
-	
 	private Table<Station,Station,Path> pathDistanceTable;
 	
 	public Table<Station,Station,Path>  calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
 		pathTable = generatePathTable();
-//		distanceTable = generateDistanceTable(routes);
 		pathDistanceTable = generatePathDistanceTable(routes);
 		Set<Station> stations = routes.nodes();
 		stations.stream().forEach(station -> createDestinationColumns(station ,  routes));
-//		populateDistanceTable(pathTable, distanceTable);
 		populatePathDistanceTable();
 		
 		Set<Station> stationRows = pathDistanceTable.rowKeySet();
@@ -38,22 +34,20 @@ public class GraphPathServiceDestination {
 		for(Station k : stationRows) { 
 			for (Station i : stationRows) { 
 				for(Station j : stationRows) { 
-					if(getDistance(pathDistanceTable.get(i, k)) < Integer.MAX_VALUE && getDistance(pathDistanceTable.get(k, j)) < Integer.MAX_VALUE) { 
-						if(getDistance(pathDistanceTable.get(i, j)) > getDistance(pathDistanceTable.get(i, k)) + getDistance(pathDistanceTable.get(k, j))) { 
-//							distanceTable.put(i,j , distanceTable.get(k, j));						
-							Path path = pathDistanceTable.get(i, j);
-							Path pathik = pathDistanceTable.get(i, k);
-							Path pathkj = pathDistanceTable.get(k, j);
+					Path pathij = pathDistanceTable.get(i, j);
+					Path pathik = pathDistanceTable.get(i, k);
+					Path pathkj = pathDistanceTable.get(k, j);
+					if(pathik.getDistance() < Integer.MAX_VALUE && pathkj.getDistance() < Integer.MAX_VALUE) { 
+						if(pathij.getDistance() > pathik.getDistance() + pathkj.getDistance()) { 
 							List<Destination> destinationsik = pathik.getDestinations();
 							List<Destination> destinationskj = pathkj.getDestinations();
-							addDistancesToPath(path, destinationsik);
-							addDistancesToPath(path, destinationskj);
+							addDistancesToPath(pathij, destinationsik);
+							addDistancesToPath(pathij, destinationskj);
 						}
 					}
 				}
 			}
 		}
-		
 		return pathDistanceTable;
 	}
 	
@@ -64,13 +58,8 @@ public class GraphPathServiceDestination {
 		path.getDestinations().addAll(destinations);
 	}
 
-	private int getDistance(Path path) {
-		return path.getDistance();
-	}
-
 	private void populatePathDistanceTable() {
 		
-//		pathTable, distanceTable
 		Set<Station> rows = pathTable.rowKeySet();
 		for (Station row : rows) { 
 			Map<Station , Integer> distanceMap = pathTable.row(row);

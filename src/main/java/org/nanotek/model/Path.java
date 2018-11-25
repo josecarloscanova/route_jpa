@@ -33,7 +33,7 @@ public class Path {
 
 	@Override
 	public String toString() {
-		return "Path [destinations=" + destinations + ", getDistance()=" + getDistance() + "]";
+		return "Path [destinations=" + destinations + " Distance " + getDistance() + "]";
 	}
 	
 }
