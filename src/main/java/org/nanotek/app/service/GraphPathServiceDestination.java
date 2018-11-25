@@ -25,7 +25,6 @@ public class GraphPathServiceDestination {
 	public Table<Station,Station,Path>  calculateShortesPath(MutableValueGraph<Station,Integer> routes){  
 		initializeTables(routes);
 		Set<Station> stationRows = pathDistanceTable.rowKeySet();
-
 		for(Station k : stationRows) { 
 			for (Station i : stationRows) { 
 				for(Station j : stationRows) { 
