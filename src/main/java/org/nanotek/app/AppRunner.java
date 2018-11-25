@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
+import org.nanotek.app.service.CloseWalk;
 import org.nanotek.app.service.GraphPathServiceDestination;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
@@ -18,6 +19,8 @@ public class AppRunner {
 
 	@Autowired
 	GraphPathServiceDestination graphPathService;
+	
+	
 
 	@PostConstruct
 	public void run() throws Exception {
@@ -37,6 +40,10 @@ public class AppRunner {
 		System.out.println("FROM ab + bc " + val1);
 		
 		printTable(pathTable);
+		
+		CloseWalk closeWalk = new CloseWalk(pathTable  , routes);
+		Set<Path> closeWalks = closeWalk.computeCloseWalk(new Station("C"));
+		closeWalks.forEach(x -> System.out.println(x));
 	}
 
 	private 	MutableValueGraph<Station, Integer> populateGraph() {

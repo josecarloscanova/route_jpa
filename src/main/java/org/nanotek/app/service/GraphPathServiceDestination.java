@@ -32,11 +32,28 @@ public class GraphPathServiceDestination {
 					Path pathik = pathDistanceTable.get(i, k);
 					Path pathkj = pathDistanceTable.get(k, j);
 					if(pathik.getDistance() < Integer.MAX_VALUE && pathkj.getDistance() < Integer.MAX_VALUE) { 
-						if(pathij.getDistance() > pathik.getDistance() + pathkj.getDistance()) { 
-							List<Destination> destinationsik = pathik.getDestinations();
-							List<Destination> destinationskj = pathkj.getDestinations();
-							addDistancesToPath(pathij, destinationsik);
-							addDistancesToPath(pathij, destinationskj);
+						Integer newDistance = pathik.getDistance() + pathkj.getDistance();
+						if( newDistance < Integer.MAX_VALUE && newDistance >= 0) { 
+							if(pathij.getDistance() > newDistance) { 
+								List<Destination> destinationsik = pathik.getDestinations();
+								List<Destination> destinationskj = pathkj.getDestinations();
+								addDistancesToPath(pathij, destinationsik);
+								addDistancesToPath(pathij, destinationskj);
+							}
+						}else { 
+							throw new RuntimeException("Another problem");
+						}
+						if (pathik.getDestinations().size() > 0 && pathkj.getDestinations().size() > 0) { 
+							Destination destinationik = pathik.getDestinations().get(pathik.getDestinations().size()-1);
+							Destination destinationikkj = pathkj.getDestinations().get(pathkj.getDestinations().size()-1);
+							if(destinationik.getTo().equals(destinationikkj.getFrom()))
+							{ 
+								Path extraPath = new Path(); 
+								extraPath.getDestinations().addAll(pathik.getDestinations());
+								extraPath.getDestinations().addAll(pathkj.getDestinations());
+								print(extraPath);
+							}
+
 						}
 					}
 				}
@@ -45,6 +62,10 @@ public class GraphPathServiceDestination {
 		return pathDistanceTable;
 	}
 	
+	private void print(Path path) {
+		System.out.println("A NEW PATH DISTANCE " + path);
+	}
+
 	//Project the graph into a table of paths.
 	private void initializeTables(MutableValueGraph<Station, Integer> routes) {
 		pathTable = generatePathTable();
