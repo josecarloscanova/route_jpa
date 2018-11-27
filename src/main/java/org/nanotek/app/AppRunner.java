@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 
 import org.nanotek.app.service.DepthFirstSearchService;
+import org.nanotek.app.service.GraphPathService;
 import org.nanotek.app.service.GraphPathServiceDestination;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
@@ -23,35 +24,40 @@ public class AppRunner {
 	@Autowired
 	GraphPathServiceDestination graphPathService;
 
-
+	@Autowired
+	GraphPathService graphService;
 
 	@PostConstruct
 	public void run() throws Exception {
 		MutableValueGraph<Station, Integer> routes = populateGraph();
 		graphPathService.calculateShortesPathTable(routes);
-		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
-		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));
-		//		
-		Path ab = pathTable.get(new Station ("A") , new Station("B"));
-		System.out.println("FROM A TO B " + ab.getDistance());
-		//		
-		Path bc = pathTable.get(new Station ("B") , new Station("C"));
-		System.out.println("FROM B TO C " + bc.getDistance());
-		//		
-		Integer val1 = ab.getDistance() + bc.getDistance();
-		System.out.println("FROM ab + bc " + val1);
-		//		Table<Station, Station,List<Path>> pathListTable  = graphPathService.createTablePaths(routes);
-		printTable(pathTable);
-		//		prinPathTable(pathListTable);
-		if(Graphs.hasCycle(routes.asGraph())) 
-			System.out.println("HAS CYCLES");
-		Set<Station> stations = routes.nodes();
-		for (Station station : stations) { 
-			DepthFirstSearchService dfs = new DepthFirstSearchService(routes , pathTable , station);
-			System.out.println("BB" + dfs.getPathMaps());
-//			System.out.println("BB" + dfs.getVisitedMap());
-//			System.out.println("BB" + dfs.getVisitedRoute());
-		}
+//		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
+		
+		Table<Station, Station,Integer> resultTable = graphService.compute(routes);
+		System.out.println("FROM A TO C " + resultTable.get(new Station ("A") , new Station("C")));
+		
+//		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));
+//		//		
+//		Path ab = pathTable.get(new Station ("A") , new Station("B"));
+//		System.out.println("FROM A TO B " + ab.getDistance());
+//		//		
+//		Path bc = pathTable.get(new Station ("B") , new Station("C"));
+//		System.out.println("FROM B TO C " + bc.getDistance());
+//		//		
+//		Integer val1 = ab.getDistance() + bc.getDistance();
+//		System.out.println("FROM ab + bc " + val1);
+//		//		Table<Station, Station,List<Path>> pathListTable  = graphPathService.createTablePaths(routes);
+//		printTable(pathTable);
+//		//		prinPathTable(pathListTable);
+//		if(Graphs.hasCycle(routes.asGraph())) 
+//			System.out.println("HAS CYCLES");
+//		Set<Station> stations = routes.nodes();
+//		for (Station station : stations) { 
+//			DepthFirstSearchService dfs = new DepthFirstSearchService(routes , pathTable , station);
+//			System.out.println("BB" + dfs.getPathMaps());
+////			System.out.println("BB" + dfs.getVisitedMap());
+////			System.out.println("BB" + dfs.getVisitedRoute());
+//		}
 	}
 
 

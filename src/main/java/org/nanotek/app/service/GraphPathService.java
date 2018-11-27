@@ -26,22 +26,27 @@ public class GraphPathService implements ShorthesPath<ValueGraph<Station,Integer
 	
 	private Table<Station,Station,Integer> calculateShortestPath(ValueGraph<Station,Integer> valueGraph){
 		Table<Station,Station ,Integer>  distanceTable = TreeBasedTable.create();
-		Set<Station> stationRows = valueGraph.nodes();
-		for(Station k : stationRows) { 
-			for (Station i : stationRows) { 
-				for(Station j : stationRows) { 
-					if(valueGraphValue(i, k,valueGraph) < Integer.MAX_VALUE && valueGraphValue(k, j,valueGraph) < Integer.MAX_VALUE) { 
-						if(valueGraphValue(i, j , valueGraph) > valueGraphValue(i, k, valueGraph) + valueGraphValue(k, j, valueGraph)) { 
-							//Integer.MAX_VALUE is considered "infinity" on the problem proposed.
+		Set<Station> nodes = valueGraph.nodes();
+		for(Station k : nodes) { 
+			for (Station i : predecesssors(k,valueGraph)) { 
+				for(Station j : successors(k,valueGraph)) { 
+					if(!distanceTable.contains(i, j))
+						distanceTable.put(i, j, Integer.MAX_VALUE);
+						if(distanceTable.get(i, j) > valueGraphValue(i, k, valueGraph) + valueGraphValue(k, j, valueGraph)) { 
 							distanceTable.put(i,j , valueGraphValue(i, k, valueGraph) + valueGraphValue(k, j, valueGraph));						
-						}else if (!distanceTable.contains(i, j)) { 
-							distanceTable.put(i, j, Integer.MAX_VALUE);//Not yet solved ... maybe there is a problem?
 						}
-					}
 				}
 			}
 		}
 		return distanceTable;
+	}
+	
+	Set<Station> successors(Station source, ValueGraph<Station,Integer> valueGraph){ 
+		return valueGraph.successors(source);
+	}
+	
+	Set<Station> predecesssors(Station source, ValueGraph<Station,Integer> valueGraph){ 
+		return valueGraph.predecessors(source);
 	}
 	
 	private Integer valueGraphValue(Station source, Station target, ValueGraph<Station, Integer> valueGraph) {
