@@ -5,11 +5,11 @@ package org.nanotek.app.service;
  * 
  * @author jose.carlos.canova@gmail.com
  *
- * @param <G> The Graph
- * @param <R> Representation of the result computing
+ * @param <G> The Sample
+ * @param <R> Representation of the computing result.
  */
 @FunctionalInterface
-public interface ShorthesPath<G,R> {
+public interface Function<G,R> {
 
 	R compute(G graph);
 	
