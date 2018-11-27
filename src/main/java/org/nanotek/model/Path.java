@@ -8,6 +8,10 @@ import java.util.Optional;
  * Class to store calculated paths, 
  * "On theory, this list is valid if a.from == a1.to.. always. otherwise the path is not valid. 
  * 
+ * It stores a "Set" for destinations about the order that they were inserted on "container" Path. 
+ * 
+ * Usefull to verify if some algorithm to 
+ * 
  */
 public class Path {
 	

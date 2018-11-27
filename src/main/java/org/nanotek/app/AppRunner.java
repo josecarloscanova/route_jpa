@@ -74,19 +74,6 @@ public class AppRunner {
 		routes.putEdgeValue(node1, node2, val);
 	}
 
-	private void prinPathTable(Table<Station, Station, List<Path>> pathListTable) {
-		Set<Station> stationRows = pathListTable.rowKeySet(); 
-		for(Station i : stationRows) { 
-			for(Station j : stationRows) { 
-				List<Path> ij = pathListTable.get(i, j);
-				if(ij !=null) { 
-					ij.stream().forEach(x -> System.out.println("PATH COMBINATION LIST " + i + " " + j + " " + x));
-
-				}
-
-			}
-		}		
-	}
 	private void printTable(Table<Station, Station, Path> routeTable) {
 		Set<Station> stationRows = routeTable.rowKeySet(); 
 		for(Station i : stationRows) { 

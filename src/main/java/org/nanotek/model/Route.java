@@ -2,11 +2,16 @@ package org.nanotek.model;
 
 import java.util.Objects;
 
+/**
+ * Stored a "unweweighted information about" a route on the problem.
+ * @author Usuario
+ *
+ */
 public class Route {
 
-	private Station from; 
+	protected Station from; 
 	
-	private Station to; 
+	protected Station to; 
 	
 	public Route () {
 	}

@@ -45,7 +45,7 @@ public class GraphPathServiceDestination {
 								addDistancesToPath(pathij, destinationskj);
 								addToPathListDistanceTable(pathij);
 							}else { 
-								addToPathListDistanceTable(pathik ,pathkj);
+								addToPathListDistanceTable(pathik , pathkj);
 							}
 						}else { 
 							throw new RuntimeException("Another problem");

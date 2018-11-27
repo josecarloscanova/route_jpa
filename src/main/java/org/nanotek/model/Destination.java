@@ -2,12 +2,14 @@ package org.nanotek.model;
 
 import java.util.Objects;
 
-public class Destination {
+/**
+ * Represents an "Edge" for the problem proposed 
+ * 
+ * @author jose.carlos.canova@gmail.com
+ *
+ */
+public class Destination extends Route{
 
-	private Station from;
-	
-	private Station to;
-	
 	private Integer distance;
 
 	public Destination() {}
