@@ -11,7 +11,7 @@ import com.google.common.graph.EndpointPair;
 import com.google.common.graph.ValueGraph;
 
 /**
- * Computes the shorthest path value using Johnson-Warshall strategy... to solve the shortest path on directed weighted graphs.
+ * Computes the shorthest path value using something like Johnson-Warshall strategy... to solve the shortest path on directed weighted graphs.
  * 
  * @author jose.carlos.canova@gmail.com
  *
@@ -34,6 +34,8 @@ public class GraphPathService implements ShorthesPath<ValueGraph<Station,Integer
 						if(valueGraphValue(i, j , valueGraph) > valueGraphValue(i, k, valueGraph) + valueGraphValue(k, j, valueGraph)) { 
 							//Integer.MAX_VALUE is considered "infinity" on the problem proposed.
 							distanceTable.put(i,j , valueGraphValue(i, k, valueGraph) + valueGraphValue(k, j, valueGraph));						
+						}else if (!distanceTable.contains(i, j)) { 
+							distanceTable.put(i, j, Integer.MAX_VALUE);//Not yet solved ... maybe there is a problem?
 						}
 					}
 				}
