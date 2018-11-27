@@ -2,6 +2,12 @@ package org.nanotek.model;
 
 import java.util.Set;
 
+/**
+ * Represents a collection a label, for the problem proposed. 
+ * can be fitted on a graph to  
+ * @author Usuario
+ *
+ */
 public class Station implements Comparable<Station>{
 
 	private String stationLabel;

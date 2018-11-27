@@ -1,5 +1,7 @@
 package org.nanotek.model;
 
+import java.util.Objects;
+
 public class Destination {
 
 	private Station from;
@@ -48,12 +50,7 @@ public class Destination {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((distance == null) ? 0 : distance.hashCode());
-		result = prime * result + ((from == null) ? 0 : from.hashCode());
-		result = prime * result + ((to == null) ? 0 : to.hashCode());
-		return result;
+		return Objects.hash(from,to,distance);
 	}
 
 	@Override
