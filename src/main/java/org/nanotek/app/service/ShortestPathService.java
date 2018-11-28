@@ -3,7 +3,6 @@ package org.nanotek.app.service;
 import java.util.stream.Stream;
 
 import org.nanotek.model.Station;
-import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.TreeBasedTable;
@@ -11,12 +10,12 @@ import com.google.common.graph.EndpointPair;
 import com.google.common.graph.ValueGraph;
 
 /**
- * Computes the shorthest path value using something like Dijkstra strategy... to solve the shortest path on directed weighted graphs(the problem proposed).
+ * Computes the shorthest path value using something like Dijkstra strategy... 
+ * to solve the shortest path on directed weighted graphs(the problem proposed).
  * 
  * @author jose.carlos.canova@gmail.com
  *
  */
-@Service
 public class ShortestPathService implements Function<ValueGraph<Station,Integer>,Table<Station,Station,Integer>>{
 
 	@Override
@@ -26,30 +25,29 @@ public class ShortestPathService implements Function<ValueGraph<Station,Integer>
 
 	private Table<Station,Station,Integer> calculateShortestPath(ValueGraph<Station,Integer> valueGraph){
 		Table<Station,Station ,Integer>  distanceTable = populateTable(valueGraph);
-		Table<Station,Station ,Integer>  pathTable = populateTable(valueGraph);
 		nodes(valueGraph).forEach(k -> 
 		nodes(valueGraph).forEach(i -> 
 		nodes(valueGraph).forEach(j -> 
-		computeDistanceValue(k,i,j,distanceTable,pathTable))));
+		computeDistanceValue(k,i,j,distanceTable))));
 		return distanceTable;
 	}
 
 	private Table<Station,Station ,Integer> populateTable(ValueGraph<Station, Integer> valueGraph) {
 		Table<Station, Station, Integer> distanceTable = TreeBasedTable.create();
 		valueGraph.nodes().stream().forEach(row -> valueGraph.nodes().stream().forEach(col -> 
-		{
-			if(row.equals(col))	
-				distanceTable.put(row, col, 0);
-			else 
-				distanceTable.put(row, col, valueGraphValue(row,col,valueGraph));
-		}
+					{
+						if(row.equals(col))	
+							distanceTable.put(row, col, 0);
+						else 
+							distanceTable.put(row, col, valueGraphValue(row,col,valueGraph));
+					}
 				));
 		return distanceTable;
 	}
 
 	private void computeDistanceValue(Station k, 
 			Station i, Station j, 
-			Table<Station,Station ,Integer>  distanceTable,Table<Station, Station, Integer> pathTable) {
+			Table<Station,Station ,Integer>  distanceTable) {
 		Integer computedValue = distanceTable.get(i, k) + distanceTable.get(k, j);
 		Integer tableValue = distanceTable.get(i, j);
 		if( computedValue < Integer.MAX_VALUE && computedValue > 0 && computedValue < tableValue) { 

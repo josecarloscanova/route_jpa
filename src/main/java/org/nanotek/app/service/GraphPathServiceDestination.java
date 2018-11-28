@@ -10,13 +10,11 @@ import java.util.TreeSet;
 import org.nanotek.model.Destination;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
-import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.TreeBasedTable;
 import com.google.common.graph.MutableValueGraph;
 
-@Service
 public class GraphPathServiceDestination {
 
 	private Table<Station,Station,Integer> pathTable;
@@ -37,7 +35,7 @@ public class GraphPathServiceDestination {
 					Path pathkj = pathDistanceTable.get(k, j);
 					if(pathik.getDistance() < Integer.MAX_VALUE && pathkj.getDistance() < Integer.MAX_VALUE) { 
 						Integer newDistance = pathik.getDistance() + pathkj.getDistance();
-						if( newDistance < Integer.MAX_VALUE && newDistance >= 0) { 
+						if(newDistance < Integer.MAX_VALUE && newDistance >= 0) { 
 							List<Destination> destinationsik = pathik.getDestinations();
 							List<Destination> destinationskj = pathkj.getDestinations();
 							if(pathij.getDistance() > newDistance) { 
