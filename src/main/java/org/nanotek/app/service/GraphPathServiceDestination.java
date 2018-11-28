@@ -41,11 +41,10 @@ public class GraphPathServiceDestination {
 							List<Destination> destinationsik = pathik.getDestinations();
 							List<Destination> destinationskj = pathkj.getDestinations();
 							if(pathij.getDistance() > newDistance) { 
+								pathij.getDestinations().clear();
 								addDistancesToPath(pathij, destinationsik);
 								addDistancesToPath(pathij, destinationskj);
 								addToPathListDistanceTable(pathij);
-							}else { 
-								addToPathListDistanceTable(pathik , pathkj);
 							}
 						}else { 
 							throw new RuntimeException("Another problem");
@@ -61,30 +60,12 @@ public class GraphPathServiceDestination {
 		
 	}
 
-//	private void printPathListDistanceTable() {
-//		pathListDistanceTable.values().stream().forEach(paths -> paths.stream().forEach(x -> System.out.println(x)));
-//	}
-
 	private void addToPathListDistanceTable(Path path) {
 		List<Path> paths = Optional.ofNullable(pathListDistanceTable.get(path.getDestination().getFrom(), path.getDestination().getTo())).orElseGet(ArrayList::new);
 		paths.add(path);
 		pathListDistanceTable.put(path.getDestination().getFrom(), path.getDestination().getTo(),paths);
 	}
 
-
-	private void addToPathListDistanceTable(Path pathik, Path pathkj) {
-		Path path = new Path();
-		if(pathik.getDistance() > 0)
-			path.getDestinations().addAll(pathik.getDestinations());
-		if(pathkj.getDistance() > 0)
-			path.getDestinations().addAll(pathkj.getDestinations());
-		if(path.getDestinations().size() > 1) { 
-			addToPathListDistanceTable(path);
-		}
-	}
-
-
-	//Project the graph into a table of paths.
 	private void initializeTables(MutableValueGraph<Station, Integer> routes) {
 		pathTable = generatePathTable();
 		pathDistanceTable = generatePathDistanceTable(routes);	
