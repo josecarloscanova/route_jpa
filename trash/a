@@ -1,0 +1,63 @@
+private void calculateStationPath(Station from, Station to) {
+		if(notVisited(from)) { 
+			visit(from);
+			updateDistance(from, to);
+			appService.fetchDestinations(from);
+			Set<Destination> destinations = from.getDestinations();
+			destinations.stream().forEach(destination -> calculateStationPath(destination.getRoute().getTo() , to));
+		}
+		Station newStation = findMin(to);
+		updateTable(from , to , newStation);
+		printStation(newStation);
+	}
+
+
+	private void updateTable( Station from, Station to, Station newStation) {
+		Integer value = pathTable.get(from , to);
+		int prov = pathTable.get(newStation , to);
+		if( value < Integer.MAX_VALUE)
+		{ 
+			value = prov + value;
+		}else { 
+			value = prov;
+		}
+		pathTable.put(from, to, value);
+	}
+
+	private Station findMin(Station to) {
+		Map<Station,Integer> map = pathTable.column(to);
+		Optional<Entry<Station,Integer>> entry = map.entrySet().stream().min(new Comparator<Entry<Station,Integer>>() {
+			@Override
+				public int compare(Entry<Station, Integer> o1, Entry<Station, Integer> o2) {
+				    int val = 0;
+					if (o1.getValue() > o2.getValue()) { 
+						val = 1;
+					}else if(o1.getValue() < o2.getValue()) { 
+						
+					}else { 
+						val = o1.getKey().compareTo(o2.getKey());
+					}
+					return val;
+				}
+			});
+		return entry.get().getKey();
+	}
+
+	private void visit(Station station) {
+		if (notVisited(station)) {
+			visited.add(station);
+			unvisited.remove(station);
+		}
+	}
+
+	private boolean notVisited(Station station) {
+		return !visited.contains(station);
+	}
+	
+	private void updateDistance(Station from, Station to) {
+		Integer val = pathTable.get(from, to);
+		if(val == null) { 
+			val = appService.findDistance(from, to);
+			pathTable.put(from, to, val);
+		}
+	}

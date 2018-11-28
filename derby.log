@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Thu Nov 22 18:04:20 BRST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0167-3d05-f597-00000b553f80 
+Sat Nov 24 20:38:33 BRST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0167-47df-ddc0-00000af2a278 
 on database directory memory:C:\Users\Usuario\git\route_jpa\testdb with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
 Loaded from file:/C:/Users/Usuario/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_181-b13
+java.runtime.version=1.8.0_171-b11
 user.dir=C:\Users\Usuario\git\route_jpa
 os.name=Windows 10
 os.arch=amd64
