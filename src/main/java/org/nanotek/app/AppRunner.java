@@ -1,21 +1,16 @@
 package org.nanotek.app;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
-import org.nanotek.app.service.DepthFirstSearchService;
-import org.nanotek.app.service.GraphPathService;
 import org.nanotek.app.service.GraphPathServiceDestination;
+import org.nanotek.app.service.ShortestPathService;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Table;
-import com.google.common.graph.Graphs;
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
 
@@ -25,17 +20,18 @@ public class AppRunner {
 	GraphPathServiceDestination graphPathService;
 
 	@Autowired
-	GraphPathService graphService;
+	ShortestPathService graphService;
 
 	@PostConstruct
 	public void run() throws Exception {
 		MutableValueGraph<Station, Integer> routes = populateGraph();
 		graphPathService.calculateShortesPathTable(routes);
-//		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
+		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
 		
 		Table<Station, Station,Integer> resultTable = graphService.compute(routes);
-		System.out.println("FROM A TO C " + resultTable.get(new Station ("A") , new Station("C")));
 		
+		resultTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  +cell.getColumnKey() + " " +  cell.getValue()));
+		pathTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  +cell.getColumnKey() + " " +  cell.getValue()));
 //		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));
 //		//		
 //		Path ab = pathTable.get(new Station ("A") , new Station("B"));
@@ -78,16 +74,6 @@ public class AppRunner {
 		routes.addNode(node1);
 		routes.addNode(node2);
 		routes.putEdgeValue(node1, node2, val);
-	}
-
-	private void printTable(Table<Station, Station, Path> routeTable) {
-		Set<Station> stationRows = routeTable.rowKeySet(); 
-		for(Station i : stationRows) { 
-			for(Station j : stationRows) { 
-				Path ij = routeTable.get(i, j);
-				System.out.println("Path Computed " + i + " " + j + " " + ij);
-			}
-		}
 	}
 
 }
