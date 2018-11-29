@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Usuario
  *
  */
-public class Route<T> extends Station{
+public class Route<T> {
 
 	protected T from; 
 	
@@ -52,7 +52,7 @@ public class Route<T> extends Station{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Route other = (Route) obj;
+		Route<?> other = (Route<?>) obj;
 		if (from == null) {
 			if (other.from != null)
 				return false;
