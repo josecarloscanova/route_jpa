@@ -19,7 +19,7 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.primitives.Ints;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
@@ -42,7 +42,7 @@ import java.util.NoSuchElementException;
  * @author Kevin Bourrillion
  * @since 10.0
  */
-@GwtCompatible
+
 public abstract class DiscreteDomain<C extends Comparable> {
 
   /**

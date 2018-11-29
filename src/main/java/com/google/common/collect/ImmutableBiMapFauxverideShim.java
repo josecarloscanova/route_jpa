@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collector;
@@ -28,7 +28,7 @@ import java.util.stream.Collector;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible
+
 abstract class ImmutableBiMapFauxverideShim<K, V> extends ImmutableMap<K, V> {
   /**
    * Not supported. Use {@link ImmutableBiMap#toImmutableBiMap} instead. This method exists only to

@@ -16,7 +16,7 @@ package com.google.common.base;
 
 import static com.google.common.base.Strings.lenientFormat;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -112,7 +112,7 @@ import com.google.common.annotations.GwtCompatible;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 public final class Preconditions {
   private Preconditions() {}
 

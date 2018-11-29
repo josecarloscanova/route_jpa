@@ -14,8 +14,8 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -88,7 +88,7 @@ import java.util.logging.Logger;
  * @author Bob Lee
  * @since 2.0
  */
-@GwtIncompatible
+
 public class FinalizableReferenceQueue implements Closeable {
   /*
    * The Finalizer thread keeps a phantom reference to this object. When the client (for example, a
@@ -239,7 +239,7 @@ public class FinalizableReferenceQueue implements Closeable {
   static class SystemLoader implements FinalizerLoader {
     // This is used by the ClassLoader-leak test in FinalizableReferenceQueueTest to disable
     // finding Finalizer on the system class path even if it is there.
-    @VisibleForTesting static boolean disabled;
+     static boolean disabled;
 
     @Override
     public  Class<?> loadFinalizer() {

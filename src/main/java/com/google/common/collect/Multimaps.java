@@ -20,9 +20,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -68,7 +68,7 @@ import java.util.stream.Stream;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+
 public final class Multimaps {
   private Multimaps() {}
 
@@ -104,7 +104,7 @@ public final class Multimaps {
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V, M extends Multimap<K, V>> Collector<T, ?, M> toMultimap(
       java.util.function.Function<? super T, ? extends K> keyFunction,
       java.util.function.Function<? super T, ? extends V> valueFunction,
@@ -154,7 +154,7 @@ public final class Multimaps {
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V, M extends Multimap<K, V>> Collector<T, ?, M> flatteningToMultimap(
       java.util.function.Function<? super T, ? extends K> keyFunction,
       java.util.function.Function<? super T, ? extends Stream<? extends V>> valueFunction,
@@ -273,14 +273,14 @@ public final class Multimaps {
     // there's no way to generate the empty backing map.
 
     /** @serialData the factory and the backing map */
-    @GwtIncompatible // java.io.ObjectOutputStream
+     // java.io.ObjectOutputStream
     private void writeObject(ObjectOutputStream stream) throws IOException {
       stream.defaultWriteObject();
       stream.writeObject(factory);
       stream.writeObject(backingMap());
     }
 
-    @GwtIncompatible // java.io.ObjectInputStream
+     // java.io.ObjectInputStream
     @SuppressWarnings("unchecked") // reading data stored by writeObject
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
       stream.defaultReadObject();
@@ -289,7 +289,7 @@ public final class Multimaps {
       setMap(map);
     }
 
-    @GwtIncompatible // java serialization not supported
+     // java serialization not supported
     private static final long serialVersionUID = 0;
   }
 
@@ -352,14 +352,14 @@ public final class Multimaps {
     }
 
     /** @serialData the factory and the backing map */
-    @GwtIncompatible // java.io.ObjectOutputStream
+     // java.io.ObjectOutputStream
     private void writeObject(ObjectOutputStream stream) throws IOException {
       stream.defaultWriteObject();
       stream.writeObject(factory);
       stream.writeObject(backingMap());
     }
 
-    @GwtIncompatible // java.io.ObjectInputStream
+     // java.io.ObjectInputStream
     @SuppressWarnings("unchecked") // reading data stored by writeObject
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
       stream.defaultReadObject();
@@ -368,7 +368,7 @@ public final class Multimaps {
       setMap(map);
     }
 
-    @GwtIncompatible // java serialization not supported
+     // java serialization not supported
     private static final long serialVersionUID = 0;
   }
 
@@ -452,14 +452,14 @@ public final class Multimaps {
     }
 
     /** @serialData the factory and the backing map */
-    @GwtIncompatible // java.io.ObjectOutputStream
+     // java.io.ObjectOutputStream
     private void writeObject(ObjectOutputStream stream) throws IOException {
       stream.defaultWriteObject();
       stream.writeObject(factory);
       stream.writeObject(backingMap());
     }
 
-    @GwtIncompatible // java.io.ObjectInputStream
+     // java.io.ObjectInputStream
     @SuppressWarnings("unchecked") // reading data stored by writeObject
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
       stream.defaultReadObject();
@@ -468,7 +468,7 @@ public final class Multimaps {
       setMap(map);
     }
 
-    @GwtIncompatible // not needed in emulated source
+     // not needed in emulated source
     private static final long serialVersionUID = 0;
   }
 
@@ -537,14 +537,14 @@ public final class Multimaps {
     }
 
     /** @serialData the factory and the backing map */
-    @GwtIncompatible // java.io.ObjectOutputStream
+     // java.io.ObjectOutputStream
     private void writeObject(ObjectOutputStream stream) throws IOException {
       stream.defaultWriteObject();
       stream.writeObject(factory);
       stream.writeObject(backingMap());
     }
 
-    @GwtIncompatible // java.io.ObjectInputStream
+     // java.io.ObjectInputStream
     @SuppressWarnings("unchecked") // reading data stored by writeObject
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
       stream.defaultReadObject();
@@ -554,7 +554,7 @@ public final class Multimaps {
       setMap(map);
     }
 
-    @GwtIncompatible // not needed in emulated source
+     // not needed in emulated source
     private static final long serialVersionUID = 0;
   }
 
@@ -1023,7 +1023,7 @@ public final class Multimaps {
    *
    * @since 15.0
    */
-  @Beta
+  
   @SuppressWarnings("unchecked")
   // safe by specification of ListMultimap.asMap()
   public static <K, V> Map<K, List<V>> asMap(ListMultimap<K, V> multimap) {
@@ -1036,7 +1036,7 @@ public final class Multimaps {
    *
    * @since 15.0
    */
-  @Beta
+  
   @SuppressWarnings("unchecked")
   // safe by specification of SetMultimap.asMap()
   public static <K, V> Map<K, Set<V>> asMap(SetMultimap<K, V> multimap) {
@@ -1049,7 +1049,7 @@ public final class Multimaps {
    *
    * @since 15.0
    */
-  @Beta
+  
   @SuppressWarnings("unchecked")
   // safe by specification of SortedSetMultimap.asMap()
   public static <K, V> Map<K, SortedSet<V>> asMap(SortedSetMultimap<K, V> multimap) {
@@ -1062,7 +1062,7 @@ public final class Multimaps {
    *
    * @since 15.0
    */
-  @Beta
+  
   public static <K, V> Map<K, Collection<V>> asMap(Multimap<K, V> multimap) {
     return multimap.asMap();
   }

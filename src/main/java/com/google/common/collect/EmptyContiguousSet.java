@@ -13,8 +13,6 @@
  */
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -25,7 +23,6 @@ import java.util.Set;
  *
  * @author Gregory Kick
  */
-@GwtCompatible(emulated = true)
 @SuppressWarnings("unchecked") // allow ungenerified Comparable types
 final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
   EmptyContiguousSet(DiscreteDomain<C> domain) {
@@ -83,7 +80,6 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
     return false;
   }
 
-  @GwtIncompatible // not used by GWT emulation
   @Override
   int indexOf(Object target) {
     return -1;
@@ -94,7 +90,6 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
     return Iterators.emptyIterator();
   }
 
-  @GwtIncompatible // NavigableSet
   @Override
   public UnmodifiableIterator<C> descendingIterator() {
     return Iterators.emptyIterator();
@@ -129,7 +124,6 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
     return false;
   }
 
-  @GwtIncompatible // not used in GWT
   @Override
   boolean isHashCodeFast() {
     return true;
@@ -140,7 +134,6 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
     return 0;
   }
 
-  @GwtIncompatible // serialization
   private static final class SerializedForm<C extends Comparable> implements Serializable {
     private final DiscreteDomain<C> domain;
 
@@ -155,13 +148,11 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible // serialization
   @Override
   Object writeReplace() {
     return new SerializedForm<C>(domain);
   }
 
-  @GwtIncompatible // NavigableSet
   ImmutableSortedSet<C> createDescendingSet() {
     return ImmutableSortedSet.emptySet(Ordering.natural().reverse());
   }

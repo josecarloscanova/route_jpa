@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.ListIterator;
 
 /**
@@ -25,7 +25,7 @@ import java.util.ListIterator;
  * @since 7.0
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 public abstract class UnmodifiableListIterator<E> extends UnmodifiableIterator<E>
     implements ListIterator<E> {
   /** Constructor for use by subclasses. */

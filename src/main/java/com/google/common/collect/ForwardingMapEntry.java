@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Objects;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,7 +46,7 @@ import java.util.Map.Entry;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingMapEntry<K, V> extends ForwardingObject implements Map.Entry<K, V> {
   // TODO(lowasser): identify places where thread safety is actually lost
 
@@ -117,7 +117,7 @@ public abstract class ForwardingMapEntry<K, V> extends ForwardingObject implemen
    *
    * @since 7.0
    */
-  @Beta
+  
   protected String standardToString() {
     return getKey() + "=" + getValue();
   }

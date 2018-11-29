@@ -16,8 +16,6 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Set;
@@ -79,7 +77,6 @@ import java.util.Set;
  * @author Kevin Bourrillion
  * @since 10.0
  */
-@GwtCompatible(serializable = true)
 public abstract class Optional<T> implements Serializable {
   /**
    * Returns an {@code Optional} instance with no contained reference.
@@ -236,7 +233,6 @@ public abstract class Optional<T> implements Serializable {
    * @throws NullPointerException if this optional's value is absent and the supplier returns {@code
    *     null}
    */
-  @Beta
   public abstract T or(Supplier<? extends T> supplier);
 
   /**
@@ -323,7 +319,6 @@ public abstract class Optional<T> implements Serializable {
    *
    * @since 11.0 (generics widened in 13.0)
    */
-  @Beta
   public static <T> Iterable<T> presentInstances(
       final Iterable<? extends Optional<? extends T>> optionals) {
     checkNotNull(optionals);

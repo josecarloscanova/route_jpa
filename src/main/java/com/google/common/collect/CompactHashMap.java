@@ -20,8 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 import static com.google.common.collect.Hashing.smearedHash;
 
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -71,7 +71,7 @@ import java.util.function.Consumer;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible // not worth using in GWT for now
+ // not worth using in GWT for now
 class CompactHashMap<K, V> extends AbstractMap<K, V> implements Serializable {
   /*
    * TODO: Make this a drop-in replacement for j.u. versions, actually drop them in, and test the
@@ -133,19 +133,19 @@ class CompactHashMap<K, V> extends AbstractMap<K, V> implements Serializable {
    * next entry in the bucket chain). The pointers in [size(), entries.length) are all "null"
    * (UNSET).
    */
-  @VisibleForTesting transient long  [] entries;
+   transient long  [] entries;
 
   /**
    * The keys of the entries in the map, in the range of [0, size()). The keys in [size(),
    * keys.length) are all {@code null}.
    */
-  @VisibleForTesting transient Object [] keys;
+   transient Object [] keys;
 
   /**
    * The values of the entries in the map, in the range of [0, size()). The values in [size(),
    * values.length) are all {@code null}.
    */
-  @VisibleForTesting transient Object [] values;
+   transient Object [] values;
 
   /** The load factor. */
   transient float loadFactor;

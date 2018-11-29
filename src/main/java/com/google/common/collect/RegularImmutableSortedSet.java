@@ -18,8 +18,8 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -37,7 +37,6 @@ import java.util.function.Consumer;
  * @author Jared Levy
  * @author Louis Wasserman
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial")
 final class RegularImmutableSortedSet<E> extends ImmutableSortedSet<E> {
   static final RegularImmutableSortedSet<Comparable> NATURAL_EMPTY_SET =
@@ -70,7 +69,7 @@ final class RegularImmutableSortedSet<E> extends ImmutableSortedSet<E> {
     return elements.iterator();
   }
 
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public UnmodifiableIterator<E> descendingIterator() {
     return elements.reverse().iterator();

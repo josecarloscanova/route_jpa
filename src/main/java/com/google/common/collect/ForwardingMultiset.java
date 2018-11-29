@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Objects;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
@@ -47,7 +47,7 @@ import java.util.Set;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingMultiset<E> extends ForwardingCollection<E> implements Multiset<E> {
 
   /** Constructor for use by subclasses. */
@@ -135,7 +135,7 @@ public abstract class ForwardingMultiset<E> extends ForwardingCollection<E> impl
    *
    * @since 7.0
    */
-  @Beta
+  
   protected int standardCount(Object object) {
     for (Entry<?> entry : this.entrySet()) {
       if (Objects.equal(entry.getElement(), object)) {
@@ -164,7 +164,7 @@ public abstract class ForwardingMultiset<E> extends ForwardingCollection<E> impl
    *
    * @since 7.0
    */
-  @Beta
+  
   @Override
   protected boolean standardAddAll(Collection<? extends E> elementsToAdd) {
     return Multisets.addAllImpl(this, elementsToAdd);
@@ -240,7 +240,7 @@ public abstract class ForwardingMultiset<E> extends ForwardingCollection<E> impl
    *
    * @since 10.0
    */
-  @Beta
+  
   protected class StandardElementSet extends Multisets.ElementSet<E> {
     /** Constructor for use by subclasses. */
     public StandardElementSet() {}

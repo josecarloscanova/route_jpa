@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import java.util.stream.Collector;
 
 /**
@@ -36,7 +36,7 @@ import java.util.stream.Collector;
  *
  * @author Chris Povirk
  */
-@GwtIncompatible
+
 abstract class ImmutableSortedSetFauxverideShim<E> extends ImmutableSet<E> {
   /**
    * Not supported. Use {@link ImmutableSortedSet#toImmutableSortedSet} instead. This method exists

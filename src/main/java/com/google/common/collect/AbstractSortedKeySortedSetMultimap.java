@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Collection;
 import java.util.Set;
 import java.util.SortedMap;
@@ -30,7 +30,7 @@ import java.util.SortedSet;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 abstract class AbstractSortedKeySortedSetMultimap<K, V> extends AbstractSortedSetMultimap<K, V> {
 
   AbstractSortedKeySortedSetMultimap(SortedMap<K, Collection<V>> map) {

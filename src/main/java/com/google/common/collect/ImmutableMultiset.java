@@ -18,10 +18,10 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
 //import com.google.j2objc.annotations.WeakOuter;
@@ -52,7 +52,6 @@ import java.util.stream.Collector;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializationDependencies<E>
     implements Multiset<E> {
@@ -64,7 +63,7 @@ public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializa
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <E> Collector<E, ?, ImmutableMultiset<E>> toImmutableMultiset() {
     return toImmutableMultiset(Function.identity(), e -> 1);
   }
@@ -324,7 +323,7 @@ public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializa
     throw new UnsupportedOperationException();
   }
 
-  @GwtIncompatible // not present in emulated superclass
+   // not present in emulated superclass
   @Override
   int copyIntoArray(Object[] dst, int offset) {
     for (Multiset.Entry<E> entry : entrySet()) {
@@ -402,7 +401,7 @@ public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializa
       return ImmutableMultiset.this.hashCode();
     }
 
-    @GwtIncompatible
+    
     @Override
     Object writeReplace() {
       return new EntrySetSerializedForm<E>(ImmutableMultiset.this);
@@ -411,7 +410,7 @@ public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializa
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible
+  
   static class EntrySetSerializedForm<E> implements Serializable {
     final ImmutableMultiset<E> multiset;
 
@@ -424,7 +423,7 @@ public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializa
     }
   }
 
-  @GwtIncompatible
+  
   @Override
   Object writeReplace() {
     return new SerializedForm(this);
@@ -575,7 +574,7 @@ public abstract class ImmutableMultiset<E> extends ImmutableMultisetGwtSerializa
       return copyOf(contents);
     }
 
-    @VisibleForTesting
+    
     ImmutableMultiset<E> buildJdkBacked() {
       if (contents.isEmpty()) {
         return of();

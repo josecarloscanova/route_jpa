@@ -19,9 +19,9 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
 import java.util.ArrayDeque;
@@ -43,13 +43,13 @@ import java.util.Queue;
  * @author Kurt Alfred Kluever
  * @since 15.0
  */
-@Beta
-@GwtCompatible
+
+
 public final class EvictingQueue<E> extends ForwardingQueue<E> implements Serializable {
 
   private final Queue<E> delegate;
 
-  @VisibleForTesting final int maxSize;
+   final int maxSize;
 
   private EvictingQueue(int maxSize) {
     checkArgument(maxSize >= 0, "maxSize (%s) must >= 0", maxSize);

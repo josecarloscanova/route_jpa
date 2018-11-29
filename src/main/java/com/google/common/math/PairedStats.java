@@ -21,8 +21,6 @@ import static java.lang.Double.NaN;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Double.isNaN;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import java.io.Serializable;
@@ -37,8 +35,6 @@ import java.nio.ByteOrder;
  * @author Pete Gillin
  * @since 20.0
  */
-@Beta
-@GwtIncompatible
 public final class PairedStats implements Serializable {
 
   private final Stats xStats;

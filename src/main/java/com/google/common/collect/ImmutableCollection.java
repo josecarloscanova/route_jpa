@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
 import java.util.AbstractCollection;
@@ -156,7 +156,6 @@ import java.util.function.Predicate;
  *
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 // TODO(kevinb): I think we should push everything down to "BaseImmutableCollection" or something,
 // just to do everything we can to emphasize the "practically an interface" nature of this class.

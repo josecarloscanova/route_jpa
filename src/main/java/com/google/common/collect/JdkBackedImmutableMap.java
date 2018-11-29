@@ -19,7 +19,7 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.RegularImmutableMap.makeImmutable;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Map;
 import java.util.function.BiConsumer;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -28,7 +28,6 @@ import java.util.function.BiConsumer;
  * Implementation of ImmutableMap backed by a JDK HashMap, which has smartness protecting against
  * hash flooding.
  */
-@GwtCompatible(emulated = true)
 final class JdkBackedImmutableMap<K, V> extends ImmutableMap<K, V> {
   /**
    * Creates an {@code ImmutableMap} backed by a JDK HashMap. Used when probable hash flooding is

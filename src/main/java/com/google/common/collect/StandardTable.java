@@ -24,7 +24,7 @@ import static com.google.common.base.Predicates.not;
 import static com.google.common.collect.Maps.safeContainsKey;
 import static com.google.common.collect.Maps.safeGet;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
@@ -64,10 +64,10 @@ import java.util.Spliterators;
  *
  * @author Jared Levy
  */
-@GwtCompatible
+
 class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializable {
-  @GwtTransient final Map<R, Map<C, V>> backingMap;
-  @GwtTransient final Supplier<? extends Map<C, V>> factory;
+  final Map<R, Map<C, V>> backingMap;
+  final Supplier<? extends Map<C, V>> factory;
 
   StandardTable(Map<R, Map<C, V>> backingMap, Supplier<? extends Map<C, V>> factory) {
     this.backingMap = backingMap;

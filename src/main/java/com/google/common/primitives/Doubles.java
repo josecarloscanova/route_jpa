@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkPositionIndexes;
 import static java.lang.Double.NEGATIVE_INFINITY;
 import static java.lang.Double.POSITIVE_INFINITY;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import com.google.common.base.Converter;
 import java.io.Serializable;
 import java.util.AbstractList;
@@ -47,7 +47,6 @@ import java.util.Spliterators;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
 public final class Doubles {
   private Doubles() {}
 
@@ -249,7 +248,7 @@ public final class Doubles {
    * @throws IllegalArgumentException if {@code min > max}
    * @since 21.0
    */
-  @Beta
+  
   public static double constrainToRange(double value, double min, double max) {
     checkArgument(min <= max, "min (%s) must be less than or equal to max (%s)", min, max);
     return Math.min(Math.max(value, min), max);
@@ -309,7 +308,7 @@ public final class Doubles {
    *
    * @since 16.0
    */
-  @Beta
+  
   public static Converter<String, Double> stringConverter() {
     return DoubleConverter.INSTANCE;
   }
@@ -511,7 +510,7 @@ public final class Doubles {
     return new DoubleArrayAsList(backingArray);
   }
 
-  @GwtCompatible
+  
   private static class DoubleArrayAsList extends AbstractList<Double>
       implements RandomAccess, Serializable {
     final double[] array;
@@ -651,12 +650,12 @@ public final class Doubles {
    * inputs. All valid inputs must pass this regex, but it's semantically fine if not all inputs
    * that pass this regex are valid -- only a performance hit is incurred, not a semantics bug.
    */
-  @GwtIncompatible // regular expressions
+   // regular expressions
   static final
   java.util.regex.Pattern
       FLOATING_POINT_PATTERN = fpPattern();
 
-  @GwtIncompatible // regular expressions
+   // regular expressions
   private static
   java.util.regex.Pattern
       fpPattern() {
@@ -696,8 +695,8 @@ public final class Doubles {
    *     string} has a length of zero or cannot be parsed as a {@code double} value
    * @since 14.0
    */
-  @Beta
-  @GwtIncompatible // regular expressions
+  
+   // regular expressions
   public static Double tryParse(String string) {
     if (FLOATING_POINT_PATTERN.matcher(string).matches()) {
       // TODO(lowasser): could be potentially optimized, but only with

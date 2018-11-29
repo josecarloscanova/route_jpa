@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.primitives.Ints;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -27,7 +27,7 @@ import com.google.common.primitives.Ints;
  * @author Jesse Wilson
  * @author Austin Appleby
  */
-@GwtCompatible
+
 final class Hashing {
   private Hashing() {}
 

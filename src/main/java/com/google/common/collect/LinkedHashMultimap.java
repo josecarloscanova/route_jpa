@@ -20,9 +20,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import com.google.common.base.Objects;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.WeakOuter;
@@ -77,7 +77,6 @@ import java.util.function.Consumer;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 public final class LinkedHashMultimap<K, V>
     extends LinkedHashMultimapGwtSerializationDependencies<K, V> {
 
@@ -149,7 +148,7 @@ public final class LinkedHashMultimap<K, V>
    * entries in that {@code Set<V>}, and the linked list of entries in the LinkedHashMultimap as a
    * whole.
    */
-  @VisibleForTesting
+  
   static final class ValueEntry<K, V> extends ImmutableEntry<K, V> implements ValueSetLink<K, V> {
     final int smearedValueHash;
 
@@ -214,9 +213,9 @@ public final class LinkedHashMultimap<K, V>
 
   private static final int DEFAULT_KEY_CAPACITY = 16;
   private static final int DEFAULT_VALUE_SET_CAPACITY = 2;
-  @VisibleForTesting static final double VALUE_SET_LOAD_FACTOR = 1.0;
+   static final double VALUE_SET_LOAD_FACTOR = 1.0;
 
-  @VisibleForTesting transient int valueSetCapacity = DEFAULT_VALUE_SET_CAPACITY;
+   transient int valueSetCapacity = DEFAULT_VALUE_SET_CAPACITY;
   private transient ValueEntry<K, V> multimapHeaderEntry;
 
   private LinkedHashMultimap(int keyCapacity, int valueSetCapacity) {
@@ -310,7 +309,7 @@ public final class LinkedHashMultimap<K, V>
     return super.values();
   }
 
-  @VisibleForTesting
+  
   
   final class ValueSet extends Sets.ImprovedAbstractSet<V> implements ValueSetLink<K, V> {
     /*
@@ -319,7 +318,7 @@ public final class LinkedHashMultimap<K, V>
      */
 
     private final K key;
-    @VisibleForTesting ValueEntry<K, V>[] hashTable;
+     ValueEntry<K, V>[] hashTable;
     private int size = 0;
     private int modCount = 0;
 
@@ -571,7 +570,7 @@ public final class LinkedHashMultimap<K, V>
    * @serialData the expected values per key, the number of distinct keys, the number of entries,
    *     and the entries in order
    */
-  @GwtIncompatible // java.io.ObjectOutputStream
+   // java.io.ObjectOutputStream
   private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.defaultWriteObject();
     stream.writeInt(keySet().size());
@@ -585,7 +584,7 @@ public final class LinkedHashMultimap<K, V>
     }
   }
 
-  @GwtIncompatible // java.io.ObjectInputStream
+   // java.io.ObjectInputStream
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
     stream.defaultReadObject();
     multimapHeaderEntry = new ValueEntry<>(null, null, 0, null);
@@ -609,6 +608,6 @@ public final class LinkedHashMultimap<K, V>
     setMap(map);
   }
 
-  @GwtIncompatible // java serialization not supported
+   // java serialization not supported
   private static final long serialVersionUID = 1;
 }

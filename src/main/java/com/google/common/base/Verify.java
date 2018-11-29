@@ -16,7 +16,7 @@ package com.google.common.base;
 
 import static com.google.common.base.Strings.lenientFormat;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -86,7 +86,7 @@ import com.google.common.annotations.GwtCompatible;
  *
  * @since 17.0
  */
-@GwtCompatible
+
 public final class Verify {
   /**
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with no

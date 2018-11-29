@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
 import java.util.Map;
@@ -30,7 +30,7 @@ import java.util.Set;
  * @author Gregory Kick
  * @since 7.0
  */
-@GwtCompatible
+
 public abstract class ForwardingTable<R, C, V> extends ForwardingObject implements Table<R, C, V> {
   /** Constructor for use by subclasses. */
   protected ForwardingTable() {}

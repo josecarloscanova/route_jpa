@@ -17,8 +17,8 @@ package com.google.common.primitives;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Preconditions;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.errorprone.annotations.CheckReturnValue;
@@ -85,8 +85,8 @@ import java.util.stream.IntStream;
  *
  * @since 22.0
  */
-@Beta
-@GwtCompatible
+
+
 
 public final class ImmutableIntArray implements Serializable {
   private static final ImmutableIntArray EMPTY = new ImmutableIntArray(new int[0]);

@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.NoSuchElementException;
 import java.util.Queue;
@@ -43,7 +43,7 @@ import java.util.Queue;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingQueue<E> extends ForwardingCollection<E> implements Queue<E> {
 
   /** Constructor for use by subclasses. */

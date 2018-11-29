@@ -22,9 +22,9 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Predicates.instanceOf;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
@@ -64,7 +64,6 @@ import java.util.Queue;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class Iterators {
   private Iterators() {}
 
@@ -337,7 +336,7 @@ public final class Iterators {
    * @param type the type of the elements
    * @return a newly-allocated array into which all the elements of the iterator have been copied
    */
-  @GwtIncompatible // Array.newInstance(Class, int)
+   // Array.newInstance(Class, int)
   public static <T> T[] toArray(Iterator<? extends T> iterator, Class<T> type) {
     List<T> list = Lists.newArrayList(iterator);
     return Iterables.toArray(list, type);
@@ -650,7 +649,7 @@ public final class Iterators {
    * desiredType}.
    */
   @SuppressWarnings("unchecked") // can cast to <T> because non-Ts are removed
-  @GwtIncompatible // Class.isInstance
+   // Class.isInstance
   public static <T> UnmodifiableIterator<T> filter(Iterator<?> unfiltered, Class<T> desiredType) {
     return (UnmodifiableIterator<T>) filter(unfiltered, instanceOf(desiredType));
   }
@@ -1223,7 +1222,7 @@ public final class Iterators {
    *
    * @since 11.0
    */
-  @Beta
+  
   public static <T> UnmodifiableIterator<T> mergeSorted(
       Iterable<? extends Iterator<? extends T>> iterators, Comparator<? super T> comparator) {
     checkNotNull(iterators, "iterators");

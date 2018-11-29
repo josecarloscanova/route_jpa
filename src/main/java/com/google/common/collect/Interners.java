@@ -16,9 +16,6 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Equivalence;
 import com.google.common.base.Function;
 import com.google.common.collect.MapMaker.Dummy;
@@ -30,8 +27,6 @@ import com.google.common.collect.MapMakerInternalMap.InternalEntry;
  * @author Kevin Bourrillion
  * @since 3.0
  */
-@Beta
-@GwtIncompatible
 public final class Interners {
   private Interners() {}
 
@@ -61,7 +56,6 @@ public final class Interners {
      *
      * @see Interners#newWeakInterner()
      */
-    @GwtIncompatible("java.lang.ref.WeakReference")
     public InternerBuilder weak() {
       this.strong = false;
       return this;
@@ -105,15 +99,13 @@ public final class Interners {
    * likely does not perform as well as {@link #newStrongInterner}, but is the best alternative when
    * the memory usage of that implementation is unacceptable.
    */
-  @GwtIncompatible("java.lang.ref.WeakReference")
   public static <E> Interner<E> newWeakInterner() {
     return newBuilder().weak().build();
   }
 
-  @VisibleForTesting
   static final class InternerImpl<E> implements Interner<E> {
     // MapMaker is our friend, we know about this type
-    @VisibleForTesting final MapMakerInternalMap<E, Dummy, ?, ?> map;
+    final MapMakerInternalMap<E, Dummy, ?, ?> map;
 
     private InternerImpl(MapMaker mapMaker) {
       this.map =

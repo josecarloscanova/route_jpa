@@ -15,8 +15,8 @@
  */
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 
 //import com.google.j2objc.annotations.RetainedWith;
 //import com.google.j2objc.annotations.WeakOuter;
@@ -27,9 +27,8 @@ import java.util.Map;
  * Implementation of ImmutableBiMap backed by a pair of JDK HashMaps, which have smartness
  * protecting against hash flooding.
  */
-@GwtCompatible(emulated = true)
 final class JdkBackedImmutableBiMap<K, V> extends ImmutableBiMap<K, V> {
-  @VisibleForTesting
+  
   static <K, V> ImmutableBiMap<K, V> create(int n, Entry<K, V>[] entryArray) {
     Map<K, V> forwardDelegate = Maps.newHashMapWithExpectedSize(n);
     Map<V, K> backwardDelegate = Maps.newHashMapWithExpectedSize(n);

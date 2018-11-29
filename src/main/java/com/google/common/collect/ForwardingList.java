@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
 import java.util.Iterator;
@@ -50,7 +50,7 @@ import java.util.ListIterator;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingList<E> extends ForwardingCollection<E> implements List<E> {
   // TODO(lowasser): identify places where thread safety is actually lost
 
@@ -198,7 +198,7 @@ public abstract class ForwardingList<E> extends ForwardingCollection<E> implemen
    *
    * @since 7.0
    */
-  @Beta
+  
   protected ListIterator<E> standardListIterator(int start) {
     return Lists.listIteratorImpl(this, start);
   }
@@ -209,7 +209,7 @@ public abstract class ForwardingList<E> extends ForwardingCollection<E> implemen
    *
    * @since 7.0
    */
-  @Beta
+  
   protected List<E> standardSubList(int fromIndex, int toIndex) {
     return Lists.subListImpl(this, fromIndex, toIndex);
   }
@@ -221,7 +221,7 @@ public abstract class ForwardingList<E> extends ForwardingCollection<E> implemen
    *
    * @since 7.0
    */
-  @Beta
+  
   protected boolean standardEquals(Object object) {
     return Lists.equalsImpl(this, object);
   }
@@ -233,7 +233,7 @@ public abstract class ForwardingList<E> extends ForwardingCollection<E> implemen
    *
    * @since 7.0
    */
-  @Beta
+  
   protected int standardHashCode() {
     return Lists.hashCodeImpl(this);
   }

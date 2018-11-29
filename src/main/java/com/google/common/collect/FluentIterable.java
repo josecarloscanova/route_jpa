@@ -16,9 +16,6 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
@@ -105,7 +102,6 @@ import java.util.stream.Stream;
  * @author Marcin Mikosik
  * @since 12.0
  */
-@GwtCompatible(emulated = true)
 public abstract class FluentIterable<E> implements Iterable<E> {
   // We store 'iterable' and use it instead of 'this' to allow Iterables to perform instanceof
   // checks on the _original_ iterable when FluentIterable.from is used.
@@ -156,7 +152,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0 (since 18.0 as an overload of {@code of})
    */
-  @Beta
+  
   public static <E> FluentIterable<E> from(E[] elements) {
     return from(Arrays.asList(elements));
   }
@@ -186,7 +182,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static <T> FluentIterable<T> concat(Iterable<? extends T> a, Iterable<? extends T> b) {
     return concatNoDefensiveCopy(a, b);
   }
@@ -204,7 +200,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static <T> FluentIterable<T> concat(
       Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c) {
     return concatNoDefensiveCopy(a, b, c);
@@ -224,7 +220,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static <T> FluentIterable<T> concat(
       Iterable<? extends T> a,
       Iterable<? extends T> b,
@@ -248,7 +244,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    * @throws NullPointerException if any of the provided iterables is {@code null}
    * @since 20.0
    */
-  @Beta
+  
   public static <T> FluentIterable<T> concat(Iterable<? extends T>... inputs) {
     return concatNoDefensiveCopy(Arrays.copyOf(inputs, inputs.length));
   }
@@ -267,7 +263,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static <T> FluentIterable<T> concat(
       final Iterable<? extends Iterable<? extends T>> inputs) {
     checkNotNull(inputs);
@@ -307,7 +303,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static <E> FluentIterable<E> of() {
     return FluentIterable.from(ImmutableList.<E>of());
   }
@@ -320,7 +316,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static <E> FluentIterable<E> of(E element, E... elements) {
     return from(Lists.asList(element, elements));
   }
@@ -388,7 +384,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 18.0
    */
-  @Beta
+  
   public final FluentIterable<E> append(Iterable<? extends E> other) {
     return FluentIterable.concat(getDelegate(), other);
   }
@@ -401,7 +397,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 18.0
    */
-  @Beta
+  
   public final FluentIterable<E> append(E... elements) {
     return FluentIterable.concat(getDelegate(), Arrays.asList(elements));
   }
@@ -429,7 +425,6 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *     (ImmutableList) stream.filter(NewType.class::isInstance).collect(toImmutableList());}
    * </pre>
    */
-  @GwtIncompatible // Class.isInstance
   public final <T> FluentIterable<T> filter(Class<T> type) {
     return from(Iterables.filter(getDelegate(), type));
   }
@@ -765,7 +760,6 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    * @return a newly-allocated array into which all the elements of this fluent iterable have been
    *     copied
    */
-  @GwtIncompatible // Array.newArray(Class, int)
   public final E[] toArray(Class<E> type) {
     return Iterables.toArray(getDelegate(), type);
   }
@@ -805,7 +799,7 @@ public abstract class FluentIterable<E> implements Iterable<E> {
    *
    * @since 18.0
    */
-  @Beta
+  
   public final String join(Joiner joiner) {
     return joiner.join(this);
   }

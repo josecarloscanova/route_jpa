@@ -22,8 +22,8 @@ import static com.google.common.base.Predicates.compose;
 import static com.google.common.base.Predicates.in;
 import static com.google.common.base.Predicates.not;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Maps.IteratorBasedAbstractMap;
@@ -48,8 +48,8 @@ import java.util.Set;
  * @author Louis Wasserman
  * @since 14.0
  */
-@Beta
-@GwtIncompatible // NavigableMap
+
+ // NavigableMap
 public final class TreeRangeMap<K extends Comparable, V> implements RangeMap<K, V> {
 
   private final NavigableMap<Cut<K>, RangeMapEntry<K, V>> entriesByLowerBound;

@@ -20,9 +20,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.ObjectArrays.checkElementsNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
 import java.io.InvalidObjectException;
@@ -59,7 +59,6 @@ import java.util.stream.Collector;
  * @since 2.0 (implements {@code NavigableSet} since 12.0)
  */
 // TODO(benyu): benchmark and optimize all creation paths, which are a mess now
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxverideShim<E>
     implements NavigableSet<E>, SortedIterable<E> {
@@ -75,7 +74,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <E> Collector<E, ?, ImmutableSortedSet<E>> toImmutableSortedSet(
       Comparator<? super E> comparator) {
     return CollectCollectors.toImmutableSortedSet(comparator);
@@ -620,7 +619,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ImmutableSortedSet<E> headSet(E toElement, boolean inclusive) {
     return headSetImpl(checkNotNull(toElement), inclusive);
@@ -644,7 +643,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ImmutableSortedSet<E> subSet(
       E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
@@ -670,7 +669,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ImmutableSortedSet<E> tailSet(E fromElement, boolean inclusive) {
     return tailSetImpl(checkNotNull(fromElement), inclusive);
@@ -688,28 +687,28 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
   abstract ImmutableSortedSet<E> tailSetImpl(E fromElement, boolean inclusive);
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public E lower(E e) {
     return Iterators.getNext(headSet(e, false).descendingIterator(), null);
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public E floor(E e) {
     return Iterators.getNext(headSet(e, true).descendingIterator(), null);
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public E ceiling(E e) {
     return Iterables.getFirst(tailSet(e, true), null);
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public E higher(E e) {
     return Iterables.getFirst(tailSet(e, false), null);
@@ -734,7 +733,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
    */
   
   @Deprecated
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public final E pollFirst() {
     throw new UnsupportedOperationException();
@@ -749,18 +748,18 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
    */
   
   @Deprecated
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public final E pollLast() {
     throw new UnsupportedOperationException();
   }
 
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   
   transient ImmutableSortedSet<E> descendingSet;
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ImmutableSortedSet<E> descendingSet() {
     // racy single-check idiom
@@ -775,7 +774,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
   // Most classes should implement this as new DescendingImmutableSortedSet<E>(this),
   // but we push down that implementation because ProGuard can't eliminate it even when it's always
   // overridden.
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   abstract ImmutableSortedSet<E> createDescendingSet();
 
   @Override
@@ -802,7 +801,7 @@ public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxveride
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public abstract UnmodifiableIterator<E> descendingIterator();
 

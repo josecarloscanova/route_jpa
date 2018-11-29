@@ -20,9 +20,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import com.google.common.math.IntMath;
 import com.google.common.primitives.Ints;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -48,7 +48,6 @@ import java.util.stream.Collector;
  *
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public abstract class ImmutableSet<E> extends ImmutableCollection<E> implements Set<E> {
   static final int SPLITERATOR_CHARACTERISTICS =
@@ -62,7 +61,7 @@ public abstract class ImmutableSet<E> extends ImmutableCollection<E> implements 
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <E> Collector<E, ?, ImmutableSet<E>> toImmutableSet() {
     return CollectCollectors.toImmutableSet();
   }
@@ -403,7 +402,7 @@ public abstract class ImmutableSet<E> extends ImmutableCollection<E> implements 
    *
    * @since 23.1
    */
-  @Beta
+  
   public static <E> Builder<E> builderWithExpectedSize(int expectedSize) {
     checkNonnegative(expectedSize, "expectedSize");
     return new Builder<E>(expectedSize);
@@ -461,7 +460,7 @@ public abstract class ImmutableSet<E> extends ImmutableCollection<E> implements 
       this.impl = null; // unused
     }
 
-    @VisibleForTesting
+    
     void forceJdk() {
       this.impl = new JdkBackedSetBuilderImpl<E>(impl);
     }
@@ -610,7 +609,7 @@ public abstract class ImmutableSet<E> extends ImmutableCollection<E> implements 
    * with linear probing in its implementation. The returned size is the smallest power of two that
    * can hold setSize elements with the desired load factor. Always returns at least setSize + 2.
    */
-  @VisibleForTesting
+  
   static int chooseTableSize(int setSize) {
     setSize = Math.max(setSize, 2);
     // Correct the size for open addressing to match desired load factor.

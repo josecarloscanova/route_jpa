@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -38,7 +38,6 @@ import java.util.LinkedHashMap;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public final class LinkedHashMultiset<E> extends AbstractMapBasedMultiset<E> {
 
@@ -83,13 +82,13 @@ public final class LinkedHashMultiset<E> extends AbstractMapBasedMultiset<E> {
    * @serialData the number of distinct elements, the first element, its count, the second element,
    *     its count, and so on
    */
-  @GwtIncompatible // java.io.ObjectOutputStream
+   // java.io.ObjectOutputStream
   private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.defaultWriteObject();
     Serialization.writeMultiset(this, stream);
   }
 
-  @GwtIncompatible // java.io.ObjectInputStream
+   // java.io.ObjectInputStream
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
     stream.defaultReadObject();
     int distinctElements = Serialization.readCount(stream);
@@ -97,6 +96,6 @@ public final class LinkedHashMultiset<E> extends AbstractMapBasedMultiset<E> {
     Serialization.populateMultiset(this, stream, distinctElements);
   }
 
-  @GwtIncompatible // not needed in emulated source
+   // not needed in emulated source
   private static final long serialVersionUID = 0;
 }

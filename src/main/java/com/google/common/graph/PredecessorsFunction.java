@@ -16,7 +16,7 @@
 
 package com.google.common.graph;
 
-import com.google.common.annotations.Beta;
+
 
 /**
  * A functional interface for <a
@@ -77,7 +77,7 @@ import com.google.common.annotations.Beta;
  * @param <N> Node parameter type
  * @since 23.0
  */
-@Beta
+
 public interface PredecessorsFunction<N> {
 
   /**

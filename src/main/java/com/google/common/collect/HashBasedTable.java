@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.base.Supplier;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
@@ -48,7 +48,6 @@ import java.util.Map;
  * @author Jared Levy
  * @since 7.0
  */
-@GwtCompatible(serializable = true)
 public class HashBasedTable<R, C, V> extends StandardTable<R, C, V> {
   private static class Factory<C, V> implements Supplier<Map<C, V>>, Serializable {
     final int expectedSize;

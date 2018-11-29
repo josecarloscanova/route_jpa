@@ -14,7 +14,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.collect.ImmutableMap.IteratorBasedImmutableMap;
 //import com.google.errorprone.annotations.Immutable;
 //import com.google.j2objc.annotations.WeakOuter;
@@ -22,7 +22,7 @@ import java.util.Map;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /** A {@code RegularImmutableTable} optimized for dense data. */
-@GwtCompatible
+
 //*containerOf = {"R", "C", "V"})
 final class DenseImmutableTable<R, C, V> extends RegularImmutableTable<R, C, V> {
   private final ImmutableMap<R, Integer> rowKeyToIndex;

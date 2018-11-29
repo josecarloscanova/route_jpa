@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
 import java.util.Map;
@@ -48,7 +48,7 @@ import java.util.Set;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible
+
 public interface SetMultimap<K, V> extends Multimap<K, V> {
   /**
    * {@inheritDoc}

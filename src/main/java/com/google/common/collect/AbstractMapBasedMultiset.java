@@ -21,8 +21,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import com.google.common.primitives.Ints;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.InvalidObjectException;
@@ -44,7 +44,6 @@ import java.util.function.ObjIntConsumer;
  *
  * @author Kevin Bourrillion
  */
-@GwtCompatible(emulated = true)
 abstract class AbstractMapBasedMultiset<E> extends AbstractMultiset<E> implements Serializable {
   // TODO(lowasser): consider overhauling this back to Map<E, Integer>
   private transient Map<E, Count> backingMap;
@@ -328,11 +327,11 @@ abstract class AbstractMapBasedMultiset<E> extends AbstractMultiset<E> implement
   }
 
   // Don't allow default serialization.
-  @GwtIncompatible // java.io.ObjectStreamException
+   // java.io.ObjectStreamException
   private void readObjectNoData() throws ObjectStreamException {
     throw new InvalidObjectException("Stream data required");
   }
 
-  @GwtIncompatible // not needed in emulated source.
+   // not needed in emulated source.
   private static final long serialVersionUID = -2250766705698539974L;
 }

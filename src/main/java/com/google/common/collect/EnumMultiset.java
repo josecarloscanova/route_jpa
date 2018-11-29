@@ -19,8 +19,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import com.google.common.primitives.Ints;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.IOException;
@@ -44,7 +42,6 @@ import java.util.function.ObjIntConsumer;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class EnumMultiset<E extends Enum<E>> extends AbstractMultiset<E>
     implements Serializable {
   /** Creates an empty {@code EnumMultiset}. */
@@ -291,7 +288,6 @@ public final class EnumMultiset<E extends Enum<E>> extends AbstractMultiset<E>
     return Multisets.iteratorImpl(this);
   }
 
-  @GwtIncompatible // java.io.ObjectOutputStream
   private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.defaultWriteObject();
     stream.writeObject(type);
@@ -302,7 +298,6 @@ public final class EnumMultiset<E extends Enum<E>> extends AbstractMultiset<E>
    * @serialData the {@code Class<E>} for the enum type, the number of distinct elements, the first
    *     element, its count, the second element, its count, and so on
    */
-  @GwtIncompatible // java.io.ObjectInputStream
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
     stream.defaultReadObject();
     @SuppressWarnings("unchecked") // reading data stored by writeObject
@@ -313,6 +308,5 @@ public final class EnumMultiset<E extends Enum<E>> extends AbstractMultiset<E>
     Serialization.populateMultiset(this, stream);
   }
 
-  @GwtIncompatible // Not needed in emulated source
   private static final long serialVersionUID = 0;
 }

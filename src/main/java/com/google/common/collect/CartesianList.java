@@ -16,7 +16,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkElementIndex;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.math.IntMath;
 import java.util.AbstractList;
 import java.util.List;
@@ -29,7 +29,7 @@ import java.util.RandomAccess;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 final class CartesianList<E> extends AbstractList<List<E>> implements RandomAccess {
 
   private final transient ImmutableList<List<E>> axes;

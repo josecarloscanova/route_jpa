@@ -20,8 +20,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import com.google.common.base.Objects;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.RetainedWith;
@@ -47,7 +47,6 @@ import java.util.function.BiFunction;
  * @author Kevin Bourrillion
  * @author Mike Bostock
  */
-@GwtCompatible(emulated = true)
 abstract class AbstractBiMap<K, V> extends ForwardingMap<K, V>
     implements BiMap<K, V>, Serializable {
 
@@ -458,28 +457,28 @@ abstract class AbstractBiMap<K, V> extends ForwardingMap<K, V>
     }
 
     /** @serialData the forward bimap */
-    @GwtIncompatible // java.io.ObjectOutputStream
+     // java.io.ObjectOutputStream
     private void writeObject(ObjectOutputStream stream) throws IOException {
       stream.defaultWriteObject();
       stream.writeObject(inverse());
     }
 
-    @GwtIncompatible // java.io.ObjectInputStream
+     // java.io.ObjectInputStream
     @SuppressWarnings("unchecked") // reading data stored by writeObject
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
       stream.defaultReadObject();
       setInverse((AbstractBiMap<V, K>) stream.readObject());
     }
 
-    @GwtIncompatible // Not needed in the emulated source.
+     // Not needed in the emulated source.
     Object readResolve() {
       return inverse().inverse();
     }
 
-    @GwtIncompatible // Not needed in emulated source.
+     // Not needed in emulated source.
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible // Not needed in emulated source.
+   // Not needed in emulated source.
   private static final long serialVersionUID = 0;
 }

@@ -16,8 +16,8 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 ////import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.IOException;
 import java.util.AbstractList;
@@ -62,7 +62,7 @@ import java.util.Map.Entry;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 public class Joiner {
   /** Returns a joiner which automatically places {@code separator} between consecutive elements. */
   public static Joiner on(String separator) {
@@ -344,7 +344,7 @@ public class Joiner {
      *
      * @since 10.0
      */
-    @Beta
+    
     
     public <A extends Appendable> A appendTo(A appendable, Iterable<? extends Entry<?, ?>> entries)
         throws IOException {
@@ -357,7 +357,7 @@ public class Joiner {
      *
      * @since 11.0
      */
-    @Beta
+    
     
     public <A extends Appendable> A appendTo(A appendable, Iterator<? extends Entry<?, ?>> parts)
         throws IOException {
@@ -385,7 +385,7 @@ public class Joiner {
      *
      * @since 10.0
      */
-    @Beta
+    
     
     public StringBuilder appendTo(StringBuilder builder, Iterable<? extends Entry<?, ?>> entries) {
       return appendTo(builder, entries.iterator());
@@ -398,7 +398,7 @@ public class Joiner {
      *
      * @since 11.0
      */
-    @Beta
+    
     
     public StringBuilder appendTo(StringBuilder builder, Iterator<? extends Entry<?, ?>> entries) {
       try {
@@ -423,7 +423,7 @@ public class Joiner {
      *
      * @since 10.0
      */
-    @Beta
+    
     public String join(Iterable<? extends Entry<?, ?>> entries) {
       return join(entries.iterator());
     }
@@ -434,7 +434,7 @@ public class Joiner {
      *
      * @since 11.0
      */
-    @Beta
+    
     public String join(Iterator<? extends Entry<?, ?>> entries) {
       return appendTo(new StringBuilder(), entries).toString();
     }

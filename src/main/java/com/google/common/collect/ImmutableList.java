@@ -24,9 +24,9 @@ import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.ObjectArrays.checkElementsNotNull;
 import static com.google.common.collect.RegularImmutableList.EMPTY;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
@@ -56,7 +56,6 @@ import java.util.stream.Collector;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public abstract class ImmutableList<E> extends ImmutableCollection<E>
     implements List<E>, RandomAccess {
@@ -67,7 +66,7 @@ public abstract class ImmutableList<E> extends ImmutableCollection<E>
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <E> Collector<E, ?, ImmutableList<E>> toImmutableList() {
     return CollectCollectors.toImmutableList();
   }
@@ -721,7 +720,7 @@ public abstract class ImmutableList<E> extends ImmutableCollection<E>
    *
    * @since 23.1
    */
-  @Beta
+  
   public static <E> Builder<E> builderWithExpectedSize(int expectedSize) {
     checkNonnegative(expectedSize, "expectedSize");
     return new ImmutableList.Builder<E>(expectedSize);
@@ -748,7 +747,7 @@ public abstract class ImmutableList<E> extends ImmutableCollection<E>
    * @since 2.0
    */
   public static final class Builder<E> extends ImmutableCollection.Builder<E> {
-    @VisibleForTesting Object[] contents;
+     Object[] contents;
     private int size;
     private boolean forceCopy;
 

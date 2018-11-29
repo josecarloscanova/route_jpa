@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import com.google.common.collect.Maps.IteratorBasedAbstractMap;
 import java.util.Iterator;
 import java.util.NavigableMap;
@@ -31,7 +31,7 @@ import java.util.SortedMap;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible
+
 abstract class AbstractNavigableMap<K, V> extends IteratorBasedAbstractMap<K, V>
     implements NavigableMap<K, V> {
 

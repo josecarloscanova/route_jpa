@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.CollectPreconditions.checkEntryNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
 //import com.google.j2objc.annotations.WeakOuter;
@@ -59,7 +59,6 @@ import java.util.stream.Collectors;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
 
@@ -75,7 +74,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V> Collector<T, ?, ImmutableMap<K, V>> toImmutableMap(
       Function<? super T, ? extends K> keyFunction,
       Function<? super T, ? extends V> valueFunction) {
@@ -92,7 +91,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V> Collector<T, ?, ImmutableMap<K, V>> toImmutableMap(
       Function<? super T, ? extends K> keyFunction,
       Function<? super T, ? extends V> valueFunction,
@@ -197,7 +196,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
    *
    * @since 23.1
    */
-  @Beta
+  
   public static <K, V> Builder<K, V> builderWithExpectedSize(int expectedSize) {
     checkNonnegative(expectedSize, "expectedSize");
     return new Builder<>(expectedSize);
@@ -318,7 +317,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
      * @since 19.0
      */
     
-    @Beta
+    
     public Builder<K, V> putAll(Iterable<? extends Entry<? extends K, ? extends V>> entries) {
       if (entries instanceof Collection) {
         ensureCapacity(size + ((Collection<?>) entries).size());
@@ -340,7 +339,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
      * @since 19.0
      */
     
-    @Beta
+    
     public Builder<K, V> orderEntriesByValue(Comparator<? super V> valueComparator) {
       checkState(this.valueComparator == null, "valueComparator was already set");
       this.valueComparator = checkNotNull(valueComparator, "valueComparator");
@@ -394,7 +393,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
       }
     }
 
-    @VisibleForTesting // only for testing JDK backed implementation
+     // only for testing JDK backed implementation
     ImmutableMap<K, V> buildJdkBacked() {
       checkState(
           valueComparator == null, "buildJdkBacked is only for testing; can't use valueComparator");
@@ -445,7 +444,7 @@ public abstract class ImmutableMap<K, V> implements Map<K, V>, Serializable {
    * @throws IllegalArgumentException if two entries have the same key
    * @since 19.0
    */
-  @Beta
+  
   public static <K, V> ImmutableMap<K, V> copyOf(
       Iterable<? extends Entry<? extends K, ? extends V>> entries) {
     @SuppressWarnings("unchecked") // we'll only be using getKey and getValue, which are covariant

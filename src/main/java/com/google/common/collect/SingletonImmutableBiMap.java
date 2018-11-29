@@ -19,7 +19,7 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkEntryNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 
 //import com.google.j2objc.annotations.RetainedWith;
 import java.util.function.BiConsumer;
@@ -31,7 +31,6 @@ import java.util.function.BiConsumer;
  * @author Jesse Wilson
  * @author Kevin Bourrillion
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 final class SingletonImmutableBiMap<K, V> extends ImmutableBiMap<K, V> {
 

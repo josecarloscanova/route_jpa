@@ -18,7 +18,7 @@ package com.google.common.graph;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
+
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -41,7 +41,7 @@ import java.util.Map;
  * @param <E> Edge parameter type
  * @since 20.0
  */
-@Beta
+
 //*containerOf = {"N", "E"})
 @SuppressWarnings("Immutable") // Extends ConfigurableNetwork but uses ImmutableMaps.
 public final class ImmutableNetwork<N, E> extends ConfigurableNetwork<N, E> {

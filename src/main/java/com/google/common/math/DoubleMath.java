@@ -30,9 +30,6 @@ import static java.lang.Math.getExponent;
 import static java.lang.Math.log;
 import static java.lang.Math.rint;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.primitives.Booleans;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.math.BigInteger;
@@ -45,13 +42,11 @@ import java.util.Iterator;
  * @author Louis Wasserman
  * @since 11.0
  */
-@GwtCompatible(emulated = true)
 public final class DoubleMath {
   /*
    * This method returns a value y such that rounding y DOWN (towards zero) gives the same result as
    * rounding x according to the specified mode.
    */
-  @GwtIncompatible // #isMathematicalInteger, com.google.common.math.DoubleUtils
   static double roundIntermediate(double x, RoundingMode mode) {
     if (!isFinite(x)) {
       throw new ArithmeticException("input is infinite or NaN");
@@ -127,7 +122,6 @@ public final class DoubleMath {
    *           RoundingMode#UNNECESSARY}
    *     </ul>
    */
-  @GwtIncompatible // #roundIntermediate
   public static int roundToInt(double x, RoundingMode mode) {
     double z = roundIntermediate(x, mode);
     checkInRangeForRoundingInputs(
@@ -152,7 +146,6 @@ public final class DoubleMath {
    *           RoundingMode#UNNECESSARY}
    *     </ul>
    */
-  @GwtIncompatible // #roundIntermediate
   public static long roundToLong(double x, RoundingMode mode) {
     double z = roundIntermediate(x, mode);
     checkInRangeForRoundingInputs(
@@ -179,7 +172,6 @@ public final class DoubleMath {
    *     </ul>
    */
   // #roundIntermediate, java.lang.Math.getExponent, com.google.common.math.DoubleUtils
-  @GwtIncompatible
   public static BigInteger roundToBigInteger(double x, RoundingMode mode) {
     x = roundIntermediate(x, mode);
     if (MIN_LONG_AS_DOUBLE - x < 1.0 & x < MAX_LONG_AS_DOUBLE_PLUS_ONE) {
@@ -195,7 +187,6 @@ public final class DoubleMath {
    * Returns {@code true} if {@code x} is exactly equal to {@code 2^k} for some finite integer
    * {@code k}.
    */
-  @GwtIncompatible // com.google.common.math.DoubleUtils
   public static boolean isPowerOfTwo(double x) {
     if (x > 0.0 && isFinite(x)) {
       long significand = getSignificand(x);
@@ -233,7 +224,6 @@ public final class DoubleMath {
    * @throws IllegalArgumentException if {@code x <= 0.0}, {@code x} is NaN, or {@code x} is
    *     infinite
    */
-  @GwtIncompatible // java.lang.Math.getExponent, com.google.common.math.DoubleUtils
   @SuppressWarnings("fallthrough")
   public static int log2(double x, RoundingMode mode) {
     checkArgument(x > 0.0 && isFinite(x), "x must be positive and finite");
@@ -282,7 +272,6 @@ public final class DoubleMath {
    * <p>This is equivalent to, but not necessarily implemented as, the expression {@code
    * !Double.isNaN(x) && !Double.isInfinite(x) && x == Math.rint(x)}.
    */
-  @GwtIncompatible // java.lang.Math.getExponent, com.google.common.math.DoubleUtils
   public static boolean isMathematicalInteger(double x) {
     return isFinite(x)
         && (x == 0.0
@@ -313,9 +302,8 @@ public final class DoubleMath {
     }
   }
 
-  @VisibleForTesting static final int MAX_FACTORIAL = 170;
+  static final int MAX_FACTORIAL = 170;
 
-  @VisibleForTesting
   static final double[] everySixteenthFactorial = {
     0x1.0p0,
     0x1.30777758p44,
@@ -403,7 +391,6 @@ public final class DoubleMath {
    */
   @Deprecated
   // com.google.common.math.DoubleUtils
-  @GwtIncompatible
   public static double mean(double... values) {
     checkArgument(values.length > 0, "Cannot take mean of 0 values");
     long count = 1;
@@ -483,7 +470,6 @@ public final class DoubleMath {
    */
   @Deprecated
   // com.google.common.math.DoubleUtils
-  @GwtIncompatible
   public static double mean(Iterable<? extends Number> values) {
     return mean(values.iterator());
   }
@@ -503,7 +489,6 @@ public final class DoubleMath {
    */
   @Deprecated
   // com.google.common.math.DoubleUtils
-  @GwtIncompatible
   public static double mean(Iterator<? extends Number> values) {
     checkArgument(values.hasNext(), "Cannot take mean of 0 values");
     long count = 1;
@@ -517,8 +502,6 @@ public final class DoubleMath {
     return mean;
   }
 
-  @GwtIncompatible // com.google.common.math.DoubleUtils
-  
   private static double checkFinite(double argument) {
     checkArgument(isFinite(argument));
     return argument;

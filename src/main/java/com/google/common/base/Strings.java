@@ -18,8 +18,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.logging.Level.WARNING;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import java.util.logging.Logger;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  * @author Kevin Bourrillion
  * @since 3.0
  */
-@GwtCompatible
+
 public final class Strings {
   private Strings() {}
 
@@ -215,7 +215,7 @@ public final class Strings {
    * True when a valid surrogate pair starts at the given {@code index} in the given {@code string}.
    * Out-of-range indexes return false.
    */
-  @VisibleForTesting
+  
   static boolean validSurrogatePairAt(CharSequence string, int index) {
     return index >= 0
         && index <= (string.length() - 2)

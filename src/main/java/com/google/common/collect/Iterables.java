@@ -20,9 +20,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
@@ -63,7 +60,6 @@ import java.util.stream.Stream;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class Iterables {
   private Iterables() {}
 
@@ -275,7 +271,6 @@ public final class Iterables {
    * @param type the type of the elements
    * @return a newly-allocated array into which all the elements of the iterable have been copied
    */
-  @GwtIncompatible // Array.newInstance(Class, int)
   public static <T> T[] toArray(Iterable<? extends T> iterable, Class<T> type) {
     return toArray(iterable, ObjectArrays.newArray(type, 0));
   }
@@ -592,7 +587,6 @@ public final class Iterables {
    * </pre>
    */
   @SuppressWarnings("unchecked")
-  @GwtIncompatible // Class.isInstance
   public static <T> Iterable<T> filter(final Iterable<?> unfiltered, final Class<T> desiredType) {
     checkNotNull(unfiltered);
     checkNotNull(desiredType);
@@ -1000,7 +994,6 @@ public final class Iterables {
    *
    * @since 11.0
    */
-  @Beta
   public static <T> Iterable<T> mergeSorted(
       final Iterable<? extends Iterable<? extends T>> iterables,
       final Comparator<? super T> comparator) {

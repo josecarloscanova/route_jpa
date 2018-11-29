@@ -16,14 +16,13 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 
 /**
  * Implementation of {@link ImmutableListMultimap} with no entries.
  *
  * @author Mike Ward
  */
-@GwtCompatible(serializable = true)
 class EmptyImmutableSetMultimap extends ImmutableSetMultimap<Object, Object> {
   static final EmptyImmutableSetMultimap INSTANCE = new EmptyImmutableSetMultimap();
 

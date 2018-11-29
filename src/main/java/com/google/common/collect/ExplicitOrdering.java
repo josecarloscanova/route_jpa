@@ -16,13 +16,11 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import java.util.List;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /** An ordering that compares objects according to a given order. */
-@GwtCompatible(serializable = true)
 final class ExplicitOrdering<T> extends Ordering<T> implements Serializable {
   final ImmutableMap<T, Integer> rankMap;
 

@@ -17,7 +17,7 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndex;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.base.Predicate;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.WeakOuter;
@@ -35,7 +35,7 @@ import java.util.Set;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 class FilteredKeyMultimap<K, V> extends AbstractMultimap<K, V> implements FilteredMultimap<K, V> {
   final Multimap<K, V> unfiltered;
   final Predicate<? super K> keyPredicate;

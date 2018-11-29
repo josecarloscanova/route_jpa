@@ -19,7 +19,7 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.math.IntMath;
 import java.math.RoundingMode;
 import java.util.Arrays;
@@ -51,7 +51,7 @@ import java.util.stream.Stream;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible final class TopKSelector<T> {
+ final class TopKSelector<T> {
 
   /**
    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,

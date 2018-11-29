@@ -14,7 +14,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.io.Serializable;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -23,7 +23,7 @@ import java.io.Serializable;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 final class Count implements Serializable {
   private int value;
 

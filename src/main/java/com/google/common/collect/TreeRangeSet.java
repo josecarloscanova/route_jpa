@@ -17,9 +17,9 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import com.google.common.base.MoreObjects;
 import java.io.Serializable;
 import java.util.Collection;
@@ -39,12 +39,12 @@ import java.util.TreeMap;
  * @author Louis Wasserman
  * @since 14.0
  */
-@Beta
-@GwtIncompatible // uses NavigableMap
+
+ // uses NavigableMap
 public class TreeRangeSet<C extends Comparable<?>> extends AbstractRangeSet<C>
     implements Serializable {
 
-  @VisibleForTesting final NavigableMap<Cut<C>, Range<C>> rangesByLowerBound;
+   final NavigableMap<Cut<C>, Range<C>> rangesByLowerBound;
 
   /** Creates an empty {@code TreeRangeSet} instance. */
   public static <C extends Comparable<?>> TreeRangeSet<C> create() {
@@ -276,7 +276,7 @@ public class TreeRangeSet<C extends Comparable<?>> extends AbstractRangeSet<C>
     return (result == null) ? complement = new Complement() : result;
   }
 
-  @VisibleForTesting
+  
   static final class RangesByUpperBound<C extends Comparable<?>>
       extends AbstractNavigableMap<Cut<C>, Range<C>> {
     private final NavigableMap<Cut<C>, Range<C>> rangesByLowerBound;

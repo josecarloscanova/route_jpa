@@ -14,7 +14,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -22,7 +22,7 @@ import com.google.common.annotations.GwtIncompatible;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible
+
 abstract class AbstractRangeSet<C extends Comparable> implements RangeSet<C> {
   AbstractRangeSet() {}
 

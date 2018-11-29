@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.Arrays;
@@ -43,7 +43,7 @@ import java.util.RandomAccess;
  */
 // TODO(kevinb): how to prevent warning on UnsignedBytes when building GWT
 // javadoc?
-@GwtCompatible
+
 public final class Bytes {
   private Bytes() {}
 
@@ -236,7 +236,7 @@ public final class Bytes {
     return new ByteArrayAsList(backingArray);
   }
 
-  @GwtCompatible
+  
   private static class ByteArrayAsList extends AbstractList<Byte>
       implements RandomAccess, Serializable {
     final byte[] array;

@@ -25,10 +25,10 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
+
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.math.IntMath;
@@ -64,7 +64,6 @@ import java.util.function.Predicate;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class Lists {
   private Lists() {}
 
@@ -79,7 +78,6 @@ public final class Lists {
    * deprecated. Instead, use the {@code ArrayList} {@linkplain ArrayList#ArrayList() constructor}
    * directly, taking advantage of the new <a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.
    */
-  @GwtCompatible(serializable = true)
   public static <E> ArrayList<E> newArrayList() {
     return new ArrayList<>();
   }
@@ -100,7 +98,7 @@ public final class Lists {
    */
   @SafeVarargs
    // TODO(kak): Remove this
-  @GwtCompatible(serializable = true)
+  
   public static <E> ArrayList<E> newArrayList(E... elements) {
     checkNotNull(elements); // for GWT
     // Avoid integer overflow when a large array is passed in
@@ -124,7 +122,7 @@ public final class Lists {
    * syntax</a>.
    */
    // TODO(kak): Remove this
-  @GwtCompatible(serializable = true)
+  
   public static <E> ArrayList<E> newArrayList(Iterable<? extends E> elements) {
     checkNotNull(elements); // for GWT
     // Let ArrayList's sizing logic work, if possible
@@ -141,14 +139,14 @@ public final class Lists {
    * ImmutableList#copyOf(Iterator)} instead.
    */
    // TODO(kak): Remove this
-  @GwtCompatible(serializable = true)
+  
   public static <E> ArrayList<E> newArrayList(Iterator<? extends E> elements) {
     ArrayList<E> list = newArrayList();
     Iterators.addAll(list, elements);
     return list;
   }
 
-  @VisibleForTesting
+  
   static int computeArrayListCapacity(int arraySize) {
     checkNonnegative(arraySize, "arraySize");
 
@@ -172,7 +170,7 @@ public final class Lists {
    *     reaches {@code initialArraySize + 1}
    * @throws IllegalArgumentException if {@code initialArraySize} is negative
    */
-  @GwtCompatible(serializable = true)
+  
   public static <E> ArrayList<E> newArrayListWithCapacity(int initialArraySize) {
     checkNonnegative(initialArraySize, "initialArraySize"); // for GWT.
     return new ArrayList<>(initialArraySize);
@@ -191,7 +189,7 @@ public final class Lists {
    *     elements
    * @throws IllegalArgumentException if {@code estimatedSize} is negative
    */
-  @GwtCompatible(serializable = true)
+  
   public static <E> ArrayList<E> newArrayListWithExpectedSize(int estimatedSize) {
     return new ArrayList<>(computeArrayListCapacity(estimatedSize));
   }
@@ -213,7 +211,7 @@ public final class Lists {
    * constructor} directly, taking advantage of the new <a href="http://goo.gl/iz2Wi">"diamond"
    * syntax</a>.
    */
-  @GwtCompatible(serializable = true)
+  
   public static <E> LinkedList<E> newLinkedList() {
     return new LinkedList<>();
   }
@@ -235,7 +233,7 @@ public final class Lists {
    * constructor} directly, taking advantage of the new <a href="http://goo.gl/iz2Wi">"diamond"
    * syntax</a>.
    */
-  @GwtCompatible(serializable = true)
+  
   public static <E> LinkedList<E> newLinkedList(Iterable<? extends E> elements) {
     LinkedList<E> list = newLinkedList();
     Iterables.addAll(list, elements);
@@ -251,7 +249,7 @@ public final class Lists {
    * @return a new, empty {@code CopyOnWriteArrayList}
    * @since 12.0
    */
-  @GwtIncompatible // CopyOnWriteArrayList
+   // CopyOnWriteArrayList
   public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList() {
     return new CopyOnWriteArrayList<>();
   }
@@ -263,7 +261,7 @@ public final class Lists {
    * @return a new {@code CopyOnWriteArrayList} containing those elements
    * @since 12.0
    */
-  @GwtIncompatible // CopyOnWriteArrayList
+   // CopyOnWriteArrayList
   public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(
       Iterable<? extends E> elements) {
     // We copy elements to an ArrayList first, rather than incurring the
@@ -717,7 +715,7 @@ public final class Lists {
    * @return an {@code List<Character>} view of the character sequence
    * @since 7.0
    */
-  @Beta
+  
   public static List<Character> charactersOf(CharSequence sequence) {
     return new CharSequenceAsList(checkNotNull(sequence));
   }

@@ -19,9 +19,6 @@ import static com.google.common.primitives.Doubles.isFinite;
 import static java.lang.Double.NaN;
 import static java.lang.Double.isNaN;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
-
 /**
  * A mutable object which accumulates paired double values (e.g. points on a plane) and tracks some
  * basic statistics over all the values added so far. This class is not thread safe.
@@ -29,8 +26,6 @@ import com.google.common.annotations.GwtIncompatible;
  * @author Pete Gillin
  * @since 20.0
  */
-@Beta
-@GwtIncompatible
 public final class PairedStatsAccumulator {
 
   // These fields must satisfy the requirements of PairedStats' constructor as well as those of the

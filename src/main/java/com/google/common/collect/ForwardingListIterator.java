@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.ListIterator;
 
@@ -35,7 +35,7 @@ import java.util.ListIterator;
  * @author Mike Bostock
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingListIterator<E> extends ForwardingIterator<E>
     implements ListIterator<E> {
 

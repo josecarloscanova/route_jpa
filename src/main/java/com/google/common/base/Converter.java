@@ -16,7 +16,7 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 ////import com.google.errorprone.annotations.CanIgnoreReturnValue;
 ////import com.google.errorprone.annotations.ForOverride;
 //
@@ -113,7 +113,7 @@ import java.util.Iterator;
  * @author Gregory Kick
  * @since 16.0
  */
-@GwtCompatible
+
 public abstract class Converter<A, B> implements Function<A, B> {
   private final boolean handleNullAutomatically;
 

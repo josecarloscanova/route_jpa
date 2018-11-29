@@ -14,7 +14,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collector;
@@ -36,7 +36,7 @@ import java.util.stream.Collector;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible
+
 abstract class ImmutableSortedMultisetFauxverideShim<E> extends ImmutableMultiset<E> {
   /**
    * Not supported. Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset} instead. This

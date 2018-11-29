@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +32,7 @@ import java.util.SortedSet;
  *
  * @author Jared Levy
  */
-@GwtCompatible
+
 abstract class AbstractSortedSetMultimap<K, V> extends AbstractSetMultimap<K, V>
     implements SortedSetMultimap<K, V> {
   /**

@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.errorprone.annotations.CompatibleWith;
 import java.util.Collection;
@@ -158,7 +158,7 @@ import java.util.function.BiConsumer;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible
+
 public interface Multimap<K, V> {
   // Query Operations
 

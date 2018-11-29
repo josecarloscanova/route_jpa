@@ -19,8 +19,8 @@ import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Converter;
 import java.io.Serializable;
 import java.util.AbstractList;
@@ -44,7 +44,7 @@ import java.util.Spliterators;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible
+
 public final class Longs {
   private Longs() {}
 
@@ -235,7 +235,7 @@ public final class Longs {
    * @throws IllegalArgumentException if {@code min > max}
    * @since 21.0
    */
-  @Beta
+  
   public static long constrainToRange(long value, long min, long max) {
     checkArgument(min <= max, "min (%s) must be less than or equal to max (%s)", min, max);
     return Math.min(Math.max(value, min), max);
@@ -361,7 +361,7 @@ public final class Longs {
    *     length of zero or cannot be parsed as a long value
    * @since 14.0
    */
-  @Beta
+  
   public static Long tryParse(String string) {
     return tryParse(string, 10);
   }
@@ -385,7 +385,7 @@ public final class Longs {
    *     Character.MAX_RADIX}
    * @since 19.0
    */
-  @Beta
+  
   public static Long tryParse(String string, int radix) {
     if (checkNotNull(string).isEmpty()) {
       return null;
@@ -464,7 +464,7 @@ public final class Longs {
    *
    * @since 16.0
    */
-  @Beta
+  
   public static Converter<String, Long> stringConverter() {
     return LongConverter.INSTANCE;
   }
@@ -653,7 +653,7 @@ public final class Longs {
     return new LongArrayAsList(backingArray);
   }
 
-  @GwtCompatible
+  
   private static class LongArrayAsList extends AbstractList<Long>
       implements RandomAccess, Serializable {
     final long[] array;

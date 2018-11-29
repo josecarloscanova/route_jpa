@@ -16,7 +16,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.primitives.Ints;
 import java.util.Collection;
 import java.util.Map;
@@ -28,7 +28,7 @@ import java.util.Map;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 final class JdkBackedImmutableMultiset<E> extends ImmutableMultiset<E> {
   private final Map<E, Integer> delegateMap;
   private final ImmutableList<Entry<E>> entries;

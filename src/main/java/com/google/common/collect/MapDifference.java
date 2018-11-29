@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Map;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -26,7 +26,7 @@ import java.util.Map;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 public interface MapDifference<K, V> {
   /**
    * Returns {@code true} if there are no differences between the two maps; that is, if the maps are

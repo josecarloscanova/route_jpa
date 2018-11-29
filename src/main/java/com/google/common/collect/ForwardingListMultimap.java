@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.List;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -33,7 +33,7 @@ import java.util.List;
  * @author Kurt Alfred Kluever
  * @since 3.0
  */
-@GwtCompatible
+
 public abstract class ForwardingListMultimap<K, V> extends ForwardingMultimap<K, V>
     implements ListMultimap<K, V> {
 

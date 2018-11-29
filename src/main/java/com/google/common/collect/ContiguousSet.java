@@ -17,9 +17,9 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import java.util.Collections;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -46,7 +46,6 @@ import java.util.Set;
  * @author Gregory Kick
  * @since 10.0
  */
-@GwtCompatible(emulated = true)
 @SuppressWarnings("rawtypes") // allow ungenerified Comparable types
 public abstract class ContiguousSet<C extends Comparable> extends ImmutableSortedSet<C> {
   /**
@@ -94,7 +93,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}
    * @since 23.0
    */
-  @Beta
+  
   public static ContiguousSet<Integer> closed(int lower, int upper) {
     return create(Range.closed(lower, upper), DiscreteDomain.integers());
   }
@@ -107,7 +106,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}
    * @since 23.0
    */
-  @Beta
+  
   public static ContiguousSet<Long> closed(long lower, long upper) {
     return create(Range.closed(lower, upper), DiscreteDomain.longs());
   }
@@ -120,7 +119,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}
    * @since 23.0
    */
-  @Beta
+  
   public static ContiguousSet<Integer> closedOpen(int lower, int upper) {
     return create(Range.closedOpen(lower, upper), DiscreteDomain.integers());
   }
@@ -133,7 +132,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}
    * @since 23.0
    */
-  @Beta
+  
   public static ContiguousSet<Long> closedOpen(long lower, long upper) {
     return create(Range.closedOpen(lower, upper), DiscreteDomain.longs());
   }
@@ -151,7 +150,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ContiguousSet<C> headSet(C toElement, boolean inclusive) {
     return headSetImpl(checkNotNull(toElement), inclusive);
@@ -166,7 +165,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ContiguousSet<C> subSet(
       C fromElement, boolean fromInclusive, C toElement, boolean toInclusive) {
@@ -182,7 +181,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
   }
 
   /** @since 12.0 */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @Override
   public ContiguousSet<C> tailSet(C fromElement, boolean inclusive) {
     return tailSetImpl(checkNotNull(fromElement), inclusive);
@@ -232,7 +231,7 @@ public abstract class ContiguousSet<C extends Comparable> extends ImmutableSorte
   public abstract Range<C> range(BoundType lowerBoundType, BoundType upperBoundType);
 
   @Override
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   ImmutableSortedSet<C> createDescendingSet() {
     return new DescendingImmutableSortedSet<C>(this);
   }

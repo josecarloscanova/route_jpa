@@ -18,8 +18,8 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 //import com.google.j2objc.annotations.Weak;
 import java.io.Serializable;
 import java.util.Map.Entry;
@@ -33,7 +33,6 @@ import java.util.function.Consumer;
  * @author Jesse Wilson
  * @author Kevin Bourrillion
  */
-@GwtCompatible(emulated = true)
 final class ImmutableMapValues<K, V> extends ImmutableCollection<V> {
    private final ImmutableMap<K, V> map;
 
@@ -94,20 +93,20 @@ final class ImmutableMapValues<K, V> extends ImmutableCollection<V> {
     };
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   @Override
   public void forEach(Consumer<? super V> action) {
     checkNotNull(action);
     map.forEach((k, v) -> action.accept(v));
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   @Override
   Object writeReplace() {
     return new SerializedForm<V>(map);
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   private static class SerializedForm<V> implements Serializable {
     final ImmutableMap<?, V> map;
 

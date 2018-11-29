@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -29,7 +29,6 @@ import java.io.Serializable;
  * @author Jared Levy
  * @author Louis Wasserman
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial")
 abstract class ImmutableAsList<E> extends ImmutableList<E> {
   abstract ImmutableCollection<E> delegateCollection();
@@ -57,7 +56,7 @@ abstract class ImmutableAsList<E> extends ImmutableList<E> {
   }
 
   /** Serialized form that leads to the same performance as the original list. */
-  @GwtIncompatible // serialization
+   // serialization
   static class SerializedForm implements Serializable {
     final ImmutableCollection<?> collection;
 
@@ -72,12 +71,12 @@ abstract class ImmutableAsList<E> extends ImmutableList<E> {
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   private void readObject(ObjectInputStream stream) throws InvalidObjectException {
     throw new InvalidObjectException("Use SerializedForm");
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   @Override
   Object writeReplace() {
     return new SerializedForm(delegateCollection());

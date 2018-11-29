@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
 import java.util.Comparator;
@@ -43,7 +43,7 @@ import java.util.SortedSet;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible
+
 public interface SortedSetMultimap<K, V> extends SetMultimap<K, V> {
   // Following Javadoc copied from Multimap.
 

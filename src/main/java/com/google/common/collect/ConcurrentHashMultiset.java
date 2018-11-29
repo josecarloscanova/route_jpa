@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import com.google.common.collect.Serialization.FieldSetter;
 import com.google.common.math.IntMath;
 import com.google.common.primitives.Ints;
@@ -55,7 +55,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author mike nonemacher
  * @since 2.0
  */
-@GwtIncompatible
+
 public final class ConcurrentHashMultiset<E> extends AbstractMultiset<E> implements Serializable {
 
   /*
@@ -117,12 +117,12 @@ public final class ConcurrentHashMultiset<E> extends AbstractMultiset<E> impleme
    * @throws IllegalArgumentException if {@code countMap} is not empty
    * @since 20.0
    */
-  @Beta
+  
   public static <E> ConcurrentHashMultiset<E> create(ConcurrentMap<E, AtomicInteger> countMap) {
     return new ConcurrentHashMultiset<E>(countMap);
   }
 
-  @VisibleForTesting
+  
   ConcurrentHashMultiset(ConcurrentMap<E, AtomicInteger> countMap) {
     checkArgument(countMap.isEmpty(), "the backing map (%s) must be empty", countMap);
     this.countMap = countMap;

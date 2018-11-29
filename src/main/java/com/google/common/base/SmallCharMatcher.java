@@ -14,8 +14,8 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import com.google.common.base.CharMatcher.NamedFastMatcher;
 import java.util.BitSet;
 
@@ -25,7 +25,7 @@ import java.util.BitSet;
  *
  * @author Christopher Swenson
  */
-@GwtIncompatible // no precomputation is done in GWT
+ // no precomputation is done in GWT
 final class SmallCharMatcher extends NamedFastMatcher {
   static final int MAX_SIZE = 1023;
   private final char[] table;
@@ -69,7 +69,7 @@ final class SmallCharMatcher extends NamedFastMatcher {
    * with linear probing in its implementation. The returned size is the smallest power of two that
    * can hold setSize elements with the desired load factor.
    */
-  @VisibleForTesting
+  
   static int chooseTableSize(int setSize) {
     if (setSize == 1) {
       return 2;

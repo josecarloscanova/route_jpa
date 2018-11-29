@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkPositionIndexes;
 import static java.lang.Float.NEGATIVE_INFINITY;
 import static java.lang.Float.POSITIVE_INFINITY;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import com.google.common.base.Converter;
 import java.io.Serializable;
 import java.util.AbstractList;
@@ -45,7 +45,6 @@ import java.util.RandomAccess;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
 public final class Floats {
   private Floats() {}
 
@@ -244,7 +243,7 @@ public final class Floats {
    * @throws IllegalArgumentException if {@code min > max}
    * @since 21.0
    */
-  @Beta
+  
   public static float constrainToRange(float value, float min, float max) {
     checkArgument(min <= max, "min (%s) must be less than or equal to max (%s)", min, max);
     return Math.min(Math.max(value, min), max);
@@ -304,7 +303,7 @@ public final class Floats {
    *
    * @since 16.0
    */
-  @Beta
+  
   public static Converter<String, Float> stringConverter() {
     return FloatConverter.INSTANCE;
   }
@@ -503,7 +502,7 @@ public final class Floats {
     return new FloatArrayAsList(backingArray);
   }
 
-  @GwtCompatible
+  
   private static class FloatArrayAsList extends AbstractList<Float>
       implements RandomAccess, Serializable {
     final float[] array;
@@ -648,8 +647,8 @@ public final class Floats {
    *     string} has a length of zero or cannot be parsed as a {@code float} value
    * @since 14.0
    */
-  @Beta
-  @GwtIncompatible // regular expressions
+  
+   // regular expressions
   public static Float tryParse(String string) {
     if (Doubles.FLOATING_POINT_PATTERN.matcher(string).matches()) {
       // TODO(lowasser): could be potentially optimized, but only with

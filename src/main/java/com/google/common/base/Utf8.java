@@ -11,15 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-
 package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 import static java.lang.Character.MAX_SURROGATE;
 import static java.lang.Character.MIN_SURROGATE;
-
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
 
 /**
  * Low-level, high-performance utility methods related to the {@linkplain Charsets#UTF_8 UTF-8}
@@ -36,8 +32,6 @@ import com.google.common.annotations.GwtCompatible;
  * @author Clément Roux
  * @since 16.0
  */
-@Beta
-@GwtCompatible(emulated = true)
 public final class Utf8 {
   /**
    * Returns the number of bytes in the UTF-8-encoded form of {@code sequence}. For a string, this

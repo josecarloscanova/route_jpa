@@ -17,8 +17,8 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import com.google.common.base.Equivalence;
 import com.google.common.collect.MapMaker.Dummy;
 import com.google.common.primitives.Ints;
@@ -65,7 +65,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Doug Lea ({@code ConcurrentHashMap})
  */
 // TODO(kak/cpovirk): Consider removing  from this class.
-@GwtIncompatible
+
 @SuppressWarnings("GuardedBy") // TODO(b/35466881): Fix or suppress.
 class MapMakerInternalMap<
         K,
@@ -1065,7 +1065,7 @@ class MapMakerInternalMap<
    * This method is a convenience for testing. Code should call {@link Segment#copyEntry} directly.
    */
   // Guarded By Segment.this
-  @VisibleForTesting
+  
   E copyEntry(E original, E newNext) {
     int hash = original.getHash();
     return segmentFor(hash).copyEntry(original, newNext);
@@ -1091,7 +1091,7 @@ class MapMakerInternalMap<
    * This method is a convenience for testing. Code should call {@link Segment#getLiveValue}
    * instead.
    */
-  @VisibleForTesting
+  
   boolean isLiveForTesting(InternalEntry<K, V, ?> entry) {
     return segmentFor(entry.getHash()).getLiveValueForTesting(entry) != null;
   }
@@ -1448,7 +1448,7 @@ class MapMakerInternalMap<
      * This method is a convenience for testing. Code should call {@link
      * MapMakerInternalMap#containsValue} directly.
      */
-    @VisibleForTesting
+    
     boolean containsValue(Object value) {
       try {
         if (count != 0) { // read-volatile
@@ -2277,17 +2277,17 @@ class MapMakerInternalMap<
     }
   }
 
-  @VisibleForTesting
+  
   Strength keyStrength() {
     return entryHelper.keyStrength();
   }
 
-  @VisibleForTesting
+  
   Strength valueStrength() {
     return entryHelper.valueStrength();
   }
 
-  @VisibleForTesting
+  
   Equivalence<Object> valueEquivalence() {
     return entryHelper.valueStrength().defaultEquivalence();
   }

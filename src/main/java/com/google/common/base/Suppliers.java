@@ -17,8 +17,8 @@ package com.google.common.base;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  * @author Harry Heymann
  * @since 2.0
  */
-@GwtCompatible
+
 public final class Suppliers {
   private Suppliers() {}
 
@@ -108,7 +108,7 @@ public final class Suppliers {
         : new NonSerializableMemoizingSupplier<T>(delegate);
   }
 
-  @VisibleForTesting
+  
   static class MemoizingSupplier<T> implements Supplier<T>, Serializable {
     final Supplier<T> delegate;
     transient volatile boolean initialized;
@@ -146,7 +146,7 @@ public final class Suppliers {
     private static final long serialVersionUID = 0;
   }
 
-  @VisibleForTesting
+  
   static class NonSerializableMemoizingSupplier<T> implements Supplier<T> {
     volatile Supplier<T> delegate;
     volatile boolean initialized;
@@ -212,7 +212,7 @@ public final class Suppliers {
     return new ExpiringMemoizingSupplier<T>(delegate, duration, unit);
   }
 
-  @VisibleForTesting
+  
   @SuppressWarnings("GoodTime") // lots of violations
   static class ExpiringMemoizingSupplier<T> implements Supplier<T>, Serializable {
     final Supplier<T> delegate;

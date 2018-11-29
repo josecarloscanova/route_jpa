@@ -16,7 +16,7 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Arrays;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -32,7 +32,7 @@ import java.util.Arrays;
  * @author Laurence Gonsalves
  * @since 18.0 (since 2.0 as {@code Objects})
  */
-@GwtCompatible
+
 public final class MoreObjects {
   /**
    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise

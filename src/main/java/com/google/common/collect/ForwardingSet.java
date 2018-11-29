@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Collection;
 import java.util.Set;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -45,7 +45,7 @@ import java.util.Set;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingSet<E> extends ForwardingCollection<E> implements Set<E> {
   // TODO(lowasser): identify places where thread safety is actually lost
 

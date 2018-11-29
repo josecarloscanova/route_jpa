@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -40,7 +40,7 @@ import java.util.Map;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 public interface ClassToInstanceMap<B> extends Map<Class<? extends B>, B> {
   /**
    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class

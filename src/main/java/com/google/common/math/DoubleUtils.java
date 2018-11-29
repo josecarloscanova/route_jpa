@@ -23,8 +23,6 @@ import static java.lang.Double.isNaN;
 import static java.lang.Double.longBitsToDouble;
 import static java.lang.Math.getExponent;
 
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
 import java.math.BigInteger;
 
 /**
@@ -32,7 +30,6 @@ import java.math.BigInteger;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible
 final class DoubleUtils {
   private DoubleUtils() {}
 
@@ -138,5 +135,5 @@ final class DoubleUtils {
     }
   }
 
-  @VisibleForTesting static final long ONE_BITS = 0x3ff0000000000000L;
+  static final long ONE_BITS = 0x3ff0000000000000L;
 }

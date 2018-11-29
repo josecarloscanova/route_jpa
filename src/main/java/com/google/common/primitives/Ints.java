@@ -19,8 +19,8 @@ import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Converter;
 import java.io.Serializable;
 import java.util.AbstractList;
@@ -44,7 +44,7 @@ import java.util.Spliterators;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible
+
 public final class Ints {
   private Ints() {}
 
@@ -263,7 +263,7 @@ public final class Ints {
    * @throws IllegalArgumentException if {@code min > max}
    * @since 21.0
    */
-  @Beta
+  
   public static int constrainToRange(int value, int min, int max) {
     checkArgument(min <= max, "min (%s) must be less than or equal to max (%s)", min, max);
     return Math.min(Math.max(value, min), max);
@@ -368,7 +368,7 @@ public final class Ints {
    *
    * @since 16.0
    */
-  @Beta
+  
   public static Converter<String, Integer> stringConverter() {
     return IntConverter.INSTANCE;
   }
@@ -556,7 +556,7 @@ public final class Ints {
     return new IntArrayAsList(backingArray);
   }
 
-  @GwtCompatible
+  
   private static class IntArrayAsList extends AbstractList<Integer>
       implements RandomAccess, Serializable {
     final int[] array;
@@ -706,7 +706,7 @@ public final class Ints {
    *     a length of zero or cannot be parsed as an integer value
    * @since 11.0
    */
-  @Beta
+  
   public static Integer tryParse(String string) {
     return tryParse(string, 10);
   }
@@ -730,7 +730,7 @@ public final class Ints {
    *     Character.MAX_RADIX}
    * @since 19.0
    */
-  @Beta
+  
   public static Integer tryParse(String string, int radix) {
     Long result = Longs.tryParse(string, radix);
     if (result == null || result.longValue() != result.intValue()) {

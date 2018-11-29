@@ -18,8 +18,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import com.google.common.collect.SortedLists.KeyAbsentBehavior;
 import com.google.common.collect.SortedLists.KeyPresentBehavior;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -40,8 +40,8 @@ import java.util.stream.Collector;
  * @author Louis Wasserman
  * @since 14.0
  */
-@Beta
-@GwtIncompatible // NavigableMap
+
+ // NavigableMap
 public class ImmutableRangeMap<K extends Comparable<?>, V> implements RangeMap<K, V>, Serializable {
 
   private static final ImmutableRangeMap<Comparable<?>, Object> EMPTY =
@@ -53,7 +53,7 @@ public class ImmutableRangeMap<K extends Comparable<?>, V> implements RangeMap<K
    *
    * @since 23.1
    */
-  @Beta
+  
   public static <T, K extends Comparable<? super K>, V>
       Collector<T, ?, ImmutableRangeMap<K, V>> toImmutableRangeMap(
           Function<? super T, Range<K>> keyFunction,

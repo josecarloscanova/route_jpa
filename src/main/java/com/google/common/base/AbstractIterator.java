@@ -16,7 +16,7 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkState;
 
-import com.google.common.annotations.GwtCompatible;
+
 ////import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -26,7 +26,7 @@ import java.util.NoSuchElementException;
  * Note this class is a copy of {@link com.google.common.collect.AbstractIterator} (for dependency
  * reasons).
  */
-@GwtCompatible
+
 abstract class AbstractIterator<T> implements Iterator<T> {
   private State state = State.NOT_READY;
 

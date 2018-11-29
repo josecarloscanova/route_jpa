@@ -19,8 +19,8 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -42,8 +42,8 @@ import java.util.stream.Collector;
  * @since 21.0
  * @author Louis Wasserman
  */
-@Beta
-@GwtCompatible
+
+
 public final class Comparators {
   private Comparators() {}
 
@@ -170,7 +170,7 @@ public final class Comparators {
    *
    * @since 22.0
    */
-  @Beta
+  
   public static <T> Comparator<Optional<T>> emptiesFirst(Comparator<? super T> valueComparator) {
     checkNotNull(valueComparator);
     return Comparator.comparing(o -> o.orElse(null), Comparator.nullsFirst(valueComparator));
@@ -183,7 +183,7 @@ public final class Comparators {
    *
    * @since 22.0
    */
-  @Beta
+  
   public static <T> Comparator<Optional<T>> emptiesLast(Comparator<? super T> valueComparator) {
     checkNotNull(valueComparator);
     return Comparator.comparing(o -> o.orElse(null), Comparator.nullsLast(valueComparator));

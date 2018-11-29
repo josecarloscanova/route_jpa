@@ -14,7 +14,7 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 
@@ -26,7 +26,7 @@ import java.lang.ref.SoftReference;
  * @author Bob Lee
  * @since 2.0
  */
-@GwtIncompatible
+
 public abstract class FinalizableSoftReference<T> extends SoftReference<T>
     implements FinalizableReference {
   /**

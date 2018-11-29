@@ -18,9 +18,9 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 //import com.google.j2objc.annotations.RetainedWith;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -63,7 +63,6 @@ import java.util.stream.Stream;
  * @author Mike Bostock
  * @author Jared Levy
  */
-@GwtCompatible(emulated = true)
 final class Synchronized {
   private Synchronized() {}
 
@@ -94,14 +93,14 @@ final class Synchronized {
     // they don't contain any non-transient member variables, while the
     // following writeObject() handles the SynchronizedObject members.
 
-    @GwtIncompatible // java.io.ObjectOutputStream
+     // java.io.ObjectOutputStream
     private void writeObject(ObjectOutputStream stream) throws IOException {
       synchronized (mutex) {
         stream.defaultWriteObject();
       }
     }
 
-    @GwtIncompatible // not needed in emulated source
+     // not needed in emulated source
     private static final long serialVersionUID = 0;
   }
 
@@ -109,7 +108,7 @@ final class Synchronized {
     return new SynchronizedCollection<E>(collection, mutex);
   }
 
-  @VisibleForTesting
+  
   static class SynchronizedCollection<E> extends SynchronizedObject implements Collection<E> {
     private SynchronizedCollection(Collection<E> delegate, Object mutex) {
       super(delegate, mutex);
@@ -248,7 +247,7 @@ final class Synchronized {
     private static final long serialVersionUID = 0;
   }
 
-  @VisibleForTesting
+  
   static <E> Set<E> set(Set<E> set, Object mutex) {
     return new SynchronizedSet<E>(set, mutex);
   }
@@ -1018,7 +1017,7 @@ final class Synchronized {
     private static final long serialVersionUID = 0;
   }
 
-  @VisibleForTesting
+  
   static <K, V> Map<K, V> map(Map<K, V> map, Object mutex) {
     return new SynchronizedMap<>(map, mutex);
   }
@@ -1298,7 +1297,7 @@ final class Synchronized {
     return new SynchronizedBiMap<>(bimap, mutex, null);
   }
 
-  @VisibleForTesting
+  
   static class SynchronizedBiMap<K, V> extends SynchronizedMap<K, V>
       implements BiMap<K, V>, Serializable {
     private transient  Set<V> valueSet;
@@ -1409,8 +1408,8 @@ final class Synchronized {
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible // NavigableSet
-  @VisibleForTesting
+   // NavigableSet
+  
   static class SynchronizedNavigableSet<E> extends SynchronizedSortedSet<E>
       implements NavigableSet<E> {
     SynchronizedNavigableSet(NavigableSet<E> delegate, Object mutex) {
@@ -1524,29 +1523,29 @@ final class Synchronized {
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   static <E> NavigableSet<E> navigableSet(NavigableSet<E> navigableSet, Object mutex) {
     return new SynchronizedNavigableSet<E>(navigableSet, mutex);
   }
 
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   static <E> NavigableSet<E> navigableSet(NavigableSet<E> navigableSet) {
     return navigableSet(navigableSet, null);
   }
 
-  @GwtIncompatible // NavigableMap
+   // NavigableMap
   static <K, V> NavigableMap<K, V> navigableMap(NavigableMap<K, V> navigableMap) {
     return navigableMap(navigableMap, null);
   }
 
-  @GwtIncompatible // NavigableMap
+   // NavigableMap
   static <K, V> NavigableMap<K, V> navigableMap(
       NavigableMap<K, V> navigableMap, Object mutex) {
     return new SynchronizedNavigableMap<>(navigableMap, mutex);
   }
 
-  @GwtIncompatible // NavigableMap
-  @VisibleForTesting
+   // NavigableMap
+  
   static class SynchronizedNavigableMap<K, V> extends SynchronizedSortedMap<K, V>
       implements NavigableMap<K, V> {
 
@@ -1724,7 +1723,7 @@ final class Synchronized {
     private static final long serialVersionUID = 0;
   }
 
-  @GwtIncompatible // works but is needed only for NavigableMap
+   // works but is needed only for NavigableMap
   private static <K, V> Entry<K, V> nullableSynchronizedEntry(
       Entry<K, V> entry, Object mutex) {
     if (entry == null) {
@@ -1733,7 +1732,7 @@ final class Synchronized {
     return new SynchronizedEntry<>(entry, mutex);
   }
 
-  @GwtIncompatible // works but is needed only for NavigableMap
+   // works but is needed only for NavigableMap
   private static class SynchronizedEntry<K, V> extends SynchronizedObject implements Entry<K, V> {
 
     SynchronizedEntry(Entry<K, V> delegate, Object mutex) {

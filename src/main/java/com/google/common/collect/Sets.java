@@ -20,9 +20,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2.FilteredCollection;
@@ -66,7 +63,6 @@ import java.util.stream.Stream;
  * @author Chris Povirk
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class Sets {
   private Sets() {}
 
@@ -98,7 +94,6 @@ public final class Sets {
    * @return an immutable set containing those elements, minus duplicates
    */
   // http://code.google.com/p/google-web-toolkit/issues/detail?id=3028
-  @GwtCompatible(serializable = true)
   public static <E extends Enum<E>> ImmutableSet<E> immutableEnumSet(
       E anElement, E... otherElements) {
     return ImmutableEnumSet.asImmutable(EnumSet.of(anElement, otherElements));
@@ -115,7 +110,6 @@ public final class Sets {
    * @return an immutable set containing those elements, minus duplicates
    */
   // http://code.google.com/p/google-web-toolkit/issues/detail?id=3028
-  @GwtCompatible(serializable = true)
   public static <E extends Enum<E>> ImmutableSet<E> immutableEnumSet(Iterable<E> elements) {
     if (elements instanceof ImmutableEnumSet) {
       return (ImmutableEnumSet<E>) elements;
@@ -181,7 +175,7 @@ public final class Sets {
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <E extends Enum<E>> Collector<E, ?, ImmutableSet<E>> toImmutableEnumSet() {
     return (Collector) Accumulator.TO_IMMUTABLE_ENUM_SET;
   }
@@ -470,7 +464,7 @@ public final class Sets {
    * @return a new, empty {@code CopyOnWriteArraySet}
    * @since 12.0
    */
-  @GwtIncompatible // CopyOnWriteArraySet
+   // CopyOnWriteArraySet
   public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet() {
     return new CopyOnWriteArraySet<E>();
   }
@@ -482,7 +476,7 @@ public final class Sets {
    * @return a new {@code CopyOnWriteArraySet} containing those elements
    * @since 12.0
    */
-  @GwtIncompatible // CopyOnWriteArraySet
+   // CopyOnWriteArraySet
   public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet(Iterable<? extends E> elements) {
     // We copy elements to an ArrayList first, rather than incurring the
     // quadratic cost of adding them to the COWAS directly.
@@ -1120,7 +1114,7 @@ public final class Sets {
    *
    * @since 14.0
    */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   @SuppressWarnings("unchecked")
   public static <E> NavigableSet<E> filter(
       NavigableSet<E> unfiltered, Predicate<? super E> predicate) {
@@ -1196,7 +1190,7 @@ public final class Sets {
     }
   }
 
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   private static class FilteredNavigableSet<E> extends FilteredSortedSet<E>
       implements NavigableSet<E> {
     FilteredNavigableSet(NavigableSet<E> unfiltered, Predicate<? super E> predicate) {
@@ -1486,7 +1480,6 @@ public final class Sets {
    * @see <a href="http://en.wikipedia.org/wiki/Power_set">Power set article at Wikipedia</a>
    * @since 4.0
    */
-  @GwtCompatible(serializable = false)
   public static <E> Set<Set<E>> powerSet(Set<E> set) {
     return new PowerSet<E>(set);
   }
@@ -1622,7 +1615,7 @@ public final class Sets {
    * @throws NullPointerException if {@code set} is or contains {@code null}
    * @since 23.0
    */
-  @Beta
+  
   public static <E> Set<Set<E>> combinations(Set<E> set, final int size) {
     final ImmutableMap<E, Integer> index = Maps.indexMap(set);
     checkNonnegative(size, "size");
@@ -1919,7 +1912,7 @@ public final class Sets {
    * @return a synchronized view of the specified navigable set.
    * @since 13.0
    */
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   public static <E> NavigableSet<E> synchronizedNavigableSet(NavigableSet<E> navigableSet) {
     return Synchronized.navigableSet(navigableSet);
   }
@@ -1952,7 +1945,7 @@ public final class Sets {
     }
   }
 
-  @GwtIncompatible // NavigableSet
+   // NavigableSet
   static class DescendingSet<E> extends ForwardingNavigableSet<E> {
     private final NavigableSet<E> forward;
 
@@ -2099,8 +2092,8 @@ public final class Sets {
    *
    * @since 20.0
    */
-  @Beta
-  @GwtIncompatible // NavigableSet
+  
+   // NavigableSet
   public static <K extends Comparable<? super K>> NavigableSet<K> subSet(
       NavigableSet<K> set, Range<K> range) {
     if (set.comparator() != null

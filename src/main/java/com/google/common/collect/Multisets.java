@@ -21,8 +21,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -55,7 +55,7 @@ import java.util.stream.Collector;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public final class Multisets {
   private Multisets() {}
 
@@ -227,7 +227,7 @@ public final class Multisets {
    * @return an unmodifiable view of the multiset
    * @since 11.0
    */
-  @Beta
+  
   public static <E> SortedMultiset<E> unmodifiableSortedMultiset(SortedMultiset<E> sortedMultiset) {
     // it's in its own file so it can be emulated for GWT
     return new UnmodifiableSortedMultiset<E>(checkNotNull(sortedMultiset));
@@ -297,7 +297,7 @@ public final class Multisets {
    *
    * @since 14.0
    */
-  @Beta
+  
   public static <E> Multiset<E> filter(Multiset<E> unfiltered, Predicate<? super E> predicate) {
     if (unfiltered instanceof FilteredMultiset) {
       // Support clear(), removeAll(), and retainAll() when filtering a filtered
@@ -403,7 +403,7 @@ public final class Multisets {
    *
    * @since 14.0
    */
-  @Beta
+  
   public static <E> Multiset<E> union(
       final Multiset<? extends E> multiset1, final Multiset<? extends E> multiset2) {
     checkNotNull(multiset1);
@@ -531,7 +531,7 @@ public final class Multisets {
    *
    * @since 14.0
    */
-  @Beta
+  
   public static <E> Multiset<E> sum(
       final Multiset<? extends E> multiset1, final Multiset<? extends E> multiset2) {
     checkNotNull(multiset1);
@@ -608,7 +608,7 @@ public final class Multisets {
    *
    * @since 14.0
    */
-  @Beta
+  
   public static <E> Multiset<E> difference(
       final Multiset<E> multiset1, final Multiset<?> multiset2) {
     checkNotNull(multiset1);
@@ -1134,7 +1134,7 @@ public final class Multisets {
    *
    * @since 11.0
    */
-  @Beta
+  
   public static <E> ImmutableMultiset<E> copyHighestCountFirst(Multiset<E> multiset) {
     Entry<E>[] entries = (Entry<E>[]) multiset.entrySet().toArray(new Entry[0]);
     Arrays.sort(entries, DecreasingCount.INSTANCE);

@@ -14,8 +14,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import java.util.Comparator;
 import java.util.Spliterator;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -26,7 +26,6 @@ import java.util.Spliterator;
  * @author Jared Levy
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true)
 @SuppressWarnings("serial")
 final class ImmutableSortedAsList<E> extends RegularImmutableAsList<E>
     implements SortedIterable<E> {
@@ -46,7 +45,7 @@ final class ImmutableSortedAsList<E> extends RegularImmutableAsList<E>
 
   // Override indexOf() and lastIndexOf() to be O(log N) instead of O(N).
 
-  @GwtIncompatible // ImmutableSortedSet.indexOf
+   // ImmutableSortedSet.indexOf
   // TODO(cpovirk): consider manual binary search under GWT to preserve O(log N) lookup
   @Override
   public int indexOf(Object target) {
@@ -60,7 +59,7 @@ final class ImmutableSortedAsList<E> extends RegularImmutableAsList<E>
     return (index >= 0 && get(index).equals(target)) ? index : -1;
   }
 
-  @GwtIncompatible // ImmutableSortedSet.indexOf
+   // ImmutableSortedSet.indexOf
   @Override
   public int lastIndexOf(Object target) {
     return indexOf(target);
@@ -72,7 +71,7 @@ final class ImmutableSortedAsList<E> extends RegularImmutableAsList<E>
     return indexOf(target) >= 0;
   }
 
-  @GwtIncompatible // super.subListUnchecked does not exist; inherited subList is valid if slow
+   // super.subListUnchecked does not exist; inherited subList is valid if slow
   /*
    * TODO(cpovirk): if we start to override indexOf/lastIndexOf under GWT, we'll want some way to
    * override subList to return an ImmutableSortedAsList for better performance. Right now, I'm not

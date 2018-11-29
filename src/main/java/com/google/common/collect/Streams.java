@@ -19,8 +19,8 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.math.LongMath;
 import java.util.ArrayDeque;
 import java.util.Collection;
@@ -51,8 +51,8 @@ import java.util.stream.StreamSupport;
  *
  * @since 21.0
  */
-@Beta
-@GwtCompatible
+
+
 public final class Streams {
   /**
    * Returns a sequential {@link Stream} of the contents of {@code iterable}, delegating to {@link
@@ -648,7 +648,7 @@ public final class Streams {
    *
    * @since 21.0
    */
-  @Beta
+  
   public interface FunctionWithIndex<T, R> {
     /** Applies this function to the given argument and its index within a stream. */
     R apply(T from, long index);
@@ -699,7 +699,7 @@ public final class Streams {
    *
    * @since 21.0
    */
-  @Beta
+  
   public interface IntFunctionWithIndex<R> {
     /** Applies this function to the given argument and its index within a stream. */
     R apply(int from, long index);
@@ -713,7 +713,7 @@ public final class Streams {
    *
    * @since 21.0
    */
-  @Beta
+  
   public interface LongFunctionWithIndex<R> {
     /** Applies this function to the given argument and its index within a stream. */
     R apply(long from, long index);
@@ -727,7 +727,7 @@ public final class Streams {
    *
    * @since 21.0
    */
-  @Beta
+  
   public interface DoubleFunctionWithIndex<R> {
     /** Applies this function to the given argument and its index within a stream. */
     R apply(double from, long index);

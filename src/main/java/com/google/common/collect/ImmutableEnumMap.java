@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.collect.ImmutableMap.IteratorBasedImmutableMap;
 import java.io.Serializable;
 import java.util.EnumMap;
@@ -31,7 +31,6 @@ import java.util.function.BiConsumer;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 final class ImmutableEnumMap<K extends Enum<K>, V> extends IteratorBasedImmutableMap<K, V> {
   static <K extends Enum<K>, V> ImmutableMap<K, V> asImmutable(EnumMap<K, V> map) {

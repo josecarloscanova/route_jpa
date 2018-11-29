@@ -14,14 +14,14 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.Immutable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 /** A {@code RegularImmutableTable} optimized for sparse data. */
-@GwtCompatible
+
 //*containerOf = {"R", "C", "V"})
 final class SparseImmutableTable<R, C, V> extends RegularImmutableTable<R, C, V> {
   static final ImmutableTable<Object, Object, Object> EMPTY =

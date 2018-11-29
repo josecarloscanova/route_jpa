@@ -16,7 +16,7 @@
 
 package com.google.common.graph;
 
-import com.google.common.annotations.Beta;
+
 import java.util.Optional;
 import java.util.Set;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -101,7 +101,7 @@ import java.util.Set;
  * @param <E> Edge parameter type
  * @since 20.0
  */
-@Beta
+
 public interface Network<N, E> extends SuccessorsFunction<N>, PredecessorsFunction<N> {
   //
   // Network-level accessors

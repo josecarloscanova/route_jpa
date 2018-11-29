@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkPositionIndex;
 import static com.google.common.collect.CollectPreconditions.checkEntryNotNull;
 import static com.google.common.collect.ImmutableMapEntry.createEntryArray;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import com.google.common.collect.ImmutableMapEntry.NonTerminalImmutableMapEntry;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.Weak;
@@ -38,7 +38,6 @@ import java.util.function.BiConsumer;
  * @author Kevin Bourrillion
  * @author Gregory Kick
  */
-@GwtCompatible(serializable = true, emulated = true)
 final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
   @SuppressWarnings("unchecked")
   static final ImmutableMap<Object, Object> EMPTY =
@@ -49,22 +48,22 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
    * ensures that the table is still likely to be relatively sparse (hence it misses fast) while
    * saving space.
    */
-  @VisibleForTesting static final double MAX_LOAD_FACTOR = 1.2;
+   static final double MAX_LOAD_FACTOR = 1.2;
 
   /**
    * Maximum allowed false positive probability of detecting a hash flooding attack given random
    * input.
    */
-  @VisibleForTesting static final double HASH_FLOODING_FPP = 0.001;
+   static final double HASH_FLOODING_FPP = 0.001;
 
   /**
    * Maximum allowed length of a hash table bucket before falling back to a j.u.HashMap based
    * implementation. Experimentally determined.
    */
-  @VisibleForTesting static final int MAX_HASH_BUCKET_LENGTH = 8;
+   static final int MAX_HASH_BUCKET_LENGTH = 8;
 
   // entries in insertion order
-  @VisibleForTesting final transient Entry<K, V>[] entries;
+   final transient Entry<K, V>[] entries;
   // array of linked lists of entries
   private final transient ImmutableMapEntry<K, V>[] table;
   // 'and' with an int to get a table index
@@ -207,7 +206,6 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
     return new KeySet<>(this);
   }
 
-  @GwtCompatible(emulated = true)
   private static final class KeySet<K, V> extends IndexedImmutableSet<K> {
      private final RegularImmutableMap<K, V> map;
 
@@ -235,13 +233,13 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
       return map.size();
     }
 
-    @GwtIncompatible // serialization
+     // serialization
     @Override
     Object writeReplace() {
       return new SerializedForm<K>(map);
     }
 
-    @GwtIncompatible // serialization
+     // serialization
     private static class SerializedForm<K> implements Serializable {
       final ImmutableMap<K, ?> map;
 
@@ -262,7 +260,6 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
     return new Values<>(this);
   }
 
-  @GwtCompatible(emulated = true)
   private static final class Values<K, V> extends ImmutableList<V> {
      final RegularImmutableMap<K, V> map;
 
@@ -285,13 +282,13 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
       return true;
     }
 
-    @GwtIncompatible // serialization
+     // serialization
     @Override
     Object writeReplace() {
       return new SerializedForm<V>(map);
     }
 
-    @GwtIncompatible // serialization
+     // serialization
     private static class SerializedForm<V> implements Serializable {
       final ImmutableMap<?, V> map;
 

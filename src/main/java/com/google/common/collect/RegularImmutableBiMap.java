@@ -22,8 +22,8 @@ import static com.google.common.collect.CollectPreconditions.checkEntryNotNull;
 import static com.google.common.collect.ImmutableMapEntry.createEntryArray;
 import static com.google.common.collect.RegularImmutableMap.checkNoConflictInKeyBucket;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import com.google.common.collect.ImmutableMapEntry.NonTerminalImmutableBiMapEntry;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
@@ -39,7 +39,6 @@ import java.util.function.Consumer;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 class RegularImmutableBiMap<K, V> extends ImmutableBiMap<K, V> {
   static final RegularImmutableBiMap<Object, Object> EMPTY =
@@ -50,7 +49,7 @@ class RegularImmutableBiMap<K, V> extends ImmutableBiMap<K, V> {
 
   private final transient ImmutableMapEntry<K, V>[] keyTable;
   private final transient ImmutableMapEntry<K, V>[] valueTable;
-  @VisibleForTesting final transient Entry<K, V>[] entries;
+   final transient Entry<K, V>[] entries;
   private final transient int mask;
   private final transient int hashCode;
 

@@ -14,7 +14,6 @@
 
 package com.google.common.math;
 
-import com.google.common.annotations.GwtCompatible;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -25,8 +24,6 @@ import java.math.RoundingMode;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
-
 final class MathPreconditions {
   static int checkPositive(String role, int x) {
     if (x <= 0) {

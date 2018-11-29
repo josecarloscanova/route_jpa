@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Objects;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
@@ -54,7 +54,7 @@ import java.util.Set;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingMap<K, V> extends ForwardingObject implements Map<K, V> {
   // TODO(lowasser): identify places where thread safety is actually lost
 
@@ -157,7 +157,7 @@ public abstract class ForwardingMap<K, V> extends ForwardingObject implements Ma
    *
    * @since 7.0
    */
-  @Beta
+  
   protected V standardRemove(Object key) {
     Iterator<Entry<K, V>> entryIterator = entrySet().iterator();
     while (entryIterator.hasNext()) {
@@ -191,7 +191,7 @@ public abstract class ForwardingMap<K, V> extends ForwardingObject implements Ma
    *
    * @since 10.0
    */
-  @Beta
+  
   protected class StandardKeySet extends Maps.KeySet<K, V> {
     /** Constructor for use by subclasses. */
     public StandardKeySet() {
@@ -206,7 +206,7 @@ public abstract class ForwardingMap<K, V> extends ForwardingObject implements Ma
    *
    * @since 7.0
    */
-  @Beta
+  
   protected boolean standardContainsKey(Object key) {
     return Maps.containsKeyImpl(this, key);
   }
@@ -220,7 +220,7 @@ public abstract class ForwardingMap<K, V> extends ForwardingObject implements Ma
    *
    * @since 10.0
    */
-  @Beta
+  
   protected class StandardValues extends Maps.Values<K, V> {
     /** Constructor for use by subclasses. */
     public StandardValues() {
@@ -248,7 +248,7 @@ public abstract class ForwardingMap<K, V> extends ForwardingObject implements Ma
    *
    * @since 10.0
    */
-  @Beta
+  
   protected abstract class StandardEntrySet extends Maps.EntrySet<K, V> {
     /** Constructor for use by subclasses. */
     public StandardEntrySet() {}

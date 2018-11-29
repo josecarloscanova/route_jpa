@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Deque;
 import java.util.Iterator;
@@ -38,7 +38,7 @@ import java.util.Iterator;
  * @author Kurt Alfred Kluever
  * @since 12.0
  */
-@GwtIncompatible
+
 public abstract class ForwardingDeque<E> extends ForwardingQueue<E> implements Deque<E> {
 
   /** Constructor for use by subclasses. */

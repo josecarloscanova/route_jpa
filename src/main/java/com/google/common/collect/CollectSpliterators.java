@@ -19,7 +19,7 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Comparator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
@@ -31,7 +31,7 @@ import java.util.stream.IntStream;
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /** Spliterator utilities for {@code common.collect} internals. */
-@GwtCompatible
+
 final class CollectSpliterators {
   private CollectSpliterators() {}
 

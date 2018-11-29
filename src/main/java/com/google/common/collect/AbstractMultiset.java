@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.collect.Multisets.setCountImpl;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.WeakOuter;
 import java.util.AbstractCollection;
@@ -41,7 +41,7 @@ import java.util.Set;
  * @author Kevin Bourrillion
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 abstract class AbstractMultiset<E> extends AbstractCollection<E> implements Multiset<E> {
   // Query Operations
 

@@ -18,9 +18,9 @@ package com.google.common.collect;
 
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -58,13 +58,12 @@ import java.util.Map;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 public final class ArrayListMultimap<K, V>
     extends ArrayListMultimapGwtSerializationDependencies<K, V> {
   // Default from ArrayList
   private static final int DEFAULT_VALUES_PER_KEY = 3;
 
-  @VisibleForTesting transient int expectedValuesPerKey;
+   transient int expectedValuesPerKey;
 
   /**
    * Creates a new, empty {@code ArrayListMultimap} with the default initial capacities.
@@ -150,13 +149,13 @@ public final class ArrayListMultimap<K, V>
    * @serialData expectedValuesPerKey, number of distinct keys, and then for each distinct key: the
    *     key, number of values for that key, and the key's values
    */
-  @GwtIncompatible // java.io.ObjectOutputStream
+   // java.io.ObjectOutputStream
   private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.defaultWriteObject();
     Serialization.writeMultimap(this, stream);
   }
 
-  @GwtIncompatible // java.io.ObjectOutputStream
+   // java.io.ObjectOutputStream
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
     stream.defaultReadObject();
     expectedValuesPerKey = DEFAULT_VALUES_PER_KEY;
@@ -166,6 +165,6 @@ public final class ArrayListMultimap<K, V>
     Serialization.populateMultimap(this, stream, distinctKeys);
   }
 
-  @GwtIncompatible // Not needed in emulated source.
+   // Not needed in emulated source.
   private static final long serialVersionUID = 0;
 }

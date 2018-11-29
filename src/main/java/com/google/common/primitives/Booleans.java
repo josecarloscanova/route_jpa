@@ -19,8 +19,6 @@ import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.Arrays;
@@ -41,7 +39,6 @@ import java.util.RandomAccess;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible
 public final class Booleans {
   private Booleans() {}
 
@@ -79,7 +76,6 @@ public final class Booleans {
    *
    * @since 21.0
    */
-  @Beta
   public static Comparator<Boolean> trueFirst() {
     return BooleanComparator.TRUE_FIRST;
   }
@@ -92,7 +88,6 @@ public final class Booleans {
    *
    * @since 21.0
    */
-  @Beta
   public static Comparator<Boolean> falseFirst() {
     return BooleanComparator.FALSE_FIRST;
   }
@@ -374,7 +369,6 @@ public final class Booleans {
     return new BooleanArrayAsList(backingArray);
   }
 
-  @GwtCompatible
   private static class BooleanArrayAsList extends AbstractList<Boolean>
       implements RandomAccess, Serializable {
     final boolean[] array;
@@ -509,7 +503,6 @@ public final class Booleans {
    *
    * @since 16.0
    */
-  @Beta
   public static int countTrue(boolean... values) {
     int count = 0;
     for (boolean value : values) {

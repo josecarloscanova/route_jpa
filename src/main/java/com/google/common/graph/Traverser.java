@@ -19,7 +19,7 @@ package com.google.common.graph;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
+
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
@@ -62,7 +62,7 @@ import java.util.Set;
  * @param <N> Node parameter type
  * @since 23.1
  */
-@Beta
+
 public abstract class Traverser<N> {
 
   /**

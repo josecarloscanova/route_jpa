@@ -22,8 +22,8 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 import static java.util.Collections.unmodifiableList;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.WeakOuter;
 import java.io.IOException;
@@ -95,7 +95,6 @@ import java.util.function.Consumer;
  * @author Mike Bostock
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 public class LinkedListMultimap<K, V> extends AbstractMultimap<K, V>
     implements ListMultimap<K, V>, Serializable {
   /*
@@ -825,7 +824,7 @@ public class LinkedListMultimap<K, V> extends AbstractMultimap<K, V>
    *     number of values for that key, and the key's values, followed by successive keys and values
    *     from the entries() ordering
    */
-  @GwtIncompatible // java.io.ObjectOutputStream
+   // java.io.ObjectOutputStream
   private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.defaultWriteObject();
     stream.writeInt(size());
@@ -835,7 +834,7 @@ public class LinkedListMultimap<K, V> extends AbstractMultimap<K, V>
     }
   }
 
-  @GwtIncompatible // java.io.ObjectInputStream
+   // java.io.ObjectInputStream
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
     stream.defaultReadObject();
     keyToKeyList = Maps.newLinkedHashMap();
@@ -849,6 +848,6 @@ public class LinkedListMultimap<K, V> extends AbstractMultimap<K, V>
     }
   }
 
-  @GwtIncompatible // java serialization not supported
+   // java serialization not supported
   private static final long serialVersionUID = 0;
 }

@@ -14,7 +14,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.collect.Table.Cell;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.WeakOuter;
@@ -33,7 +33,7 @@ import java.util.Spliterator;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 abstract class AbstractTable<R, C, V> implements Table<R, C, V> {
 
   @Override

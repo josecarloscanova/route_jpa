@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.BoundType.CLOSED;
 import static com.google.common.collect.BoundType.OPEN;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.base.Objects;
 import java.io.Serializable;
 import java.util.Comparator;
@@ -35,7 +35,6 @@ import java.util.Comparator;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(serializable = true)
 final class GeneralRange<T> implements Serializable {
   /** Converts a Range to a GeneralRange. */
   static <T extends Comparable> GeneralRange<T> from(Range<T> range) {

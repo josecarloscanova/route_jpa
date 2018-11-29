@@ -18,9 +18,9 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import com.google.common.base.Preconditions;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
@@ -49,7 +49,6 @@ import java.util.stream.Stream;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
     implements ListMultimap<K, V> {
   /**
@@ -79,7 +78,7 @@ public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V> Collector<T, ?, ImmutableListMultimap<K, V>> toImmutableListMultimap(
       Function<? super T, ? extends K> keyFunction,
       Function<? super T, ? extends V> valueFunction) {
@@ -123,7 +122,7 @@ public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V>
       Collector<T, ?, ImmutableListMultimap<K, V>> flatteningToImmutableListMultimap(
           Function<? super T, ? extends K> keyFunction,
@@ -253,7 +252,7 @@ public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
      * @since 19.0
      */
     
-    @Beta
+    
     @Override
     public Builder<K, V> putAll(Iterable<? extends Entry<? extends K, ? extends V>> entries) {
       super.putAll(entries);
@@ -356,7 +355,7 @@ public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
    * @throws NullPointerException if any key, value, or entry is null
    * @since 19.0
    */
-  @Beta
+  
   public static <K, V> ImmutableListMultimap<K, V> copyOf(
       Iterable<? extends Entry<? extends K, ? extends V>> entries) {
     return new Builder<K, V>().putAll(entries).build();
@@ -464,13 +463,13 @@ public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
    * @serialData number of distinct keys, and then for each distinct key: the key, the number of
    *     values for that key, and the key's values
    */
-  @GwtIncompatible // java.io.ObjectOutputStream
+   // java.io.ObjectOutputStream
   private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.defaultWriteObject();
     Serialization.writeMultimap(this, stream);
   }
 
-  @GwtIncompatible // java.io.ObjectInputStream
+   // java.io.ObjectInputStream
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
     stream.defaultReadObject();
     int keyCount = stream.readInt();
@@ -506,6 +505,6 @@ public class ImmutableListMultimap<K, V> extends ImmutableMultimap<K, V>
     FieldSettersHolder.SIZE_FIELD_SETTER.set(this, tmpSize);
   }
 
-  @GwtIncompatible // Not needed in emulated source
+   // Not needed in emulated source
   private static final long serialVersionUID = 0;
 }

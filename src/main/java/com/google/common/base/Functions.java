@@ -17,7 +17,7 @@ package com.google.common.base;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.io.Serializable;
 import java.util.Map;
 ////import org.checkerframework.checker.nullness.qual.Nullable;
@@ -35,7 +35,7 @@ import java.util.Map;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible
+
 public final class Functions {
   private Functions() {}
 

@@ -16,7 +16,7 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.io.Serializable;
 ////import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -27,7 +27,7 @@ import java.io.Serializable;
  * @author Mike Bostock
  * @since 1.0
  */
-@GwtCompatible
+
 public enum CaseFormat {
   /** Hyphenated variable naming convention, e.g., "lower-hyphen". */
   LOWER_HYPHEN(CharMatcher.is('-'), "-") {

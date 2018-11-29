@@ -17,8 +17,8 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
 import java.io.Serializable;
@@ -48,7 +48,7 @@ import java.util.stream.Collector;
  * @author Louis Wasserman
  * @since 12.0
  */
-@GwtIncompatible // hasn't been tested yet
+ // hasn't been tested yet
 public abstract class ImmutableSortedMultiset<E> extends ImmutableSortedMultisetFauxverideShim<E>
     implements SortedMultiset<E> {
   // TODO(lowasser): GWT compatibility
@@ -62,7 +62,7 @@ public abstract class ImmutableSortedMultiset<E> extends ImmutableSortedMultiset
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <E> Collector<E, ?, ImmutableSortedMultiset<E>> toImmutableSortedMultiset(
       Comparator<? super E> comparator) {
     return toImmutableSortedMultiset(comparator, Function.identity(), e -> 1);

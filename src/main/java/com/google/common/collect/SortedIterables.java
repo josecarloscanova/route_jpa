@@ -16,7 +16,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Comparator;
 import java.util.SortedSet;
 
@@ -25,7 +25,7 @@ import java.util.SortedSet;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 final class SortedIterables {
   private SortedIterables() {}
 

@@ -23,10 +23,6 @@ import static java.math.RoundingMode.CEILING;
 import static java.math.RoundingMode.FLOOR;
 import static java.math.RoundingMode.HALF_EVEN;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -45,7 +41,6 @@ import java.util.List;
  * @author Louis Wasserman
  * @since 11.0
  */
-@GwtCompatible(emulated = true)
 public final class BigIntegerMath {
   /**
    * Returns the smallest power of two greater than or equal to {@code x}. This is equivalent to
@@ -54,7 +49,6 @@ public final class BigIntegerMath {
    * @throws IllegalArgumentException if {@code x <= 0}
    * @since 20.0
    */
-  @Beta
   public static BigInteger ceilingPowerOfTwo(BigInteger x) {
     return BigInteger.ZERO.setBit(log2(x, RoundingMode.CEILING));
   }
@@ -66,7 +60,6 @@ public final class BigIntegerMath {
    * @throws IllegalArgumentException if {@code x <= 0}
    * @since 20.0
    */
-  @Beta
   public static BigInteger floorPowerOfTwo(BigInteger x) {
     return BigInteger.ZERO.setBit(log2(x, RoundingMode.FLOOR));
   }
@@ -130,9 +123,8 @@ public final class BigIntegerMath {
    * of two. This can be any value, but higher values incur more class load time and linearly
    * increasing memory consumption.
    */
-  @VisibleForTesting static final int SQRT2_PRECOMPUTE_THRESHOLD = 256;
+static final int SQRT2_PRECOMPUTE_THRESHOLD = 256;
 
-  @VisibleForTesting
   static final BigInteger SQRT2_PRECOMPUTED_BITS =
       new BigInteger("16a09e667f3bcc908b2fb1366ea957d3e3adec17512775099da2f590b0667322a", 16);
 
@@ -143,7 +135,6 @@ public final class BigIntegerMath {
    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}
    *     is not a power of ten
    */
-  @GwtIncompatible // TODO
   @SuppressWarnings("fallthrough")
   public static int log10(BigInteger x, RoundingMode mode) {
     checkPositive("x", x);
@@ -221,7 +212,6 @@ public final class BigIntegerMath {
    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code
    *     sqrt(x)} is not an integer
    */
-  @GwtIncompatible // TODO
   @SuppressWarnings("fallthrough")
   public static BigInteger sqrt(BigInteger x, RoundingMode mode) {
     checkNonNegative("x", x);
@@ -257,7 +247,6 @@ public final class BigIntegerMath {
     }
   }
 
-  @GwtIncompatible // TODO
   private static BigInteger sqrtFloor(BigInteger x) {
     /*
      * Adapted from Hacker's Delight, Figure 11-1.
@@ -301,7 +290,6 @@ public final class BigIntegerMath {
     return sqrt0;
   }
 
-  @GwtIncompatible // TODO
   private static BigInteger sqrtApproxWithDoubles(BigInteger x) {
     return DoubleMath.roundToBigInteger(Math.sqrt(DoubleUtils.bigToDouble(x)), HALF_EVEN);
   }
@@ -313,7 +301,6 @@ public final class BigIntegerMath {
    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}
    *     is not an integer multiple of {@code b}
    */
-  @GwtIncompatible // TODO
   public static BigInteger divide(BigInteger p, BigInteger q, RoundingMode mode) {
     BigDecimal pDec = new BigDecimal(p);
     BigDecimal qDec = new BigDecimal(q);
@@ -465,7 +452,7 @@ public final class BigIntegerMath {
   }
 
   // Returns true if BigInteger.valueOf(x.longValue()).equals(x).
-  @GwtIncompatible // TODO
+   // TODO
   static boolean fitsInLong(BigInteger x) {
     return x.bitLength() <= Long.SIZE - 1;
   }

@@ -21,8 +21,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkEntryNotNull;
 import static com.google.common.collect.Maps.keyOrNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.WeakOuter;
 import java.util.AbstractMap;
@@ -58,7 +58,6 @@ import java.util.stream.Collectors;
  * @author Louis Wasserman
  * @since 2.0 (implements {@code NavigableMap} since 12.0)
  */
-@GwtCompatible(serializable = true, emulated = true)
 public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxverideShim<K, V>
     implements NavigableMap<K, V> {
   /**
@@ -73,7 +72,7 @@ public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxveride
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V> Collector<T, ?, ImmutableSortedMap<K, V>> toImmutableSortedMap(
       Comparator<? super K> comparator,
       Function<? super T, ? extends K> keyFunction,
@@ -92,7 +91,7 @@ public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxveride
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V> Collector<T, ?, ImmutableSortedMap<K, V>> toImmutableSortedMap(
       Comparator<? super K> comparator,
       Function<? super T, ? extends K> keyFunction,
@@ -251,7 +250,7 @@ public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxveride
    * @throws IllegalArgumentException if any two keys are equal according to the comparator
    * @since 19.0
    */
-  @Beta
+  
   public static <K, V> ImmutableSortedMap<K, V> copyOf(
       Iterable<? extends Entry<? extends K, ? extends V>> entries) {
     // Hack around K not being a subtype of Comparable.
@@ -269,7 +268,7 @@ public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxveride
    * @throws IllegalArgumentException if any two keys are equal according to the comparator
    * @since 19.0
    */
-  @Beta
+  
   public static <K, V> ImmutableSortedMap<K, V> copyOf(
       Iterable<? extends Entry<? extends K, ? extends V>> entries,
       Comparator<? super K> comparator) {
@@ -512,7 +511,7 @@ public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxveride
      * @since 19.0
      */
     
-    @Beta
+    
     @Override
     public Builder<K, V> putAll(Iterable<? extends Entry<? extends K, ? extends V>> entries) {
       super.putAll(entries);
@@ -526,7 +525,7 @@ public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxveride
      * @deprecated Unsupported by ImmutableSortedMap.Builder.
      */
     
-    @Beta
+    
     @Override
     @Deprecated
     public Builder<K, V> orderEntriesByValue(Comparator<? super V> valueComparator) {

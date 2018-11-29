@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.Comparator;
 import java.util.SortedSet;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -33,7 +33,7 @@ import java.util.SortedSet;
  * @author Kurt Alfred Kluever
  * @since 3.0
  */
-@GwtCompatible
+
 public abstract class ForwardingSortedSetMultimap<K, V> extends ForwardingSetMultimap<K, V>
     implements SortedSetMultimap<K, V> {
 

@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 //import com.google.j2objc.annotations.Weak;
 import java.io.Serializable;
 import java.util.Map.Entry;
@@ -31,7 +31,6 @@ import java.util.function.Consumer;
  * @author Jesse Wilson
  * @author Kevin Bourrillion
  */
-@GwtCompatible(emulated = true)
 abstract class ImmutableMapEntrySet<K, V> extends ImmutableSet<Entry<K, V>> {
   static final class RegularEntrySet<K, V> extends ImmutableMapEntrySet<K, V> {
      private final transient ImmutableMap<K, V> map;
@@ -52,7 +51,6 @@ abstract class ImmutableMapEntrySet<K, V> extends ImmutableSet<Entry<K, V>> {
     }
 
     @Override
-    @GwtIncompatible("not used in GWT")
     int copyIntoArray(Object[] dst, int offset) {
       return entries.copyIntoArray(dst, offset);
     }
@@ -103,7 +101,7 @@ abstract class ImmutableMapEntrySet<K, V> extends ImmutableSet<Entry<K, V>> {
   }
 
   @Override
-  @GwtIncompatible // not used in GWT
+   // not used in GWT
   boolean isHashCodeFast() {
     return map().isHashCodeFast();
   }
@@ -113,13 +111,13 @@ abstract class ImmutableMapEntrySet<K, V> extends ImmutableSet<Entry<K, V>> {
     return map().hashCode();
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   @Override
   Object writeReplace() {
     return new EntrySetSerializedForm<>(map());
   }
 
-  @GwtIncompatible // serialization
+   // serialization
   private static class EntrySetSerializedForm<K, V> implements Serializable {
     final ImmutableMap<K, V> map;
 

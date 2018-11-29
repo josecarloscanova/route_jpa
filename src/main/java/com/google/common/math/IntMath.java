@@ -25,10 +25,6 @@ import static java.lang.Math.min;
 import static java.math.RoundingMode.HALF_EVEN;
 import static java.math.RoundingMode.HALF_UP;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.primitives.Ints;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -47,11 +43,10 @@ import java.math.RoundingMode;
  * @author Louis Wasserman
  * @since 11.0
  */
-@GwtCompatible(emulated = true)
 public final class IntMath {
   // NOTE: Whenever both tests are cheap and functional, it's faster to use &, | instead of &&, ||
 
-  @VisibleForTesting static final int MAX_SIGNED_POWER_OF_TWO = 1 << (Integer.SIZE - 2);
+ static final int MAX_SIGNED_POWER_OF_TWO = 1 << (Integer.SIZE - 2);
 
   /**
    * Returns the smallest power of two greater than or equal to {@code x}. This is equivalent to
@@ -62,7 +57,7 @@ public final class IntMath {
    *     int}, i.e. when {@code x > 2^30}
    * @since 20.0
    */
-  @Beta
+  
   public static int ceilingPowerOfTwo(int x) {
     checkPositive("x", x);
     if (x > MAX_SIGNED_POWER_OF_TWO) {
@@ -78,7 +73,7 @@ public final class IntMath {
    * @throws IllegalArgumentException if {@code x <= 0}
    * @since 20.0
    */
-  @Beta
+  
   public static int floorPowerOfTwo(int x) {
     checkPositive("x", x);
     return Integer.highestOneBit(x);
@@ -99,7 +94,6 @@ public final class IntMath {
    * a signed int. The implementation is branch-free, and benchmarks suggest it is measurably (if
    * narrowly) faster than the straightforward ternary expression.
    */
-  @VisibleForTesting
   static int lessThanBranchFree(int x, int y) {
     // The double negation is optimized away by normal Java, but is necessary for GWT
     // to make sure bit twiddling works as expected.
@@ -145,7 +139,7 @@ public final class IntMath {
   }
 
   /** The biggest half power of two that can fit in an unsigned int. */
-  @VisibleForTesting static final int MAX_POWER_OF_SQRT2_UNSIGNED = 0xB504F333;
+  static final int MAX_POWER_OF_SQRT2_UNSIGNED = 0xB504F333;
 
   /**
    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.
@@ -154,7 +148,6 @@ public final class IntMath {
    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}
    *     is not a power of ten
    */
-  @GwtIncompatible // need BigIntegerMath to adequately test
   @SuppressWarnings("fallthrough")
   public static int log10(int x, RoundingMode mode) {
     checkPositive("x", x);
@@ -197,19 +190,16 @@ public final class IntMath {
   }
 
   // maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))
-  @VisibleForTesting
   static final byte[] maxLog10ForLeadingZeros = {
     9, 9, 9, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 0, 0, 0,
     0
   };
 
-  @VisibleForTesting
   static final int[] powersOf10 = {
     1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000
   };
 
   // halfPowersOf10[i] = largest int less than 10^(i + 0.5)
-  @VisibleForTesting
   static final int[] halfPowersOf10 = {
     3, 31, 316, 3162, 31622, 316227, 3162277, 31622776, 316227766, Integer.MAX_VALUE
   };
@@ -223,7 +213,6 @@ public final class IntMath {
    *
    * @throws IllegalArgumentException if {@code k < 0}
    */
-  @GwtIncompatible // failing tests
   public static int pow(int b, int k) {
     checkNonNegative("exponent", k);
     switch (b) {
@@ -264,7 +253,6 @@ public final class IntMath {
    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code
    *     sqrt(x)} is not an integer
    */
-  @GwtIncompatible // need BigIntegerMath to adequately test
   @SuppressWarnings("fallthrough")
   public static int sqrt(int x, RoundingMode mode) {
     checkNonNegative("x", x);
@@ -531,7 +519,7 @@ public final class IntMath {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static int saturatedAdd(int a, int b) {
     return Ints.saturatedCast((long) a + b);
   }
@@ -542,7 +530,7 @@ public final class IntMath {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static int saturatedSubtract(int a, int b) {
     return Ints.saturatedCast((long) a - b);
   }
@@ -553,7 +541,7 @@ public final class IntMath {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static int saturatedMultiply(int a, int b) {
     return Ints.saturatedCast((long) a * b);
   }
@@ -564,7 +552,7 @@ public final class IntMath {
    *
    * @since 20.0
    */
-  @Beta
+  
   public static int saturatedPow(int b, int k) {
     checkNonNegative("exponent", k);
     switch (b) {
@@ -611,7 +599,7 @@ public final class IntMath {
     }
   }
 
-  @VisibleForTesting static final int FLOOR_SQRT_MAX_INT = 46340;
+  static final int FLOOR_SQRT_MAX_INT = 46340;
 
   /**
    * Returns {@code n!}, that is, the product of the first {@code n} positive integers, {@code 1} if
@@ -672,7 +660,6 @@ public final class IntMath {
   }
 
   // binomial(biggestBinomials[k], k) fits in an int, but not binomial(biggestBinomials[k]+1,k).
-  @VisibleForTesting
   static int[] biggestBinomials = {
     Integer.MAX_VALUE,
     Integer.MAX_VALUE,
@@ -718,8 +705,6 @@ public final class IntMath {
    * @throws IllegalArgumentException if {@code n} is negative
    * @since 20.0
    */
-  @GwtIncompatible // TODO
-  @Beta
   public static boolean isPrime(int n) {
     return LongMath.isPrime(n);
   }

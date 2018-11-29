@@ -1,3 +1,4 @@
+package com.google.common.base;
 /*
  * Copyright (C) 2007 The Guava Authors
  *
@@ -11,26 +12,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-
-package com.google.common.base;
-
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import java.nio.charset.Charset;
-
-/**
- * Contains constant definitions for the six standard {@link Charset} instances, which are
- * guaranteed to be supported by all Java platform implementations.
- *
- * <p>Assuming you're free to choose, note that <b>{@link #UTF_8} is widely preferred</b>.
- *
- * <p>See the Guava User Guide article on <a
- * href="https://github.com/google/guava/wiki/StringsExplained#charsets">{@code Charsets}</a>.
- *
- * @author Mike Bostock
- * @since 1.0
- */
-@GwtCompatible(emulated = true)
 public final class Charsets {
   private Charsets() {}
 
@@ -41,7 +23,7 @@ public final class Charsets {
    * java.nio.charset.StandardCharsets#US_ASCII} instead.
    *
    */
-  @GwtIncompatible // Charset not supported by GWT
+   // Charset not supported by GWT
   public static final Charset US_ASCII = Charset.forName("US-ASCII");
 
   /**
@@ -69,7 +51,7 @@ public final class Charsets {
    * java.nio.charset.StandardCharsets#UTF_16BE} instead.
    *
    */
-  @GwtIncompatible // Charset not supported by GWT
+   // Charset not supported by GWT
   public static final Charset UTF_16BE = Charset.forName("UTF-16BE");
 
   /**
@@ -79,7 +61,7 @@ public final class Charsets {
    * java.nio.charset.StandardCharsets#UTF_16LE} instead.
    *
    */
-  @GwtIncompatible // Charset not supported by GWT
+   // Charset not supported by GWT
   public static final Charset UTF_16LE = Charset.forName("UTF-16LE");
 
   /**
@@ -90,7 +72,7 @@ public final class Charsets {
    * java.nio.charset.StandardCharsets#UTF_16} instead.
    *
    */
-  @GwtIncompatible // Charset not supported by GWT
+   // Charset not supported by GWT
   public static final Charset UTF_16 = Charset.forName("UTF-16");
 
   /*

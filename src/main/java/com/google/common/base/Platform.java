@@ -14,7 +14,6 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtCompatible;
 import java.lang.ref.WeakReference;
 import java.util.Locale;
 import java.util.ServiceConfigurationError;
@@ -28,7 +27,6 @@ import java.util.regex.Pattern;
  *
  * @author Jesse Wilson
  */
-@GwtCompatible(emulated = true)
 final class Platform {
   private static final Logger logger = Logger.getLogger(Platform.class.getName());
   private static final PatternCompiler patternCompiler = loadPatternCompiler();

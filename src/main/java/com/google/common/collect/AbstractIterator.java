@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkState;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.NoSuchElementException;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -60,7 +60,7 @@ import java.util.NoSuchElementException;
  */
 // When making changes to this class, please also update the copy at
 // com.google.common.base.AbstractIterator
-@GwtCompatible
+
 public abstract class AbstractIterator<T> extends UnmodifiableIterator<T> {
   private State state = State.NOT_READY;
 

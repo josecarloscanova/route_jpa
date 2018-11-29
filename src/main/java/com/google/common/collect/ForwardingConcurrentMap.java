@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.concurrent.ConcurrentMap;
 
@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentMap;
  * @author Charles Fry
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingConcurrentMap<K, V> extends ForwardingMap<K, V>
     implements ConcurrentMap<K, V> {
 

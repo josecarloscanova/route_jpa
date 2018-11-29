@@ -22,9 +22,9 @@ import static com.google.common.base.Preconditions.checkPositionIndex;
 import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 import com.google.common.math.IntMath;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.Weak;
@@ -97,8 +97,8 @@ import java.util.Queue;
  * @author Torbjorn Gannholm
  * @since 8.0
  */
-@Beta
-@GwtCompatible
+
+
 public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
 
   /**
@@ -154,7 +154,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
    *     Queue<Integer>} but not a {@code Queue<Object>}).
    * @since 8.0
    */
-  @Beta
+  
   public static final class Builder<B> {
     /*
      * TODO(kevinb): when the dust settles, see if we still need this or can
@@ -224,7 +224,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
 
   private final Heap minHeap;
   private final Heap maxHeap;
-  @VisibleForTesting final int maximumSize;
+   final int maximumSize;
   private Object[] queue;
   private int size;
   private int modCount;
@@ -391,7 +391,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
    * down to replace the element at {@code index}. This fact is used by iterator.remove so as to
    * visit elements during a traversal once and only once.
    */
-  @VisibleForTesting
+  
   
   MoveDesc<E> removeAt(int index) {
     checkPositionIndex(index, size);
@@ -475,7 +475,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
   private static final int EVEN_POWERS_OF_TWO = 0x55555555;
   private static final int ODD_POWERS_OF_TWO = 0xaaaaaaaa;
 
-  @VisibleForTesting
+  
   static boolean isEvenLevel(int index) {
     int oneBased = ~~(index + 1); // for GWT
     checkState(oneBased > 0, "negative index");
@@ -487,7 +487,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
    *
    * <p>TODO(kevinb): move to the test class?
    */
-  @VisibleForTesting
+  
   boolean isIntact() {
     for (int i = 1; i < size; i++) {
       if (!heapForIndex(i).verifyIndex(i)) {
@@ -904,7 +904,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
     return minHeap.ordering;
   }
 
-  @VisibleForTesting
+  
   int capacity() {
     return queue.length;
   }
@@ -913,7 +913,7 @@ public final class MinMaxPriorityQueue<E> extends AbstractQueue<E> {
 
   private static final int DEFAULT_CAPACITY = 11;
 
-  @VisibleForTesting
+  
   static int initialQueueSize(
       int configuredExpectedSize, int maximumSize, Iterable<?> initialContents) {
     // Start with what they said, if they said it, otherwise DEFAULT_CAPACITY

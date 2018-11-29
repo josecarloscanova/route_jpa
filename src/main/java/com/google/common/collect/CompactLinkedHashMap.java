@@ -17,8 +17,8 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 //import com.google.j2objc.annotations.WeakOuter;
 import java.util.Arrays;
 import java.util.Collection;
@@ -49,7 +49,7 @@ import java.util.function.Consumer;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible // not worth using in GWT for now
+ // not worth using in GWT for now
 class CompactLinkedHashMap<K, V> extends CompactHashMap<K, V> {
   // TODO(lowasser): implement removeEldestEntry so this can be used as a drop-in replacement
 
@@ -84,7 +84,7 @@ class CompactLinkedHashMap<K, V> extends CompactHashMap<K, V> {
    * <p>A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,
    * and a node with "next" pointer equal to {@code ENDPOINT} is the last node.
    */
-  @VisibleForTesting transient long  [] links;
+   transient long  [] links;
 
   /**
    * Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries.

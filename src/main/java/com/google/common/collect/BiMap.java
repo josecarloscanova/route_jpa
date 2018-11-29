@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;
 import java.util.Set;
@@ -33,7 +33,7 @@ import java.util.Set;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 public interface BiMap<K, V> extends Map<K, V> {
   // Modification Operations
 

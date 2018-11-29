@@ -20,7 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkRemove;
 import static com.google.common.collect.Hashing.smearedHash;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -67,7 +67,7 @@ import java.util.function.Consumer;
  *
  * @author Dimitris Andreou
  */
-@GwtIncompatible // not worth using in GWT for now
+ // not worth using in GWT for now
 class CompactHashSet<E> extends AbstractSet<E> implements Serializable {
   // TODO(user): cache all field accesses in local vars
 

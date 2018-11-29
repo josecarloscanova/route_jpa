@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -51,7 +51,7 @@ import java.util.SortedSet;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingSortedSet<E> extends ForwardingSet<E> implements SortedSet<E> {
 
   /** Constructor for use by subclasses. */
@@ -107,7 +107,7 @@ public abstract class ForwardingSortedSet<E> extends ForwardingSet<E> implements
    * @since 7.0
    */
   @Override
-  @Beta
+  
   protected boolean standardContains(Object object) {
     try {
       // any ClassCastExceptions are caught
@@ -128,7 +128,7 @@ public abstract class ForwardingSortedSet<E> extends ForwardingSet<E> implements
    * @since 7.0
    */
   @Override
-  @Beta
+  
   protected boolean standardRemove(Object object) {
     try {
       // any ClassCastExceptions are caught
@@ -155,7 +155,7 @@ public abstract class ForwardingSortedSet<E> extends ForwardingSet<E> implements
    *
    * @since 7.0
    */
-  @Beta
+  
   protected SortedSet<E> standardSubSet(E fromElement, E toElement) {
     return tailSet(fromElement).headSet(toElement);
   }

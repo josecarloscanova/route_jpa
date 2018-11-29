@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.base.Predicate;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -27,7 +27,7 @@ import java.util.Set;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible
+
 final class FilteredKeySetMultimap<K, V> extends FilteredKeyMultimap<K, V>
     implements FilteredSetMultimap<K, V> {
 

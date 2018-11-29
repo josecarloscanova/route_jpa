@@ -16,13 +16,11 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 
 /** An ordering that tries several comparators in order. */
-@GwtCompatible(serializable = true)
 final class CompoundOrdering<T> extends Ordering<T> implements Serializable {
   final Comparator<? super T>[] comparators;
 

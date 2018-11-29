@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import java.util.Spliterator;
 import java.util.Spliterators;
 
@@ -26,12 +26,11 @@ import java.util.Spliterators;
  *
  * @author Kevin Bourrillion
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 class RegularImmutableList<E> extends ImmutableList<E> {
   static final ImmutableList<Object> EMPTY = new RegularImmutableList<>(new Object[0]);
 
-  @VisibleForTesting final transient Object[] array;
+   final transient Object[] array;
 
   RegularImmutableList(Object[] array) {
     this.array = array;

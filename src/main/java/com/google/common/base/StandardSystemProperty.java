@@ -14,7 +14,7 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtIncompatible;
+
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -23,7 +23,7 @@ import com.google.common.annotations.GwtIncompatible;
  * @author Kurt Alfred Kluever
  * @since 15.0
  */
-@GwtIncompatible // java.lang.System#getProperty
+ // java.lang.System#getProperty
 public enum StandardSystemProperty {
 
   /** Java Runtime Environment version. */

@@ -18,9 +18,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtIncompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.nio.ByteOrder;
 import java.util.Arrays;
@@ -42,7 +42,7 @@ import sun.misc.Unsafe;
  * @author Louis Wasserman
  * @since 1.0
  */
-@GwtIncompatible
+
 public final class UnsignedBytes {
   private UnsignedBytes() {}
 
@@ -165,7 +165,7 @@ public final class UnsignedBytes {
    *
    * @since 13.0
    */
-  @Beta
+  
   public static String toString(byte x) {
     return toString(x, 10);
   }
@@ -180,7 +180,7 @@ public final class UnsignedBytes {
    *     and {@link Character#MAX_RADIX}.
    * @since 13.0
    */
-  @Beta
+  
   public static String toString(byte x, int radix) {
     checkArgument(
         radix >= Character.MIN_RADIX && radix <= Character.MAX_RADIX,
@@ -199,7 +199,7 @@ public final class UnsignedBytes {
    *     Byte#parseByte(String)})
    * @since 13.0
    */
-  @Beta
+  
   
   public static byte parseUnsignedByte(String string) {
     return parseUnsignedByte(string, 10);
@@ -217,7 +217,7 @@ public final class UnsignedBytes {
    *     Byte#parseByte(String)})
    * @since 13.0
    */
-  @Beta
+  
   
   public static byte parseUnsignedByte(String string, int radix) {
     int parse = Integer.parseInt(checkNotNull(string), radix);
@@ -271,7 +271,7 @@ public final class UnsignedBytes {
     return LexicographicalComparatorHolder.BEST_COMPARATOR;
   }
 
-  @VisibleForTesting
+  
   static Comparator<byte[]> lexicographicalComparatorJavaImpl() {
     return LexicographicalComparatorHolder.PureJavaComparator.INSTANCE;
   }
@@ -283,14 +283,14 @@ public final class UnsignedBytes {
    * <p>Uses reflection to gracefully fall back to the Java implementation if {@code Unsafe} isn't
    * available.
    */
-  @VisibleForTesting
+  
   static class LexicographicalComparatorHolder {
     static final String UNSAFE_COMPARATOR_NAME =
         LexicographicalComparatorHolder.class.getName() + "$UnsafeComparator";
 
     static final Comparator<byte[]> BEST_COMPARATOR = getBestComparator();
 
-    @VisibleForTesting
+    
     enum UnsafeComparator implements Comparator<byte[]> {
       INSTANCE;
 

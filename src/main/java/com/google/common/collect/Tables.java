@@ -19,8 +19,8 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Supplier;
@@ -48,7 +48,7 @@ import java.util.stream.Collector;
  * @author Louis Wasserman
  * @since 7.0
  */
-@GwtCompatible
+
 public final class Tables {
   private Tables() {}
 
@@ -62,7 +62,7 @@ public final class Tables {
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, R, C, V, I extends Table<R, C, V>> Collector<T, ?, I> toTable(
       java.util.function.Function<? super T, ? extends R> rowFunction,
       java.util.function.Function<? super T, ? extends C> columnFunction,
@@ -378,7 +378,7 @@ public final class Tables {
    * @throws IllegalArgumentException if {@code backingMap} is not empty
    * @since 10.0
    */
-  @Beta
+  
   public static <R, C, V> Table<R, C, V> newCustomTable(
       Map<R, Map<C, V>> backingMap, Supplier<? extends Map<C, V>> factory) {
     checkArgument(backingMap.isEmpty());
@@ -408,7 +408,7 @@ public final class Tables {
    *
    * @since 10.0
    */
-  @Beta
+  
   public static <R, C, V1, V2> Table<R, C, V2> transformValues(
       Table<R, C, V1> fromTable, Function<? super V1, V2> function) {
     return new TransformedTable<>(fromTable, function);
@@ -640,7 +640,7 @@ public final class Tables {
    * @return an unmodifiable view of the specified table
    * @since 11.0
    */
-  @Beta
+  
   public static <R, C, V> RowSortedTable<R, C, V> unmodifiableRowSortedTable(
       RowSortedTable<R, ? extends C, ? extends V> table) {
     /*

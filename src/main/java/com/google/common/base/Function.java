@@ -14,7 +14,7 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtCompatible;
+
 ////import com.google.errorprone.annotations.CanIgnoreReturnValue;
 ////import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -39,7 +39,7 @@ import com.google.common.annotations.GwtCompatible;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 @FunctionalInterface
 public interface Function<F, T> extends java.util.function.Function<F, T> {
   @Override

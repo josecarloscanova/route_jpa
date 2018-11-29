@@ -16,8 +16,8 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import java.util.Spliterator;
 import java.util.Spliterators;
 //import org.checkerframework.checker.nullness.qual.Nullable;
@@ -27,7 +27,6 @@ import java.util.Spliterators;
  *
  * @author Kevin Bourrillion
  */
-@GwtCompatible(serializable = true, emulated = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 final class RegularImmutableSet<E> extends ImmutableSet<E> {
   static final RegularImmutableSet<Object> EMPTY =
@@ -35,7 +34,7 @@ final class RegularImmutableSet<E> extends ImmutableSet<E> {
 
   private final transient Object[] elements;
   // the same elements in hashed positions (plus nulls)
-  @VisibleForTesting final transient Object[] table;
+   final transient Object[] table;
   // 'and' with an int to get a valid table index.
   private final transient int mask;
   private final transient int hashCode;

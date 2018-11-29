@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtIncompatible;
+
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -24,7 +24,7 @@ import com.google.common.annotations.GwtIncompatible;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible
+
 final class DescendingImmutableSortedSet<E> extends ImmutableSortedSet<E> {
   private final ImmutableSortedSet<E> forward;
 
@@ -65,19 +65,16 @@ final class DescendingImmutableSortedSet<E> extends ImmutableSortedSet<E> {
   }
 
   @Override
-  @GwtIncompatible("NavigableSet")
   public ImmutableSortedSet<E> descendingSet() {
     return forward;
   }
 
   @Override
-  @GwtIncompatible("NavigableSet")
   public UnmodifiableIterator<E> descendingIterator() {
     return forward.iterator();
   }
 
   @Override
-  @GwtIncompatible("NavigableSet")
   ImmutableSortedSet<E> createDescendingSet() {
     throw new AssertionError("should never be called");
   }

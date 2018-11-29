@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +32,7 @@ import java.util.Map;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible
+
 abstract class AbstractListMultimap<K, V> extends AbstractMapBasedMultimap<K, V>
     implements ListMultimap<K, V> {
   /**

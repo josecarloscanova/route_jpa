@@ -18,8 +18,8 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Tables.AbstractCell;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -46,7 +46,7 @@ import java.util.stream.Collector;
  * @author Gregory Kick
  * @since 11.0
  */
-@GwtCompatible
+
 public abstract class ImmutableTable<R, C, V> extends AbstractTable<R, C, V>
     implements Serializable {
 
@@ -60,7 +60,7 @@ public abstract class ImmutableTable<R, C, V> extends AbstractTable<R, C, V>
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, R, C, V> Collector<T, ?, ImmutableTable<R, C, V>> toImmutableTable(
       Function<? super T, ? extends R> rowFunction,
       Function<? super T, ? extends C> columnFunction,

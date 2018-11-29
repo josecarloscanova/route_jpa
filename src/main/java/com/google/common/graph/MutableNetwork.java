@@ -16,7 +16,7 @@
 
 package com.google.common.graph;
 
-import com.google.common.annotations.Beta;
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
 /**
@@ -29,7 +29,7 @@ import com.google.common.annotations.Beta;
  * @param <E> Edge parameter type
  * @since 20.0
  */
-@Beta
+
 public interface MutableNetwork<N, E> extends Network<N, E> {
 
   /**

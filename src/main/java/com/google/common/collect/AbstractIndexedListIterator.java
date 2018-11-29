@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkPositionIndex;
 
-import com.google.common.annotations.GwtCompatible;
+
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
@@ -29,7 +29,6 @@ import java.util.NoSuchElementException;
  *
  * @author Jared Levy
  */
-@GwtCompatible
 abstract class AbstractIndexedListIterator<E> extends UnmodifiableListIterator<E> {
   private final int size;
   private int position;

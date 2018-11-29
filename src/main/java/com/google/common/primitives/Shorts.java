@@ -19,9 +19,9 @@ import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkPositionIndexes;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
+
 import com.google.common.base.Converter;
 import java.io.Serializable;
 import java.util.AbstractList;
@@ -43,7 +43,6 @@ import java.util.RandomAccess;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
 public final class Shorts {
   private Shorts() {}
 
@@ -261,7 +260,7 @@ public final class Shorts {
    * @throws IllegalArgumentException if {@code min > max}
    * @since 21.0
    */
-  @Beta
+  
   public static short constrainToRange(short value, short min, short max) {
     checkArgument(min <= max, "min (%s) must be less than or equal to max (%s)", min, max);
     return value < min ? min : value < max ? value : max;
@@ -298,7 +297,7 @@ public final class Shorts {
    * use a shared {@link java.nio.ByteBuffer} instance, or use {@link
    * com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.
    */
-  @GwtIncompatible // doesn't work
+   // doesn't work
   public static byte[] toByteArray(short value) {
     return new byte[] {(byte) (value >> 8), (byte) value};
   }
@@ -313,7 +312,7 @@ public final class Shorts {
    *
    * @throws IllegalArgumentException if {@code bytes} has fewer than 2 elements
    */
-  @GwtIncompatible // doesn't work
+   // doesn't work
   public static short fromByteArray(byte[] bytes) {
     checkArgument(bytes.length >= BYTES, "array too small: %s < %s", bytes.length, BYTES);
     return fromBytes(bytes[0], bytes[1]);
@@ -325,7 +324,7 @@ public final class Shorts {
    *
    * @since 7.0
    */
-  @GwtIncompatible // doesn't work
+   // doesn't work
   public static short fromBytes(byte b1, byte b2) {
     return (short) ((b1 << 8) | (b2 & 0xFF));
   }
@@ -367,7 +366,7 @@ public final class Shorts {
    *
    * @since 16.0
    */
-  @Beta
+  
   public static Converter<String, Short> stringConverter() {
     return ShortConverter.INSTANCE;
   }
@@ -554,7 +553,7 @@ public final class Shorts {
     return new ShortArrayAsList(backingArray);
   }
 
-  @GwtCompatible
+  
   private static class ShortArrayAsList extends AbstractList<Short>
       implements RandomAccess, Serializable {
     final short[] array;

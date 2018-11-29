@@ -24,8 +24,6 @@ import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 //import com.google.j2objc.annotations.J2ObjCIncompatible;
 import java.time.Duration;
@@ -79,7 +77,6 @@ import java.util.concurrent.TimeUnit;
  * @author Kevin Bourrillion
  * @since 10.0
  */
-@GwtCompatible(emulated = true)
 @SuppressWarnings("GoodTime") // lots of violations
 public final class Stopwatch {
   private final Ticker ticker;
@@ -208,8 +205,6 @@ public final class Stopwatch {
    *
    * @since 22.0
    */
-  @GwtIncompatible
-  
   public Duration elapsed() {
     return Duration.ofNanos(elapsedNanos());
   }

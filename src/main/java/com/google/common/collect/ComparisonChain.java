@@ -16,7 +16,7 @@
 
 package com.google.common.collect;
 
-import com.google.common.annotations.GwtCompatible;
+
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
@@ -56,7 +56,7 @@ import java.util.Comparator;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ComparisonChain {
   private ComparisonChain() {}
 

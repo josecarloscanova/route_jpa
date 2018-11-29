@@ -16,9 +16,6 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +35,6 @@ import java.util.regex.Pattern;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class Predicates {
   private Predicates() {}
 
@@ -46,13 +42,11 @@ public final class Predicates {
   // interface which specifies an accept(PredicateVisitor) method.
 
   /** Returns a predicate that always evaluates to {@code true}. */
-  @GwtCompatible(serializable = true)
   public static <T> Predicate<T> alwaysTrue() {
     return ObjectPredicate.ALWAYS_TRUE.withNarrowedType();
   }
 
   /** Returns a predicate that always evaluates to {@code false}. */
-  @GwtCompatible(serializable = true)
   public static <T> Predicate<T> alwaysFalse() {
     return ObjectPredicate.ALWAYS_FALSE.withNarrowedType();
   }
@@ -61,7 +55,6 @@ public final class Predicates {
    * Returns a predicate that evaluates to {@code true} if the object reference being tested is
    * null.
    */
-  @GwtCompatible(serializable = true)
   public static <T> Predicate<T> isNull() {
     return ObjectPredicate.IS_NULL.withNarrowedType();
   }
@@ -70,7 +63,6 @@ public final class Predicates {
    * Returns a predicate that evaluates to {@code true} if the object reference being tested is not
    * null.
    */
-  @GwtCompatible(serializable = true)
   public static <T> Predicate<T> notNull() {
     return ObjectPredicate.NOT_NULL.withNarrowedType();
   }
@@ -168,7 +160,6 @@ public final class Predicates {
    * example, {@code instanceOf(ArrayList.class)} will yield different results for the two equal
    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.
    */
-  @GwtIncompatible // Class.isInstance
   public static Predicate<Object> instanceOf(Class<?> clazz) {
     return new InstanceOfPredicate(clazz);
   }
@@ -187,8 +178,6 @@ public final class Predicates {
    *
    * @since 20.0 (since 10.0 under the incorrect name {@code assignableFrom})
    */
-  @GwtIncompatible // Class.isAssignableFrom
-  @Beta
   public static Predicate<Class<?>> subtypeOf(Class<?> clazz) {
     return new SubtypeOfPredicate(clazz);
   }
@@ -227,7 +216,6 @@ public final class Predicates {
    * @throws IllegalArgumentException if the pattern is invalid
    * @since 3.0
    */
-  @GwtIncompatible // Only used by other GWT-incompatible code.
   public static Predicate<CharSequence> containsPattern(String pattern) {
     return new ContainsPatternFromStringPredicate(pattern);
   }
@@ -239,7 +227,6 @@ public final class Predicates {
    *
    * @since 3.0
    */
-  @GwtIncompatible(value = "java.util.regex.Pattern")
   public static Predicate<CharSequence> contains(Pattern pattern) {
     return new ContainsPatternPredicate(new JdkPattern(pattern));
   }
@@ -471,7 +458,6 @@ public final class Predicates {
   }
 
   /** @see Predicates#instanceOf(Class) */
-  @GwtIncompatible // Class.isInstance
   private static class InstanceOfPredicate implements Predicate<Object>, Serializable {
     private final Class<?> clazz;
 
@@ -507,7 +493,6 @@ public final class Predicates {
   }
 
   /** @see Predicates#subtypeOf(Class) */
-  @GwtIncompatible // Class.isAssignableFrom
   private static class SubtypeOfPredicate implements Predicate<Class<?>>, Serializable {
     private final Class<?> clazz;
 
@@ -620,7 +605,6 @@ public final class Predicates {
   }
 
   /** @see Predicates#contains(Pattern) */
-  @GwtIncompatible // Only used by other GWT-incompatible code.
   private static class ContainsPatternPredicate implements Predicate<CharSequence>, Serializable {
     final CommonPattern pattern;
 
@@ -668,7 +652,6 @@ public final class Predicates {
   }
 
   /** @see Predicates#containsPattern(String) */
-  @GwtIncompatible // Only used by other GWT-incompatible code.
   private static class ContainsPatternFromStringPredicate extends ContainsPatternPredicate {
 
     ContainsPatternFromStringPredicate(String string) {

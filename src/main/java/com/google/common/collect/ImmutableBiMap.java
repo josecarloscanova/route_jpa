@@ -19,9 +19,9 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
+
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -37,7 +37,6 @@ import java.util.stream.Collectors;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
 public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<K, V>
     implements BiMap<K, V> {
 
@@ -53,7 +52,7 @@ public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<
    *
    * @since 21.0
    */
-  @Beta
+  
   public static <T, K, V> Collector<T, ?, ImmutableBiMap<K, V>> toImmutableBiMap(
       Function<? super T, ? extends K> keyFunction,
       Function<? super T, ? extends V> valueFunction) {
@@ -133,7 +132,7 @@ public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<
    *
    * @since 23.1
    */
-  @Beta
+  
   public static <K, V> Builder<K, V> builderWithExpectedSize(int expectedSize) {
     checkNonnegative(expectedSize, "expectedSize");
     return new Builder<>(expectedSize);
@@ -224,7 +223,7 @@ public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<
      * @since 19.0
      */
     
-    @Beta
+    
     @Override
     public Builder<K, V> putAll(Iterable<? extends Entry<? extends K, ? extends V>> entries) {
       super.putAll(entries);
@@ -242,7 +241,7 @@ public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<
      * @since 19.0
      */
     
-    @Beta
+    
     @Override
     public Builder<K, V> orderEntriesByValue(Comparator<? super V> valueComparator) {
       super.orderEntriesByValue(valueComparator);
@@ -294,7 +293,7 @@ public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<
     }
 
     @Override
-    @VisibleForTesting
+    
     ImmutableBiMap<K, V> buildJdkBacked() {
       checkState(
           valueComparator == null,
@@ -349,7 +348,7 @@ public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<
    * @throws NullPointerException if any key, value, or entry is null
    * @since 19.0
    */
-  @Beta
+  
   public static <K, V> ImmutableBiMap<K, V> copyOf(
       Iterable<? extends Entry<? extends K, ? extends V>> entries) {
     @SuppressWarnings("unchecked") // we'll only be using getKey and getValue, which are covariant

@@ -16,8 +16,8 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
+
+
 import com.google.common.base.Objects;
 import com.google.common.collect.Multisets.ImmutableEntry;
 import com.google.common.primitives.Ints;
@@ -32,7 +32,6 @@ import java.util.Collection;
  * @author Jared Levy
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true, serializable = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 class RegularImmutableMultiset<E> extends ImmutableMultiset<E> {
   static final ImmutableMultiset<Object> EMPTY = create(ImmutableList.<Entry<Object>>of());
@@ -101,19 +100,19 @@ class RegularImmutableMultiset<E> extends ImmutableMultiset<E> {
    * ensures that the table is still likely to be relatively sparse (hence it misses fast) while
    * saving space.
    */
-  @VisibleForTesting static final double MAX_LOAD_FACTOR = 1.0;
+   static final double MAX_LOAD_FACTOR = 1.0;
 
   /**
    * Maximum allowed false positive probability of detecting a hash flooding attack given random
    * input.
    */
-  @VisibleForTesting static final double HASH_FLOODING_FPP = 0.001;
+   static final double HASH_FLOODING_FPP = 0.001;
 
   /**
    * Maximum allowed length of a hash table bucket before falling back to a j.u.HashMap based
    * implementation. Experimentally determined.
    */
-  @VisibleForTesting static final int MAX_HASH_BUCKET_LENGTH = 9;
+   static final int MAX_HASH_BUCKET_LENGTH = 9;
 
   private final transient Multisets.ImmutableEntry<E>[] entries;
   private final transient Multisets.ImmutableEntry<E> [] hashTable;

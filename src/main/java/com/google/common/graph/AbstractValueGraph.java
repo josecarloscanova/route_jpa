@@ -16,7 +16,7 @@
 
 package com.google.common.graph;
 
-import com.google.common.annotations.Beta;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 import java.util.Map;
@@ -36,7 +36,7 @@ import java.util.Set;
  * @param <V> Value parameter type
  * @since 20.0
  */
-@Beta
+
 public abstract class AbstractValueGraph<N, V> extends AbstractBaseGraph<N>
     implements ValueGraph<N, V> {
 

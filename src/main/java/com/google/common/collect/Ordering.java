@@ -19,8 +19,6 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.CollectPreconditions.checkNonnegative;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 //import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.ArrayList;
@@ -140,7 +138,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible
 public abstract class Ordering<T> implements Comparator<T> {
   // Natural order
 
@@ -153,7 +150,6 @@ public abstract class Ordering<T> implements Comparator<T> {
    *
    * <p><b>Java 8 users:</b> use {@link Comparator#naturalOrder} instead.
    */
-  @GwtCompatible(serializable = true)
   @SuppressWarnings("unchecked") // TODO(kevinb): right way to explain this??
   public static <C extends Comparable> Ordering<C> natural() {
     return (Ordering<C>) NaturalOrdering.INSTANCE;
@@ -174,7 +170,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    * @return comparator itself if it is already an {@code Ordering}; otherwise an ordering that
    *     wraps that comparator
    */
-  @GwtCompatible(serializable = true)
+  
   public static <T> Ordering<T> from(Comparator<T> comparator) {
     return (comparator instanceof Ordering)
         ? (Ordering<T>) comparator
@@ -186,7 +182,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *
    * @deprecated no need to use this
    */
-  @GwtCompatible(serializable = true)
+  
   @Deprecated
   public static <T> Ordering<T> from(Ordering<T> ordering) {
     return checkNotNull(ordering);
@@ -212,7 +208,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *     (according to {@link Object#equals})
    */
   // TODO(kevinb): provide replacement
-  @GwtCompatible(serializable = true)
+  
   public static <T> Ordering<T> explicit(List<T> valuesInOrder) {
     return new ExplicitOrdering<T>(valuesInOrder);
   }
@@ -238,7 +234,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *     Object#equals(Object)}) are present among the method arguments
    */
   // TODO(kevinb): provide replacement
-  @GwtCompatible(serializable = true)
+  
   public static <T> Ordering<T> explicit(T leastValue, T... remainingValuesInOrder) {
     return explicit(Lists.asList(leastValue, remainingValuesInOrder));
   }
@@ -273,7 +269,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *
    * @since 13.0
    */
-  @GwtCompatible(serializable = true)
+  
   @SuppressWarnings("unchecked")
   public static Ordering<Object> allEqual() {
     return AllEqualOrdering.INSTANCE;
@@ -287,7 +283,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *
    * <p><b>Java 8 users:</b> Use {@code Comparator.comparing(Object::toString)} instead.
    */
-  @GwtCompatible(serializable = true)
+  
   public static Ordering<Object> usingToString() {
     return UsingToStringOrdering.INSTANCE;
   }
@@ -316,7 +312,6 @@ public abstract class Ordering<T> implements Comparator<T> {
     static final Ordering<Object> ARBITRARY_ORDERING = new ArbitraryOrdering();
   }
 
-  @VisibleForTesting
   static class ArbitraryOrdering extends Ordering<Object> {
 
     private final AtomicInteger counter = new AtomicInteger(0);
@@ -397,7 +392,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    */
   // type parameter <S> lets us avoid the extra <String> in statements like:
   // Ordering<String> o = Ordering.<String>natural().reverse();
-  @GwtCompatible(serializable = true)
+  
   public <S extends T> Ordering<S> reverse() {
     return new ReverseOrdering<S>(this);
   }
@@ -410,7 +405,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    */
   // type parameter <S> lets us avoid the extra <String> in statements like:
   // Ordering<String> o = Ordering.<String>natural().nullsFirst();
-  @GwtCompatible(serializable = true)
+  
   public <S extends T> Ordering<S> nullsFirst() {
     return new NullsFirstOrdering<S>(this);
   }
@@ -423,7 +418,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    */
   // type parameter <S> lets us avoid the extra <String> in statements like:
   // Ordering<String> o = Ordering.<String>natural().nullsLast();
-  @GwtCompatible(serializable = true)
+  
   public <S extends T> Ordering<S> nullsLast() {
     return new NullsLastOrdering<S>(this);
   }
@@ -441,7 +436,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    * <p><b>Java 8 users:</b> Use {@code Comparator.comparing(function, thisComparator)} instead (you
    * can omit the comparator if it is the natural order).
    */
-  @GwtCompatible(serializable = true)
+  
   public <F> Ordering<F> onResultOf(Function<F, ? extends T> function) {
     return new ByFunctionOrdering<>(function, this);
   }
@@ -463,7 +458,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    * Depending on what {@code secondaryComparator} is, one of the other overloads of {@code
    * thenComparing} may be even more useful.
    */
-  @GwtCompatible(serializable = true)
+  
   public <U extends T> Ordering<U> compound(Comparator<? super U> secondaryComparator) {
     return new CompoundOrdering<U>(this, checkNotNull(secondaryComparator));
   }
@@ -487,7 +482,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *
    * @param comparators the comparators to try in order
    */
-  @GwtCompatible(serializable = true)
+  
   public static <T> Ordering<T> compound(Iterable<? extends Comparator<? super T>> comparators) {
     return new CompoundOrdering<T>(comparators);
   }
@@ -507,7 +502,7 @@ public abstract class Ordering<T> implements Comparator<T> {
    *
    * @since 2.0
    */
-  @GwtCompatible(serializable = true)
+  
   // type parameter <S> lets us avoid the extra <String> in statements like:
   // Ordering<Iterable<String>> o =
   //     Ordering.<String>natural().lexicographical();
@@ -940,7 +935,6 @@ public abstract class Ordering<T> implements Comparator<T> {
    * Object[])} comparator when comparing a value outside the set of values it can compare.
    * Extending {@link ClassCastException} may seem odd, but it is required.
    */
-  @VisibleForTesting
   static class IncomparableValueException extends ClassCastException {
     final Object value;
 

@@ -18,7 +18,7 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtIncompatible;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -48,7 +48,7 @@ import java.util.function.Consumer;
  *
  * @author Louis Wasserman
  */
-@GwtIncompatible // not worth using in GWT for now
+ // not worth using in GWT for now
 class CompactLinkedHashSet<E> extends CompactHashSet<E> {
 
   /**

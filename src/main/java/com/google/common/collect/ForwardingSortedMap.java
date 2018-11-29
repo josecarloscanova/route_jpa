@@ -18,8 +18,8 @@ package com.google.common.collect;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
+
+
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.SortedMap;
@@ -50,7 +50,7 @@ import java.util.SortedMap;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible
+
 public abstract class ForwardingSortedMap<K, V> extends ForwardingMap<K, V>
     implements SortedMap<K, V> {
   // TODO(lowasser): identify places where thread safety is actually lost
@@ -98,7 +98,7 @@ public abstract class ForwardingSortedMap<K, V> extends ForwardingMap<K, V>
    *
    * @since 15.0
    */
-  @Beta
+  
   protected class StandardKeySet extends Maps.SortedKeySet<K, V> {
     /** Constructor for use by subclasses. */
     public StandardKeySet() {
@@ -125,7 +125,7 @@ public abstract class ForwardingSortedMap<K, V> extends ForwardingMap<K, V>
    * @since 7.0
    */
   @Override
-  @Beta
+  
   protected boolean standardContainsKey(Object key) {
     try {
       // any CCE will be caught
@@ -145,7 +145,7 @@ public abstract class ForwardingSortedMap<K, V> extends ForwardingMap<K, V>
    *
    * @since 7.0
    */
-  @Beta
+  
   protected SortedMap<K, V> standardSubMap(K fromKey, K toKey) {
     checkArgument(unsafeCompare(fromKey, toKey) <= 0, "fromKey must be <= toKey");
     return tailMap(fromKey).headMap(toKey);

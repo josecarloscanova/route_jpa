@@ -18,8 +18,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+
+
 import com.google.common.base.Ascii;
 import com.google.common.base.Equivalence;
 import com.google.common.base.MoreObjects;
@@ -85,7 +85,6 @@ import java.util.concurrent.ConcurrentMap;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
 public final class MapMaker {
   private static final int DEFAULT_INITIAL_CAPACITY = 16;
   private static final int DEFAULT_CONCURRENCY_LEVEL = 4;
@@ -117,7 +116,7 @@ public final class MapMaker {
    * used is in {@link Interners.WeakInterner}.
    */
   
-  @GwtIncompatible // To be supported
+   // To be supported
   MapMaker keyEquivalence(Equivalence<Object> equivalence) {
     checkState(keyEquivalence == null, "key equivalence was already set to %s", keyEquivalence);
     keyEquivalence = checkNotNull(equivalence);
@@ -200,7 +199,7 @@ public final class MapMaker {
    * @see WeakReference
    */
   
-  @GwtIncompatible // java.lang.ref.WeakReference
+   // java.lang.ref.WeakReference
   public MapMaker weakKeys() {
     return setKeyStrength(Strength.WEAK);
   }
@@ -236,7 +235,7 @@ public final class MapMaker {
    * @see WeakReference
    */
   
-  @GwtIncompatible // java.lang.ref.WeakReference
+   // java.lang.ref.WeakReference
   public MapMaker weakValues() {
     return setValueStrength(Strength.WEAK);
   }

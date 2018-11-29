@@ -14,7 +14,7 @@
 
 package com.google.common.base;
 
-import com.google.common.annotations.GwtCompatible;
+
 //import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -24,7 +24,7 @@ import com.google.common.annotations.GwtCompatible;
  *
  * @since 17.0
  */
-@GwtCompatible
+
 public class VerifyException extends RuntimeException {
   /** Constructs a {@code VerifyException} with no message. */
   public VerifyException() {}

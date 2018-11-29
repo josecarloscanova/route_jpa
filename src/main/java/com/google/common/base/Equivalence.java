@@ -16,7 +16,6 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.annotations.GwtCompatible;
 ////import com.google.errorprone.annotations.ForOverride;
 import java.io.Serializable;
 import java.util.function.BiPredicate;
@@ -33,7 +32,6 @@ import java.util.function.BiPredicate;
  * @since 10.0 (<a href="https://github.com/google/guava/wiki/Compatibility">mostly
  *     source-compatible</a> since 4.0)
  */
-@GwtCompatible
 public abstract class Equivalence<T> implements BiPredicate<T, T> {
   /** Constructor for use by subclasses. */
   protected Equivalence() {}
@@ -251,7 +249,6 @@ public abstract class Equivalence<T> implements BiPredicate<T, T> {
    *
    * @since 10.0
    */
-  @GwtCompatible(serializable = true)
   public final <S extends T> Equivalence<Iterable<S>> pairwise() {
     // Ideally, the returned equivalence would support Iterable<? extends T>. However,
     // the need for this is so rare that it's not worth making callers deal with the ugly wildcard.
