@@ -28,6 +28,7 @@ public class Station implements Comparable<Station>{
 		return stationLabel;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T extends Station> T nullStation() { 
 		return (T) new Station("");
 	}
