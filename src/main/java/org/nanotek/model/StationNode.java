@@ -16,7 +16,7 @@ public class StationNode implements Node<Station>{
 		return station;
 	}
 
-	public Station self() { 
+	public Station element() { 
 		return station;
 	}
 	
