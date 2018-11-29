@@ -9,6 +9,7 @@ import org.nanotek.model.Station;
 
 import com.google.common.collect.Table;
 import com.google.common.graph.MutableValueGraph;
+import com.google.common.graph.ValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
 
 public class AppRunner {
@@ -20,12 +21,10 @@ public class AppRunner {
 	public void run() throws Exception {
 		graphPathService = new ShorthestPathDestinationService();
 		graphService = new ShortestPathService();
-		MutableValueGraph<Station, Integer> routes = populateGraph();
-		graphPathService.calculateShortesPathTable(routes);
+		ValueGraph<Station, Integer> routes = populateGraph();
+		graphPathService.compute(routes);
 		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
-		
 		Table<Station, Station,Integer> resultTable = graphService.compute(routes);
-		
 		resultTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  + cell.getColumnKey() + " " +  cell.getValue()));
 		pathTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  + cell.getColumnKey() + " " +  cell.getValue().canonicalForm(true)));
 //		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));

@@ -13,9 +13,9 @@ import org.nanotek.model.Station;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.TreeBasedTable;
-import com.google.common.graph.MutableValueGraph;
+import com.google.common.graph.ValueGraph;
 
-public class ShorthestPathDestinationService<T extends Station> {
+public class ShorthestPathDestinationService<T extends Station>  extends AbstractShortestPath<T,Path<T>>{
 
 	private Table<T,T,Integer> pathTable;
 
@@ -23,18 +23,20 @@ public class ShorthestPathDestinationService<T extends Station> {
 	
 	private Table<T,T,List<Path<T>>> pathListDistanceTable;
 	
-
-	public  Table<T,T,Path<T>>  calculateShortesPathTable(MutableValueGraph<T,Integer> routes){  
-		initializeTables(routes);
+	@Override
+	public Table<T, T, Path<T>> compute(ValueGraph<T, Integer> graph) {
+		initializeTables(graph);
 		Set<T> stationRows = pathDistanceTable.rowKeySet();
 		for(T k : stationRows) { 
 			for (T i : stationRows) { 
 				for(T j : stationRows) { 
 					Path<T> pathij = pathDistanceTable.get(i, j);
 					Path<T> pathik = pathDistanceTable.get(i, k);
+					int ikDistance = pathik.getDistance();
 					Path<T> pathkj = pathDistanceTable.get(k, j);
-					if(pathik.getDistance() < Integer.MAX_VALUE && pathkj.getDistance() < Integer.MAX_VALUE) { 
-						Integer newDistance = pathik.getDistance() + pathkj.getDistance();
+					int kjDistance = pathkj.getDistance();
+					if(ikDistance < Integer.MAX_VALUE && kjDistance < Integer.MAX_VALUE) { 
+						int newDistance = ikDistance + kjDistance;
 						if(newDistance < Integer.MAX_VALUE && newDistance >= 0) { 
 							List<Destination<T>> destinationsik = pathik.getDestinations();
 							List<Destination<T>> destinationskj = pathkj.getDestinations();
@@ -54,17 +56,13 @@ public class ShorthestPathDestinationService<T extends Station> {
 		return pathDistanceTable;
 	}
 
-	public void calculateDFS (MutableValueGraph<T,Integer> routes , T station) { 
-		
-	}
-
 	private void addToPathListDistanceTable(Path<T> path) {
 		List<Path<T>> paths = Optional.ofNullable(pathListDistanceTable.get(path.getDestination().getFrom(), path.getDestination().getTo())).orElseGet(ArrayList::new);
 		paths.add(path);
 		pathListDistanceTable.put(path.getDestination().getFrom(), path.getDestination().getTo(),paths);
 	}
 
-	private void initializeTables(MutableValueGraph<T, Integer> routes) {
+	private void initializeTables(ValueGraph<T, Integer> routes) {
 		pathTable = generatePathTable();
 		pathDistanceTable = generatePathDistanceTable(routes);	
 		pathListDistanceTable =  TreeBasedTable.create();
@@ -96,7 +94,7 @@ public class ShorthestPathDestinationService<T extends Station> {
 		} 
 	}
 
-	private Table<T, T, Path<T>> generatePathDistanceTable(MutableValueGraph<T, Integer> routes) {
+	private Table<T, T, Path<T>> generatePathDistanceTable(ValueGraph<T, Integer> routes) {
 		Table<T , T , Path<T>>  theTable = TreeBasedTable.create();
 		Set<T> stations = new TreeSet <>();
 		routes.nodes().forEach(station -> stations.add(station));
@@ -119,7 +117,7 @@ public class ShorthestPathDestinationService<T extends Station> {
 		return TreeBasedTable.create();
 	}
 
-	private void createDestinationColumns(T station, MutableValueGraph<T,Integer> routes) {
+	private void createDestinationColumns(T station, ValueGraph<T,Integer> routes) {
 		Set<T> destinations = routes.successors(station);
 		destinations.stream().forEach(destination -> moveToTable(station , destination , routes.edgeValue(station, destination) , pathTable));
 	}
