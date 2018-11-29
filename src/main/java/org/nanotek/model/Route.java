@@ -13,9 +13,6 @@ public class Route<T> {
 	
 	protected T to; 
 	
-	public Route () {
-	}
-	
 	public Route(T from, T to) {
 		super();
 		this.from = from;

@@ -14,26 +14,30 @@ import java.util.Optional;
  * 
  */
 //TODO: verify a constaint of the problem.
-public class Path {
+public class Path<T extends Station> implements Routable<T>{
 	
-	private LinkedList<Destination> destinations = new LinkedList<>();
+	private LinkedList<Destination<T>> destinations = new LinkedList<>();
 
 	public Path() {
 		super();
 	}
 	
-	public Path(Destination destination) {
+	public Path(Destination<T> destination) {
 		super();
 		destinations.add(destination);
 	}
 	
-	public Destination addDestination(Destination destination) { 
+	public Destination<T> addDestination(Destination<T> destination) { 
 		destinations.add(destination);
 		return destination;
 	}
 	
-	public List<Destination> getDestinations(){ 
+	public List<Destination<T>> getDestinations(){ 
 		return destinations;
+	}
+	
+	public Destination<T> destination() {
+		return getDestination();
 	}
 	
 	public Integer getDistance() { 
@@ -41,12 +45,12 @@ public class Path {
 		return sum.isPresent()?sum.get():Integer.MAX_VALUE;
 	}
 
-	public Destination getDestination() { 
-		Destination dest = null; 
+	public Destination<T> getDestination() { 
+		Destination<T> dest = null; 
 		if(destinations.size() > 0) { 
-			dest  = new Destination(destinations.get(0).getFrom() , destinations.getLast().getTo() , getDistance());
+			dest  = new Destination<>(destinations.get(0).getFrom() , destinations.getLast().getTo() , getDistance());
 		}
-		return Optional.ofNullable(dest).orElse(new Destination());
+		return Optional.ofNullable(dest).isPresent() ? dest : new Destination<T>(Station.nullStation() , Station.nullStation() , Integer.MAX_VALUE);
 	}
 
 
@@ -77,6 +81,7 @@ public class Path {
 		return result;
 	}
 
+	//TODO: modigy the equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,7 +90,7 @@ public class Path {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Path other = (Path) obj;
+		Path<?> other = (Path<?>) obj;
 		if (destinations == null) {
 			if (other.destinations != null)
 				return false;
@@ -93,4 +98,5 @@ public class Path {
 			return false;
 		return true;
 	}
+
 }

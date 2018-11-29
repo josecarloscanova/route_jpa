@@ -9,16 +9,16 @@ import java.util.Objects;
  *
  */
 //TODO rename and fix the generic method. its just a copy of the EndValuePair.
-public class Destination extends Route<Station>{
+public class Destination<T extends Station> extends Route<T>{
 
 	private Integer distance;
 
-	public Destination() {}
+	public static Destination<? super Station> nullDestination() { 
+		return new Destination<Station>(Station.nullStation() , Station.nullStation() , Integer.MAX_VALUE);
+	}
 	
-	public Destination(Station from, Station to, Integer distance) {
-		super();
-		this.from = from;
-		this.to = to;
+	public Destination(T from, T to, int distance) {
+		super(from,to);
 		this.distance = distance;
 	}
 
@@ -30,19 +30,19 @@ public class Destination extends Route<Station>{
 		this.distance = distance;
 	}
 
-	public Station getFrom() {
+	public T getFrom() {
 		return from;
 	}
 
-	public void setFrom(Station from) {
+	public void setFrom(T from) {
 		this.from = from;
 	}
 
-	public Station getTo() {
+	public T getTo() {
 		return to;
 	}
 
-	public void setTo(Station to) {
+	public void setTo(T to) {
 		this.to = to;
 	}
 
@@ -64,7 +64,7 @@ public class Destination extends Route<Station>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Destination other = (Destination) obj;
+		Destination<?> other = (Destination<?>) obj;
 		if (distance == null) {
 			if (other.distance != null)
 				return false;
