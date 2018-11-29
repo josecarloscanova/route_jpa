@@ -15,7 +15,7 @@ import com.google.common.collect.Table;
 import com.google.common.collect.TreeBasedTable;
 import com.google.common.graph.MutableValueGraph;
 
-public class GraphPathServiceDestination {
+public class ShorthestPathDestinationService {
 
 	private Table<Station,Station,Integer> pathTable;
 

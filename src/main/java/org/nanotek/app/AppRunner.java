@@ -2,7 +2,7 @@ package org.nanotek.app;
 
 import java.util.stream.Stream;
 
-import org.nanotek.app.service.GraphPathServiceDestination;
+import org.nanotek.app.service.ShorthestPathDestinationService;
 import org.nanotek.app.service.ShortestPathService;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
@@ -13,12 +13,12 @@ import com.google.common.graph.ValueGraphBuilder;
 
 public class AppRunner {
 
-	GraphPathServiceDestination graphPathService;
+	ShorthestPathDestinationService graphPathService;
 
 	ShortestPathService graphService;
 
 	public void run() throws Exception {
-		graphPathService = new GraphPathServiceDestination();
+		graphPathService = new ShorthestPathDestinationService();
 		graphService = new ShortestPathService();
 		MutableValueGraph<Station, Integer> routes = populateGraph();
 		graphPathService.calculateShortesPathTable(routes);
