@@ -7,35 +7,35 @@ import java.util.Objects;
  * @author Usuario
  *
  */
-public class Route {
+public class Route<T> extends Station{
 
-	protected Station from; 
+	protected T from; 
 	
-	protected Station to; 
+	protected T to; 
 	
 	public Route () {
 	}
 	
-	public Route(Station from, Station to) {
+	public Route(T from, T to) {
 		super();
 		this.from = from;
 		this.to = to;
 	}
 
-	public Station getFrom() {
+	public T getFrom() {
 		return from;
 	}
 
-	public void setFrom(Station from) {
+	public void setFrom(T from) {
 		this.from = from;
 	}
 
-	public Station getTo() {
+	public T getTo() {
 		return to;
 	}
 
 
-	public void setTo(Station to) {
+	public void setTo(T to) {
 		this.to = to;
 	}
 
@@ -68,6 +68,6 @@ public class Route {
 
 	@Override
 	public String toString() {
-		return "Route [from=" + from + ", to=" + to + "]";
+		return "Route [from=" + from + "-" + to + "]";
 	}
 }

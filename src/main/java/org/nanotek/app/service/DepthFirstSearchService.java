@@ -15,9 +15,9 @@ public class DepthFirstSearchService {
 
 	private ValueGraph<Station, Integer> routes; 
 	private Table<Station, Station, Path> pathTable;
-	Map<Route,Integer> visitedMap;
-	Map<Station,Boolean> visitedRoute;
-	Map<Route,Path> pathMaps;
+	Map<Route<?>,Integer> visitedMap;
+	Map<Object,Boolean> visitedRoute;
+	Map<Route<?>,Path> pathMaps;
 	Path pathResult = new Path();
 	int counter = 0;
 	private Station st;
@@ -35,20 +35,20 @@ public class DepthFirstSearchService {
 
 	private void initializeVisited() {
 		Set<Station> nodes = routes.nodes();
-		nodes.stream().forEach(x -> nodes.stream().forEach(y -> visitedMap.put(new Route(x,y), 0)));
+		nodes.stream().forEach(x -> nodes.stream().forEach(y -> visitedMap.put(new Route<>(x,y), 0)));
 		nodes.stream().forEach(x -> nodes.stream().forEach(y -> visitedRoute.put(x, false)));
 	}
 
-	private Path dfs(Station s){
+	private Path dfs(Object s){
 		//		Map<Station , Path> map = pathTable.column(s);
 		Path path = new Path();
-		Set<Station> stations = routes.nodes();
-		for (Station station : stations) {
+		Set<?> stations = routes.nodes();
+		for (Object station : stations) {
 			if(s.equals(station)) continue;
 			if(station.equals(st))
 				counter++;
 			path = pathTable.get(s , station);
-			Route rt = new Route(s,station);
+			Route<?> rt = new Route<>(s,station);
 			visitedMap.put(rt, visitedMap.get(rt) + 1);
 			Optional<Integer> distance = Optional.ofNullable(path.getDistance());
 			if(distance.isPresent() && distance.get() > 0 && distance.get() < Integer.MAX_VALUE) { 
@@ -59,12 +59,12 @@ public class DepthFirstSearchService {
 						//						Station nextStation = optDestination.get().getTo();
 						//						if(path.getDistance() == Integer.MAX_VALUE)
 						//							continue;
-						Route route = new Route (s,station);
+						Route<?> route = new Route<>(s,station);
 						pathMaps.put(route, path);
 						Path newPath = new Path();
 						newPath.getDestinations().addAll(path.getDestinations());
 						newPath.getDestinations().addAll(nextDfsResult.getDestinations());
-						Route newRoute = new Route(newPath.getDestination().getFrom() , newPath.getDestination().getTo());
+						Route<?> newRoute = new Route<>(newPath.getDestination().getFrom() , newPath.getDestination().getTo());
 						if(pathMaps.get(newRoute)==null)
 							pathMaps.put(newRoute, newPath);	
 					}
@@ -95,14 +95,6 @@ public class DepthFirstSearchService {
 		this.pathTable = pathTable;
 	}
 
-	public Map<Station, Boolean> getVisitedRoute() {
-		return visitedRoute;
-	}
-
-	public void setVisitedRoute(Map<Station, Boolean> visitedRoute) {
-		this.visitedRoute = visitedRoute;
-	}
-
 	public Path getPathResult() {
 		return pathResult;
 	}
@@ -111,19 +103,4 @@ public class DepthFirstSearchService {
 		this.pathResult = pathResult;
 	}
 
-	public Map<Route, Integer> getVisitedMap() {
-		return visitedMap;
-	}
-
-	public void setVisitedMap(Map<Route, Integer> visitedMap) {
-		this.visitedMap = visitedMap;
-	}
-
-	public Map<Route, Path> getPathMaps() {
-		return pathMaps;
-	}
-
-	public void setPathMaps(Map<Route, Path> pathMaps) {
-		this.pathMaps = pathMaps;
-	}
 }

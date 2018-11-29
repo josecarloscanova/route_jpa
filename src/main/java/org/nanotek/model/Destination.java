@@ -8,7 +8,8 @@ import java.util.Objects;
  * @author jose.carlos.canova@gmail.com
  *
  */
-public class Destination extends Route{
+//TODO rename and fix the generic method. its just a copy of the EndValuePair.
+public class Destination extends Route<Station>{
 
 	private Integer distance;
 

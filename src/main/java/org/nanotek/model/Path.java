@@ -13,6 +13,7 @@ import java.util.Optional;
  * Usefull to verify if some algorithm to 
  * 
  */
+//TODO: verify a constaint of the problem.
 public class Path {
 	
 	private LinkedList<Destination> destinations = new LinkedList<>();
@@ -49,6 +50,19 @@ public class Path {
 	}
 
 
+	//Used to print the path as the canonical form..
+	//TODO: check a simple form of reducion
+	public String canonicalForm(boolean weighted) { 
+		StringBuffer form = new StringBuffer();
+		destinations.stream().forEach(x -> {
+						form.append(x.from.toString());
+						form.append('-');
+						if(x.to.equals(getDestination().to))
+							form.append(x.to);
+						});
+		return weighted ? form.append(' ').append(getDistance()).toString() : form.toString() ;
+	}
+	
 	@Override
 	public String toString() {
 		return "Path [" + "Destination()="

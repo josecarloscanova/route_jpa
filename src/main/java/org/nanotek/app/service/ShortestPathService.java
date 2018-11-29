@@ -1,5 +1,6 @@
 package org.nanotek.app.service;
 
+import java.util.Queue;
 import java.util.stream.Stream;
 
 import org.nanotek.model.Station;
@@ -16,9 +17,8 @@ import com.google.common.graph.ValueGraph;
  * @author jose.carlos.canova@gmail.com
  *
  */
-public class ShortestPathService implements Function<ValueGraph<Station,Integer>,Table<Station,Station,Integer>>{
-
-	@Override
+public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
+ 
 	public Table<Station, Station, Integer> compute(ValueGraph<Station, Integer> valueGraph) {
 		return  calculateShortestPath(valueGraph);
 	}
