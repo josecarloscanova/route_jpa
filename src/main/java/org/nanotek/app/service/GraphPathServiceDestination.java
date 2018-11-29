@@ -1,6 +1,7 @@
 package org.nanotek.app.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,9 +24,11 @@ public class GraphPathServiceDestination {
 	
 	private Table<Station,Station,List<Path>> pathListDistanceTable;
 	
+	private Map<Destination,List<Path>> paths;
 
 	public Table<Station,Station,Path>  calculateShortesPathTable(MutableValueGraph<Station,Integer> routes){  
 		initializeTables(routes);
+		paths = new HashMap<>();
 		Set<Station> stationRows = pathDistanceTable.rowKeySet();
 		for(Station k : stationRows) { 
 			for (Station i : stationRows) { 
@@ -38,11 +41,19 @@ public class GraphPathServiceDestination {
 						if(newDistance < Integer.MAX_VALUE && newDistance >= 0) { 
 							List<Destination> destinationsik = pathik.getDestinations();
 							List<Destination> destinationskj = pathkj.getDestinations();
-							if(pathij.getDistance() > newDistance) { 
+							if(pathij.getDistance() > newDistance) {
 								pathij.getDestinations().clear();
 								addDistancesToPath(pathij, destinationsik);
 								addDistancesToPath(pathij, destinationskj);
 								addToPathListDistanceTable(pathij);
+								addToPaths(pathij , pathij);
+							}else { 
+								Path p1 = new Path();
+								if(pathik.getDistance() > 0 && pathkj.getDistance()>0) {
+									p1.addDestination(pathik.getDestination());
+									p1.addDestination(pathkj.getDestination());
+									addToPaths(pathij , p1);
+								}
 							}
 						}else { 
 							throw new RuntimeException("Another problem");
@@ -54,8 +65,16 @@ public class GraphPathServiceDestination {
 		return pathDistanceTable;
 	}
 
-	public void calculateDFS (MutableValueGraph<Station,Integer> routes , Station station) { 
-		
+	private void addToPaths(Path p1, Path p12) {
+			List<Path> list;
+			Optional<List<Path>> opt = Optional.ofNullable(paths.get(p1.getDestination()));
+			if(!opt.isPresent()) { 
+				list = new ArrayList<>();
+				paths.put(p1.getDestination(), list);
+				list.add(p12);
+			}else { 
+				opt.get().add(p12);
+			}
 	}
 
 	private void addToPathListDistanceTable(Path path) {
@@ -144,6 +163,10 @@ public class GraphPathServiceDestination {
 
 	public Table<Station, Station, Path> getPathDistanceTable() {
 		return pathDistanceTable;
+	}
+
+	public Map<Destination, List<Path>> getPaths() {
+		return paths;
 	}
 
 }

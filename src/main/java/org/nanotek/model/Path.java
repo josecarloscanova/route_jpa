@@ -49,12 +49,17 @@ public class Path {
 	}
 
 
+	public String canonicalForm() { 
+		return destinations.stream().map(x -> ""+x.getFrom()+ x.getTo()).reduce((x, y) -> x+"->"+y).get();
+	}
+	
 	@Override
 	public String toString() {
-		return "Path [" + "Destination()="
-				+ getDestination() + " destinations=" + destinations + ", getDistance()=" + getDistance() + "]";
+//		return "Path [" + ""
+//				+ getDestination() + " " + destinations.stream().map(x -> x.getFrom()+"-"+x.getTo()).reduce((x, y) -> x+y).get() + ",distance=" + getDistance() + "]";
+		return  "{"+getDestination()+"}"+destinations.stream().map(x -> ""+x+"->").reduce((x, y) -> x+y).get() + getDistance();
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

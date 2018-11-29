@@ -47,7 +47,7 @@ public class Destination extends Route{
 
 	@Override
 	public String toString() {
-		return "Destination [from=" + from + ", to=" + to + ", distance=" + distance + "]";
+		return from + "->" + to + "=" + distance;
 	}
 
 	@Override

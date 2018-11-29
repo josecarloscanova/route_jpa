@@ -41,7 +41,7 @@ public class Station implements Comparable<Station>{
 
 	@Override
 	public String toString() {
-		return "Station [stationLabel=" + stationLabel +"]";
+		return stationLabel;
 	}
 
 	@Override
