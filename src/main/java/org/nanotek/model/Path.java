@@ -3,6 +3,7 @@ package org.nanotek.model;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
 
 /**
  * Class to store calculated paths, 
@@ -13,15 +14,11 @@ import java.util.Optional;
  * Usefull to verify if some algorithm to 
  * 
  */
-//TODO: verify a constaint of the problem.
+//TODO: verify a constraint of the problem.
 public class Path<T extends Station> implements Routable<T>{
 	
 	private LinkedList<Destination<T>> destinations = new LinkedList<>();
 
-	public Path() {
-		super();
-	}
-	
 	public Path(Destination<T> destination) {
 		super();
 		destinations.add(destination);
@@ -41,8 +38,13 @@ public class Path<T extends Station> implements Routable<T>{
 	}
 	
 	public Integer getDistance() { 
-		Optional<Integer> sum = destinations.stream().map(x -> x.getDistance()).reduce((x,y) -> x+y);
-		return sum.isPresent()?sum.get():Integer.MAX_VALUE;
+		Optional<Integer> sum = destinations.stream().map(x -> x.getDistance()).reduce(new BinaryOperator<Integer>() {
+			@Override
+			public Integer apply(Integer x, Integer y) {
+				return x < Integer.MAX_VALUE ? x+y : Integer.MAX_VALUE;
+			}
+		});
+		return sum.get();
 	}
 
 	public Destination<T> getDestination() { 

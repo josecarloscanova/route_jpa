@@ -8,6 +8,6 @@ package org.nanotek.app.service;
 @FunctionalInterface
 public interface Function<G,R> {
 
-	R compute(G graph);
+	R compute(G value);
 	
 }
