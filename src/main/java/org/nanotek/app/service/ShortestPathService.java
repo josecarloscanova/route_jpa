@@ -10,7 +10,7 @@ import com.google.common.graph.EndpointPair;
 import com.google.common.graph.ValueGraph;
 
 /**
- * Computes the shorthest path value using something like Dijkstra strategy... 
+ * Computes the shortest path value using something like Dijkstra strategy... 
  * to solve the shortest path on directed weighted graphs(the problem proposed).
  * 
  * @author jose.carlos.canova@gmail.com
@@ -47,8 +47,10 @@ public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
 	private void computeDistanceValue(Station k, 
 			Station i, Station j, 
 			Table<Station,Station ,Integer>  distanceTable) {
-		Integer computedValue = distanceTable.get(i, k) + distanceTable.get(k, j);
-		Integer tableValue = distanceTable.get(i, j);
+		int ik = distanceTable.get(i, k);
+		int kj = distanceTable.get(k, j);
+		int computedValue = ik + kj;
+		int tableValue = distanceTable.get(i, j);
 		if( computedValue < Integer.MAX_VALUE && computedValue > 0 && computedValue < tableValue) { 
 			distanceTable.put(i ,  j, computedValue);
 		}
