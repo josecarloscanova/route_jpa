@@ -9,11 +9,13 @@ import java.util.regex.PatternSyntaxException;
  * Simple class to parse the graph in the format proposed by the problem.
  * 
  */
-public class InputParser implements Parser<String[],String,String>{
+public class InputParser implements Parser<String[],String>{
 
+	private static final REGEX = "\\w+\\d+";
+	
 	//
 	@Override
-	public String[] parse(String graphInput,String regex) throws ParseException{
+	public String[] parse(String graphInput) throws ParseException{
 		List<String> ar = new ArrayList<>();
 		try  {
 			Matcher matcher =  Pattern.compile(regex).matcher(graphInput);
