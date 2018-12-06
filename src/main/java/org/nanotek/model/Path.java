@@ -19,8 +19,13 @@ public class Path<T extends Station> implements Routable<T>{
 	
 	private LinkedList<Destination<T>> destinations = new LinkedList<>();
 
-	public Path(Destination<T> destination) {
+	public Path() {
 		super();
+		destinations = new LinkedList<>();
+	}
+	
+	public Path(Destination<T> destination) {
+		this();
 		destinations.add(destination);
 	}
 	
@@ -38,13 +43,13 @@ public class Path<T extends Station> implements Routable<T>{
 	}
 	
 	public Integer getDistance() { 
-		Optional<Integer> sum = destinations.stream().map(x -> x.getDistance()).reduce(new BinaryOperator<Integer>() {
+		if (destinations.size() == 0) return Integer.MAX_VALUE;
+		return destinations.stream().map(x -> x.getDistance()).reduce(new BinaryOperator<Integer>() {
 			@Override
 			public Integer apply(Integer x, Integer y) {
 				return x < Integer.MAX_VALUE ? x+y : Integer.MAX_VALUE;
 			}
-		});
-		return sum.get();
+		}).get();
 	}
 
 	public Destination<T> getDestination() { 

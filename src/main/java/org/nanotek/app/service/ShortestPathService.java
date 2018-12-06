@@ -24,6 +24,7 @@ public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
 
 	private Table<Station,Station,Integer> calculateShortestPath(ValueGraph<Station,Integer> valueGraph){
 		Table<Station,Station ,Integer>  distanceTable = populateTable(valueGraph);
+		System.out.println(distanceTable);
 		nodes(valueGraph).forEach(k -> 
 		nodes(valueGraph).forEach(i -> 
 		nodes(valueGraph).forEach(j -> 
@@ -52,7 +53,9 @@ public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
 		int computedValue = ik + kj;
 		int tableValue = distanceTable.get(i, j);
 		if( computedValue < Integer.MAX_VALUE && computedValue > 0 && computedValue < tableValue) { 
-			distanceTable.put(i ,  j, computedValue);
+			System.out.println("computed value " + " " + i + "  " +  j + " " + computedValue);
+			int previous = distanceTable.put(i ,  j, computedValue);
+			System.out.println("previous " + previous);
 		}
 	}
 

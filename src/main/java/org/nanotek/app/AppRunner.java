@@ -1,9 +1,11 @@
 package org.nanotek.app;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
-import org.nanotek.app.service.ShorthestPathDestinationService;
+import org.nanotek.app.service.DepthFirstSearchService;
 import org.nanotek.app.service.ShortestPathService;
+import org.nanotek.app.service.ShorthestPathDestinationService;
 import org.nanotek.model.Path;
 import org.nanotek.model.Station;
 
@@ -23,10 +25,10 @@ public class AppRunner {
 		graphService = new ShortestPathService();
 		ValueGraph<Station, Integer> routes = populateGraph();
 		graphPathService.compute(routes);
-		Table<Station, Station,Path> pathTable = graphPathService.getDistanceTable();
-		Table<Station, Station,Integer> resultTable = graphService.compute(routes);
-		resultTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  + cell.getColumnKey() + " " +  cell.getValue()));
-		pathTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  + cell.getColumnKey() + " " +  cell.getValue().canonicalForm(true)));
+		Table<Station, Station, Path<?>> pathTable = graphPathService.getDistanceTable();
+//		Table<Station, Station,Integer> resultTable = graphService.compute(routes);
+//		resultTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  + cell.getColumnKey() + " " +  cell.getValue()));
+//		pathTable.cellSet().stream().forEach(cell -> System.out.println(cell.getRowKey() +  " "  + cell.getColumnKey() + " " +  cell.getValue().canonicalForm(true)));
 //		System.out.println("FROM A TO C " + pathTable.get(new Station ("A") , new Station("C")));
 //		//		
 //		Path ab = pathTable.get(new Station ("A") , new Station("B"));
@@ -42,13 +44,13 @@ public class AppRunner {
 //		//		prinPathTable(pathListTable);
 //		if(Graphs.hasCycle(routes.asGraph())) 
 //			System.out.println("HAS CYCLES");
-//		Set<Station> stations = routes.nodes();
-//		for (Station station : stations) { 
-//			DepthFirstSearchService dfs = new DepthFirstSearchService(routes , pathTable , station);
-//			System.out.println("BB" + dfs.getPathMaps());
-////			System.out.println("BB" + dfs.getVisitedMap());
-////			System.out.println("BB" + dfs.getVisitedRoute());
-//		}
+		Set<Station> stations = routes.nodes();
+		for (Station station : stations) { 
+			DepthFirstSearchService dfs = new DepthFirstSearchService(routes , pathTable , station);
+			System.out.println("BB" + dfs.getPathMaps());
+//			System.out.println("BB" + dfs.getVisitedMap());
+//			System.out.println("BB" + dfs.getVisitedRoute());
+		}
 	}
 
 
