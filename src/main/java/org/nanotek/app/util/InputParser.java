@@ -9,7 +9,7 @@ import java.util.regex.PatternSyntaxException;
  * Simple class to parse the graph in the format proposed by the problem.
  * 
  */
-public class InputParser implements Parser<String[]>{
+public class InputParser implements Parser<String[],String,String>{
 
 	//
 	@Override

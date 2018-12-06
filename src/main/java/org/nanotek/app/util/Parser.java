@@ -1,8 +1,8 @@
 package org.nanotek.app.util;
 
 @FunctionalInterface
-public interface Parser<P> {
+public interface Parser<P,I,E> {
 
-	P parse(String input , String regex);
+	P parse(I input , E regex);
 	
 }
