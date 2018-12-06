@@ -11,14 +11,14 @@ import java.util.regex.PatternSyntaxException;
  */
 public class InputParser implements Parser<String[],String>{
 
-	private static final REGEX = "\\w+\\d+";
+	private static final String REGEX = "(\\w+\\d+)";
 	
 	//
 	@Override
 	public String[] parse(String graphInput) throws ParseException{
 		List<String> ar = new ArrayList<>();
 		try  {
-			Matcher matcher =  Pattern.compile(regex).matcher(graphInput);
+			Matcher matcher =  Pattern.compile(REGEX).matcher(graphInput);
 			matcher.matches();
 			while(matcher.find()) {
 	            ar.add(matcher.group(1));
