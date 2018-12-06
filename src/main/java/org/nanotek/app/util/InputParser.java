@@ -15,10 +15,10 @@ public class InputParser implements Parser<String[],String>{
 	
 	//
 	@Override
-	public String[] parse(String graphInput) throws ParseException{
+	public String[] parse(String input) throws ParseException{
 		List<String> ar = new ArrayList<>();
 		try  {
-			Matcher matcher =  Pattern.compile(REGEX).matcher(graphInput);
+			Matcher matcher =  Pattern.compile(REGEX).matcher(input);
 			matcher.matches();
 			while(matcher.find()) {
 	            ar.add(matcher.group(1));
