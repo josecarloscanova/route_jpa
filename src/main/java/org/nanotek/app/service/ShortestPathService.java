@@ -16,7 +16,7 @@ import com.google.common.graph.ValueGraph;
  * @author jose.carlos.canova@gmail.com
  *
  */
-public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
+public class ShortestPathService extends SimpleShortestPath<Station,Integer>{
  
 	public Table<Station, Station, Integer> compute(ValueGraph<Station, Integer> valueGraph) {
 		return  calculateShortestPath(valueGraph);
@@ -32,19 +32,6 @@ public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
 		return distanceTable;
 	}
 	
-	private Table<Station,Station ,Integer> populateTable(ValueGraph<Station, Integer> valueGraph) {
-		Table<Station, Station, Integer> distanceTable = TreeBasedTable.create();
-		valueGraph.nodes().stream().forEach(row -> valueGraph.nodes().stream().forEach(col -> 
-					{
-						if(row.equals(col))	
-							distanceTable.put(row, col, 0);
-						else 
-							distanceTable.put(row, col, valueGraphValue(row,col,valueGraph));
-					}
-				));
-		return distanceTable;
-	}
-
 	private void computeDistanceValue(Station k, 
 			Station i, Station j, 
 			Table<Station,Station ,Integer>  distanceTable) {
@@ -59,11 +46,7 @@ public class ShortestPathService extends AbstractShortestPath<Station,Integer>{
 		}
 	}
 
-	private Stream<Station> nodes(ValueGraph<Station,Integer> valueGraph) {
-		return valueGraph.nodes().stream();
-	}
-
-	private Integer valueGraphValue(Station source, Station target, ValueGraph<Station, Integer> valueGraph) {
+	Integer valueGraphValue(Station source, Station target, ValueGraph<Station, Integer> valueGraph) {
 		return valueGraph.edgeValueOrDefault(EndpointPair.ordered(source, target),Integer.MAX_VALUE);
 	}
 
