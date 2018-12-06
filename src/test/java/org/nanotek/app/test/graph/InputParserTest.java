@@ -23,7 +23,7 @@ public class InputParserTest {
 
 	private void executeAssertion(String graphInput) {
 		InputParser parser = new InputParser();
-		Object[] result = parser.parse(graphInput);
+		Object[] result = parser.parse(graphInput,"(\\w+\\d+)");
 		Assert.assertArrayEquals(expected, result);
 	}
 	
