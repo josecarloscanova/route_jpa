@@ -4,6 +4,7 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.TreeBasedTable;
+import com.google.common.graph.EndpointPair;
 import com.google.common.graph.ValueGraph;
 
 public abstract class SimpleShortestPath<N extends Comparable<?>,E> implements Function<ValueGraph<N,Integer>,Table<N,N,E>> {
@@ -22,7 +23,9 @@ public abstract class SimpleShortestPath<N extends Comparable<?>,E> implements F
 		return distanceTable;
 	}
 	
-	abstract Integer valueGraphValue(N source, N target, ValueGraph<N, Integer> valueGraph);
+	Integer valueGraphValue(N source, N target, ValueGraph<N, Integer> valueGraph) {
+		return valueGraph.edgeValueOrDefault(EndpointPair.ordered(source, target),Integer.MAX_VALUE);
+	}
 
 	protected Stream<N> nodes(ValueGraph<N,Integer> valueGraph) {
 		return valueGraph.nodes().stream();
